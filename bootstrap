@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -euo pipefail
+
+RUNTIME_PATH="2018-06-01/runtime"
+
+sendInitError () {
+    ERROR_MESSAGE=$1
+    ERROR_TYPE=$2
+    ERROR="{\"errorMessage\" : \"$ERROR_MESSAGE\", \"errorType\" : \"$ERROR_TYPE\"}"
+    curl -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/$REQUEST_ID/error" > /dev/null
+    echo "ERROR" >&2
+    exit 1
+}
+
+# Initialization
+source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
+if [[ $? -ne 0 ]]; then
+  sendInitError "Handler Not Found" "InvalidHandlerException"
+fi
+
+# Processing
+while true
+do
+  HEADERS="$(mktemp)"
+  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
+  REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
+  echo $?
+  echo "RESPONSE::::"
+  curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
+done
