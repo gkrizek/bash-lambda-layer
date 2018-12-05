@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -u
 
 RUNTIME_PATH="2018-06-01/runtime"
 
@@ -11,7 +11,6 @@ sendInitError () {
   ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
   echo $ERROR >&2
   curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/init/error" > /dev/null
-  exit 1
 }
 
 sendRuntimeError () {
@@ -20,7 +19,7 @@ sendRuntimeError () {
   REQUEST_ID=$3
   ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
   echo $ERROR >&2
-  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error"
+  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error" >  /dev/null
 }
 
 sendResponse () {
@@ -28,12 +27,10 @@ sendResponse () {
   curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
 }
 
-# Make sure file exists and it can be sourced
-{
-  [[ ! -f $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" ]] && . $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" 
-} || {
+# Make sure handler file exists
+if [[ ! -f $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" ]]; then
   sendInitError "Failed to load handler '$(echo $_HANDLER | cut -d. -f2)' from module '$(echo $_HANDLER | cut -d. -f1)'" "InvalidHandlerException"
-}
+fi
 
 # Initialization
 source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
@@ -42,13 +39,14 @@ source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
 while true
 do
   HEADERS="$(mktemp)"
-  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocaion/next")
-  if [[ $? != 0 ]]; then
-    echo "INIT ERROR" >&2
-    sendInitError "There was a problem retriving invocations" "InternalRuntimeException"
-  fi
+  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
+  #echo $EXIT_CODE >&2
+  git ls
+  echo $?
+  echo $? >&2
+  #echo $RESPONSE >&2
   if [[ $? -eq 0 ]]; then
     echo "GOOD RESPONSE" >&2
     sendResponse $RESPONSE
