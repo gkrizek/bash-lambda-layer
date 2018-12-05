@@ -4,29 +4,56 @@ set -euo pipefail
 
 RUNTIME_PATH="2018-06-01/runtime"
 
+# Response
 sendInitError () {
-    ERROR_MESSAGE=$1
-    ERROR_TYPE=$2
-    ERROR="{\"errorMessage\" : \"$ERROR_MESSAGE\", \"errorType\" : \"$ERROR_TYPE\"}"
-    curl -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/$REQUEST_ID/error" > /dev/null
-    echo "ERROR" >&2
-    exit 1
+  ERROR_MESSAGE=$1
+  ERROR_TYPE=$2
+  ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
+  echo $ERROR >&2
+  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/init/error" > /dev/null
+  exit 1
+}
+
+sendRuntimeError () {
+  ERROR_MESSAGE=$1
+  ERROR_TYPE=$2
+  REQUEST_ID=$3
+  ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
+  echo $ERROR >&2
+  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error"
+}
+
+sendResponse () {
+  RESPONSE=$1
+  curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
+}
+
+# Make sure file exists and it can be sourced
+{
+  [[ ! -f $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" ]] && . $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" 
+} || {
+  sendInitError "Failed to load handler '$(echo $_HANDLER | cut -d. -f2)' from module '$(echo $_HANDLER | cut -d. -f1)'" "InvalidHandlerException"
 }
 
 # Initialization
 source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
-if [[ $? -ne 0 ]]; then
-  sendInitError "Handler Not Found" "InvalidHandlerException"
-fi
 
 # Processing
 while true
 do
   HEADERS="$(mktemp)"
-  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
+  EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocaion/next")
+  if [[ $? != 0 ]]; then
+    echo "INIT ERROR" >&2
+    sendInitError "There was a problem retriving invocations" "InternalRuntimeException"
+  fi
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
-  echo $?
-  echo "RESPONSE::::"
-  curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
+  if [[ $? -eq 0 ]]; then
+    echo "GOOD RESPONSE" >&2
+    sendResponse $RESPONSE
+  else
+    echo "BAD RESPONSE" >&2
+    sendRuntimeError "ErrorMessage" "ErrorType" $REQUEST_ID
+  fi
 done
