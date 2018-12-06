@@ -1,10 +1,11 @@
 #!/bin/bash
 
 function handler () {
+    set -e
     EVENT_DATA=$1
-    unset command_not_found_handle
-    echo "this is my function" >&2
-    git ls
+    echo "this is my function"
+    lsssss
+    RETURN_VALUE="this is the return value"
     echo $?
     echo $EVENT_DATA
 }

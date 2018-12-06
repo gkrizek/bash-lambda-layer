@@ -1,29 +1,32 @@
 #!/bin/sh
 
-set -u
+#set -u
 
+# Constants
 RUNTIME_PATH="2018-06-01/runtime"
 
-# Response
+# Send initialization error to Lambda API
 sendInitError () {
   ERROR_MESSAGE=$1
   ERROR_TYPE=$2
   ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
-  echo $ERROR >&2
   curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/init/error" > /dev/null
 }
 
+# Send runtime error to Lambda API
 sendRuntimeError () {
-  ERROR_MESSAGE=$1
-  ERROR_TYPE=$2
-  REQUEST_ID=$3
-  ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\"}"
-  echo $ERROR >&2
+  REQUEST_ID=$1
+  ERROR_MESSAGE=$2
+  ERROR_TYPE=$3
+  STACK_TRACE=$4
+  ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\", \"stackTrace\": \"$STACK_TRACE\"}"
   curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error" >  /dev/null
 }
 
+# Send successful response to Lambda API
 sendResponse () {
-  RESPONSE=$1
+  REQUEST_ID=$1
+  RESPONSE=$2
   curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
 }
 
@@ -41,17 +44,15 @@ do
   HEADERS="$(mktemp)"
   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
-  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
-  #echo $EXIT_CODE >&2
-  git ls
-  echo $?
-  echo $? >&2
-  #echo $RESPONSE >&2
-  if [[ $? -eq 0 ]]; then
-    echo "GOOD RESPONSE" >&2
-    sendResponse $RESPONSE
+  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" 2>&1 >/dev/null)
+  # Goal here is to only capture STDERR to the $RESPONSE variable and allow STDOUT to be logged like normal.
+  # Then for successful response messages we set them to a global variable $LAMBDA_RETURN_VALUE
+  EXIT_CODE=$?
+  if [[ $EXIT_CODE -eq "0" ]]; then
+    sendResponse $REQUEST_ID $LAMBDA_RETURN_VALUE
   else
-    echo "BAD RESPONSE" >&2
-    sendRuntimeError "ErrorMessage" "ErrorType" $REQUEST_ID
+    echo "failure"
+    echo $RESPONSE
+    sendRuntimeError $REQUEST_ID "Exited with code $EXIT_CODE" "RuntimeErrorException" "$RESPONSE"
   fi
 done
