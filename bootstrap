@@ -47,14 +47,18 @@ do
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   # Workaround until this is a layer
   export PATH=$PATH:/var/task/bin
+  # Execute the user function
   $(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" >&1 2> $RESPONSE | cat
   EXIT_CODE=$?
+  # Respond to Lambda API
   if [[ $EXIT_CODE -eq "0" ]]; then
     sendResponse "$REQUEST_ID" "$(cat $RESPONSE)"
   else
+    # Log error to stdout as well
     cat $RESPONSE
     sendRuntimeError "$REQUEST_ID" "Exited with code $EXIT_CODE" "RuntimeErrorException" "$(cat $RESPONSE)"
   fi
+  # Clean up
   rm -f $HEADERS
   rm -f $RESPONSE
 done
