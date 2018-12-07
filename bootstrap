@@ -5,8 +5,6 @@ set -uo pipefail
 # Constants
 RUNTIME_PATH="2018-06-01/runtime"
 mkdir -p /tmp/.aws
-mv .aws/config /tmp/.aws/config
-mv .aws/credentials /tmp/.aws/credentials
 
 # Send initialization error to Lambda API
 sendInitError () {
@@ -54,8 +52,6 @@ do
   export AWS_LAMBDA_DEADLINE_MS=$(grep -Fi Lambda-Runtime-Deadline-Ms "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   export AWS_LAMBDA_FUNCTION_ARN=$(grep -Fi Lambda-Runtime-Invoked-Function-Arn "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   export AWS_LAMBDA_TRACE_ID=$(grep -Fi Lambda-Runtime-Trace-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
-  # Workaround until this is a layer
-  export PATH=$PATH:/var/task/bin
   export AWS_CONFIG_FILE="/tmp/.aws/config"
   export AWS_SHARED_CREDENTIALS_FILE="/tmp/.aws/credentials"
   # Execute the user function
