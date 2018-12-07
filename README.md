@@ -69,6 +69,12 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
     Inside a Bash function, anything that is sent to `stdout` is part of the return value for that function. In order to properly capture the user's return value and still send `stdout` to CloudWatch, this Layer uses `stderr` as the return value. To send something to `stderr` simply append ` >&2` to the end of the command. See the example.sh script for help.
 
+### Notes
+
+- Files to configure the AWS CLI are in `/tmp/.aws`. By default, the CLI uses the same region and IAM Role as your lambda function. If you need to set something different, you can use the `/tmp/.aws/config` and `/tmp/.aws/credentials` files accordingly.
+
+- When using curl, you should use the `-s` flag. Without the silent flag, curl will send the progress bar of your request to `stderr`. This will show up in your response. So it's usually best to disable the progress bar.
+
 ### ARNs
 
 **us-east-1**
