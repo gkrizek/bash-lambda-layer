@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#set -u
+set -uo pipefail
 
 # Constants
 RUNTIME_PATH="2018-06-01/runtime"
@@ -20,7 +20,7 @@ sendRuntimeError () {
   ERROR_TYPE=$3
   STACK_TRACE=$4
   ERROR="{\"errorMessage\": \"$ERROR_MESSAGE\", \"errorType\": \"$ERROR_TYPE\", \"stackTrace\": \"$STACK_TRACE\"}"
-  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error" >  /dev/null
+  curl -sS -X POST -d "$ERROR" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/error" > /dev/null
 }
 
 # Send successful response to Lambda API
@@ -42,17 +42,17 @@ source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
 while true
 do
   HEADERS="$(mktemp)"
+  RESPONSE="$(mktemp)"
   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
-  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" 2>&1 >/dev/null)
-  # Goal here is to only capture STDERR to the $RESPONSE variable and allow STDOUT to be logged like normal.
-  # Then for successful response messages we set them to a global variable $LAMBDA_RETURN_VALUE
+  $(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" >&1 2> $RESPONSE | cat
   EXIT_CODE=$?
   if [[ $EXIT_CODE -eq "0" ]]; then
-    sendResponse $REQUEST_ID $LAMBDA_RETURN_VALUE
+    sendResponse "$REQUEST_ID" "$(cat $RESPONSE)"
   else
-    echo "failure"
-    echo $RESPONSE
-    sendRuntimeError $REQUEST_ID "Exited with code $EXIT_CODE" "RuntimeErrorException" "$RESPONSE"
+    cat $RESPONSE
+    sendRuntimeError "$REQUEST_ID" "Exited with code $EXIT_CODE" "RuntimeErrorException" "$(cat $RESPONSE)"
   fi
+  rm -f $HEADERS
+  rm -f $RESPONSE
 done
