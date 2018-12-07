@@ -2,7 +2,7 @@
 
 Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). This Layer is 100% Bash and handles all communication with the Lambda API. This allows you to run full Bash scripts and commands inside of AWS Lambda. This Layer also includes common CLI tools used in Bash scripts.
 
-See the [How To](README.md#HOWTO) section to understand how to use these layers. Also see the [example.sh](example.sh) file for an example of how to write a Bash script compatible with AWS Lambda.
+See the [How To](#how-to) section to understand how to use these layers. Also see the [example.sh](example.sh) file for an example of how to write a Bash script compatible with AWS Lambda.
 
 ## How To
 
@@ -15,14 +15,14 @@ See the [How To](README.md#HOWTO) section to understand how to use these layers.
 3. For the "Runtime" selection, select `Use custom runtime in function code or layer`. 
 4. In the "Designer" section of your function dashboard, select the `Layers` box.
 5. Scroll down to the "Referenced Layers" section and click `Add a layer`. 
-6. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](README.md#ARNs) for your region.
+6. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](#ARNs) for your region.
 7. Click the `Add` button.
 8. Click `Save` in the upper right.
 9. Upload your code and start using Bash in AWS Lambda!
 
 #### AWS CLI
 
-1. Create a function that uses the `provided` runtime and the [Layer ARN](README.md#ARNs) for your region.
+1. Create a function that uses the `provided` runtime and the [Layer ARN](#ARNs) for your region.
 
 ```
 $ aws lambda create-function \
