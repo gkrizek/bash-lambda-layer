@@ -46,7 +46,6 @@ do
   RESPONSE="$(mktemp)"
   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
-  #export PYTHONPATH="/var/task/bin/site-packages"
   # Export some additional context
   export AWS_LAMBDA_REQUEST_ID=$REQUEST_ID
   export AWS_LAMBDA_DEADLINE_MS=$(grep -Fi Lambda-Runtime-Deadline-Ms "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
@@ -66,6 +65,6 @@ do
     sendRuntimeError "$REQUEST_ID" "Exited with code $EXIT_CODE" "RuntimeErrorException" "$(cat $RESPONSE)"
   fi
   # Clean up
-  rm -f $HEADERS
-  rm -f $RESPONSE
+  rm -f -- "$HEADERS"
+  rm -f -- "$RESPONSE"
 done
