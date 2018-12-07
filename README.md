@@ -75,6 +75,8 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 - When using curl, you should use the `-s` flag. Without the silent flag, curl will send the progress bar of your request to `stderr`. This will show up in your response. So it's usually best to disable the progress bar.
 
+- The AWS CLI appears to be much slower than most of the AWS SDKs. Take this into consideration when comparing Bash with another language and evaluating execution times.
+
 ### ARNs
 
 **us-east-1**
