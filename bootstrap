@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -uo pipefail
 
@@ -45,6 +45,8 @@ do
   RESPONSE="$(mktemp)"
   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+  # Workaround until this is a layer
+  export PATH=$PATH:/var/task/bin
   $(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" >&1 2> $RESPONSE | cat
   EXIT_CODE=$?
   if [[ $EXIT_CODE -eq "0" ]]; then
