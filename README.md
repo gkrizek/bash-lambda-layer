@@ -89,14 +89,17 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 ### Included Executables
 
 - `$ aws`
-- `$ curl`
 - `$ git`
-- `$ gunzip`
-- `$ gzip`
 - `$ jq`
-- `$ tar`
+- `$ ssh`
 - `$ unzip`
 - `$ wget`
 - `$ zip`
+
+**Already included in the Lambda environment:**
+
+- `$ curl`
+- `$ gzip`
+- `$ tar`
 
 _If you would like to see more, please create an issue._
