@@ -71,7 +71,9 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 ### Notes
 
-- Files to configure the AWS CLI are in `/tmp/.aws`. By default, the CLI uses the same region and IAM Role as your lambda function. If you need to set something different, you can use the `/tmp/.aws/config` and `/tmp/.aws/credentials` files accordingly.
+- `$HOME` is set to `/tmp`. This is because the Lambda filesystem is read-only except for the `/tmp` directory. Some programs require `$HOME` to be writeable (like the AWS CLI and some SSH commands), so this allows them to work without issue.
+
+- Files to configure the AWS CLI should be put in `/tmp/.aws`. By default, the CLI uses the same region and IAM Role as your lambda function. If you need to set something different, you can use the `/tmp/.aws/config` and `/tmp/.aws/credentials` files accordingly.
 
 - When using curl, you should use the `-s` flag. Without the silent flag, curl will send the progress bar of your request to `stderr`. This will show up in your response. So it's usually best to disable the progress bar.
 
