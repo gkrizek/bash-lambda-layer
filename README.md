@@ -7,7 +7,7 @@ See the [How To](#how-to) section to understand how to use these layers. Also se
 ### ARN
 
 ```
-arn:aws:lambda:<region>:744348701589:layer:bash:1
+arn:aws:lambda:<region>:744348701589:layer:bash:2
 ```
 
 ## How To
