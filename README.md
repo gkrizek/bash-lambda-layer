@@ -1,6 +1,6 @@
 # Bash in AWS Lambda
 
-Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). This Layer is 100% Bash and handles all communication with the Lambda API. This allows you to run full Bash scripts and commands inside of AWS Lambda. This Layer also includes common CLI tools used in Bash scripts.
+Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). This Layer is 100% Bash and handles all communication with the Lambda Runtime API. This allows you to run full Bash scripts and commands inside of AWS Lambda. This Layer also includes common CLI tools used in Bash scripts.
 
 See the [How To](#how-to) section to understand how to use these layers. Also see the [example-basic.sh](examples/example-basic.sh) file for an example of how to write a Bash script compatible with this Layer.
 
@@ -94,7 +94,7 @@ handler () {
 }
 ```
 
-If you need to send a response back, you should send the response to `stderr`. (see the [caveats](#CAVEATS) section for an explanation why) To send output to `stderr` you should use `>&2`. This will be picked up and returned from the Lambda function.
+If you need to send a response back, you should send the response to `stderr`. (see the [Caveats](#CAVEATS) section for an explanation) To send output to `stderr` you should use `>&2`. This will be picked up and returned from the Lambda function.
 
 ```
 handler () {
@@ -115,7 +115,7 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 - You must send your return value to `stderr`
 
-    Inside a Bash function, anything that is sent to `stdout` is part of the return value for that function. In order to properly capture the user's return value and still send `stdout` to CloudWatch, this Layer uses `stderr` as the return value. To send something to `stderr` simply append ` >&2` to the end of the command. See the example.sh script for help.
+    Inside a normal Bash function, anything that is sent to `stdout` is part of the return value for that function. In order to properly capture the user's return value and still send `stdout` to CloudWatch, this Layer uses `stderr` as the return value. To send something to `stderr` simply append ` >&2` to the end of the command. See the [example scripts](examples) for help.
 
 ### Notes
 
@@ -147,7 +147,6 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 - `$ scp`
 - `$ sftp`
 - `$ ssh`
-- `$ unzip`
 - `$ wget`
 - `$ zip`
 
