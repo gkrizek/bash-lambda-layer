@@ -2,6 +2,9 @@
 handler () {
     set -e
 
+    # Event Data is sent as the first parameter
+    EVENT_DATA=$1
+
     # This is the Event Data
     echo $EVENT_DATA
 
