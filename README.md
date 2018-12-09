@@ -2,7 +2,7 @@
 
 Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). This Layer is 100% Bash and handles all communication with the Lambda API. This allows you to run full Bash scripts and commands inside of AWS Lambda. This Layer also includes common CLI tools used in Bash scripts.
 
-See the [How To](#how-to) section to understand how to use these layers. Also see the [example.sh](example.sh) file for an example of how to write a Bash script compatible with AWS Lambda.
+See the [How To](#how-to) section to understand how to use these layers. Also see the [example.sh](example.sh) file for an example of how to write a Bash script compatible with this Layer.
 
 ## How To
 
@@ -57,6 +57,48 @@ $ aws lambda update-function-configuration \
     --layers $ARN
 ```
 
+### Writing Scripts
+
+Like any other Lambda function code, your main script's name must match the first part of your handler. Inside your main script, you must define a function that matches the second part of the handler. You must have `set -e` be the first line inside your function. Putting `#!/bin/bash` at the top of your file is not necessary. So if your Lambda handler is `index.handler`, your file and contents should look like:
+
+```
+$ cat index.sh
+handler () {
+    set -e
+    ...
+}
+```
+
+The `event` data is sent to your function as the first parameter. To access it, you should use `$1`. So if you need the `event` data, you should set it to a variable. For example, `EVENT_DATA=$1`.
+
+```
+handler () {
+    set -e
+    EVENT_DATA=$1
+}
+```
+
+All the pre-installed tools are already in your `$PATH` so you can use them as expected. Any command output is automatically sent to CloudWatch, just like normal Lambda functions. 
+
+```
+handler () {
+    set -e
+    EVENT_DATA=$1
+    aws s3 ls $(echo $EVENT_DATA | jq ."bucket")
+}
+```
+
+If you need to send a response back, you should send the response to `stderr`. (see the [caveats](#CAVEATS) section for an explanation why) To send output to `stderr` you should use `>&2`. This will be picked up and returned from the Lambda function.
+
+```
+handler () {
+    set -e
+    EVENT_DATA=$1
+    aws s3 ls $(echo $EVENT_DATA | jq ."bucket")
+    echo "{\"success\": true}" >&2
+}
+```
+
 ### Caveats
 
 Bash behaves in ways unlike other programming languages. As such, there are some requirements on the user's end that must be done.
@@ -79,6 +121,16 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 - The AWS CLI appears to be much slower than most of the AWS SDKs. Take this into consideration when comparing Bash with another language and evaluating execution times.
 
+- With this method there is no `context` in the function, only `event` data. The `event` data is sent to your function as the first parameter. So to access the `event` data, use `$1`, for example `EVENT_DATA=$1`. In order to give some details that were availabe in the `context`, I export a few additional variables.
+
+    `AWS_LAMBDA_REQUEST_ID` - AWS Lambda Request ID 
+
+    `AWS_LAMBDA_DEADLINE_MS` - Time, in epoch, that your function must exit by
+
+    `AWS_LAMBDA_FUNCTION_ARN` - Full AWS Lambda function ARN
+
+    `AWS_LAMBDA_TRACE_ID` - The sampling decision, trace ID, and parent segment ID of AWS XRay
+
 ### ARNs
 
 **us-east-1**
@@ -91,6 +143,8 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 - `$ aws`
 - `$ git`
 - `$ jq`
+- `$ scp`
+- `$ sftp`
 - `$ ssh`
 - `$ unzip`
 - `$ wget`
