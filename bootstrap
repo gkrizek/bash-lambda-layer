@@ -50,7 +50,7 @@ do
   # Export some additional context
   export AWS_LAMBDA_REQUEST_ID=$REQUEST_ID
   export AWS_LAMBDA_DEADLINE_MS=$(grep -Fi Lambda-Runtime-Deadline-Ms "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
-  export AWS_LAMBDA_FUNCTION_ARN=$(grep -Fi Lambda-Runtime-Invoked-Function-Arn "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+  export AWS_LAMBDA_FUNCTION_ARN=$(grep -Fi Lambda-Runtime-Invoked-Function-Arn "$HEADERS" | cut -d" " -f2)
   export AWS_LAMBDA_TRACE_ID=$(grep -Fi Lambda-Runtime-Trace-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   # Execute the user function
   $(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA" >&1 2> $RESPONSE | cat
