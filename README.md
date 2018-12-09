@@ -4,6 +4,12 @@ Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://do
 
 See the [How To](#how-to) section to understand how to use these layers. Also see the [example.sh](example.sh) file for an example of how to write a Bash script compatible with this Layer.
 
+### ARN
+
+```
+arn:aws:lambda:<region>:744348701589:layer:bash:1
+```
+
 ## How To
 
 ### Getting Started
@@ -15,14 +21,14 @@ See the [How To](#how-to) section to understand how to use these layers. Also se
 3. For the "Runtime" selection, select `Use custom runtime in function code or layer`. 
 4. In the "Designer" section of your function dashboard, select the `Layers` box.
 5. Scroll down to the "Referenced Layers" section and click `Add a layer`. 
-6. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](#ARNs) for your region.
+6. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](#ARN) for your region.
 7. Click the `Add` button.
 8. Click `Save` in the upper right.
 9. Upload your code and start using Bash in AWS Lambda!
 
 #### AWS CLI
 
-1. Create a function that uses the `provided` runtime and the [Layer ARN](#ARNs) for your region.
+1. Create a function that uses the `provided` runtime and the [Layer ARN](#ARN) for your region.
 
 ```
 $ aws lambda create-function \
@@ -41,7 +47,7 @@ $ aws lambda create-function \
  
 1. In the "Designer" section of your function dashboard, select the `Layers` box.
 2. Scroll down to the "Referenced Layers" section and click `Add a layer`. 
-3. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](README.md#ARNs) for your region.
+3. Select the `Provide a layer version ARN` option, then copy/paste the [Layer ARN](#ARN) for your region.
 4. Click the `Add` button.
 5. Still under the "Referenced Layers" section, select the previous version and click `Remove`.
 6. Click `Save` in the upper right.
@@ -49,7 +55,7 @@ $ aws lambda create-function \
 
 #### AWS CLI
 
-1. Update your function's configration and add the [Layer ARN](README.md#ARNs) for your region.
+1. Update your function's configration and add the [Layer ARN](#ARN) for your region.
 
 ```
 $ aws lambda update-function-configuration \
@@ -121,6 +127,8 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 - The AWS CLI appears to be much slower than most of the AWS SDKs. Take this into consideration when comparing Bash with another language and evaluating execution times.
 
+- If a command is logging unwanted messages to `stderr` that are being picked up in your response, you can see if there is something similiar to a `--silent` flag. If there is not, you can remove the messages to `stderr` by redirecting to /dev/null (`2>/dev/null`) or redirecting `stderr` to `stdout` for that command (`2>&1`) to send them to CloudWatch.
+
 - With this method there is no `context` in the function, only `event` data. The `event` data is sent to your function as the first parameter. So to access the `event` data, use `$1`, for example `EVENT_DATA=$1`. In order to give some details that were availabe in the `context`, I export a few additional variables.
 
     `AWS_LAMBDA_REQUEST_ID` - AWS Lambda Request ID 
@@ -130,13 +138,6 @@ Bash behaves in ways unlike other programming languages. As such, there are some
     `AWS_LAMBDA_FUNCTION_ARN` - Full AWS Lambda function ARN
 
     `AWS_LAMBDA_TRACE_ID` - The sampling decision, trace ID, and parent segment ID of AWS XRay
-
-### ARNs
-
-**us-east-1**
-
-`arn`
-
 
 ### Included Executables
 
