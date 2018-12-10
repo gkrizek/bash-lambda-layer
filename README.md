@@ -36,10 +36,11 @@ $ aws lambda create-function \
     --role bashFunctionRole \
     --handler index.handler \
     --runtime provided \
-    --layers $ARN
+    --layers arn:aws:lambda:<region>:744348701589:layer:bash:2 \
+    --zip-file fileb://function.zip
 ```
 
-2. Upload your code and start using Bash in AWS Lambda!
+2. Start using Bash in AWS Lambda!
 
 ### Updating Versions
 
@@ -60,7 +61,7 @@ $ aws lambda create-function \
 ```
 $ aws lambda update-function-configuration \
     --function-name bashFunction \
-    --layers $ARN
+    --layers arn:aws:lambda:<region>:744348701589:layer:bash:2
 ```
 
 ### Writing Scripts
