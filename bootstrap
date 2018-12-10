@@ -34,11 +34,26 @@ sendResponse () {
 
 # Make sure handler file exists
 if [[ ! -f $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" ]]; then
-  sendInitError "Failed to load handler '$(echo $_HANDLER | cut -d. -f2)' from module '$(echo $_HANDLER | cut -d. -f1)'" "InvalidHandlerException"
+  sendInitError "Failed to load handler '$(echo $_HANDLER | cut -d. -f2)' from module '$(echo $_HANDLER | cut -d. -f1)'. File '$(echo $_HANDLER | cut -d. -f1).sh' does not exist." "InvalidHandlerException"
+  exit 1
 fi
 
 # Initialization
-source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
+SOURCE_RESPONSE="$(mktemp)"
+source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh" > $SOURCE_RESPONSE 2>&1
+if [[ $? -eq "0" ]]; then
+  rm -f -- "$SOURCE_RESPONSE"
+else
+  sendInitError "Failed to source file '$(echo $_HANDLER | cut -d. -f1).sh'. $(cat $SOURCE_RESPONSE)" "InvalidHandlerException"
+  exit 1
+fi
+
+# Make sure handler function exists
+type "$(echo $_HANDLER | cut -d. -f2)" > /dev/null 2>&1
+if [[ ! $? -eq "0" ]]; then
+  sendInitError "Failed to load handler '$(echo $_HANDLER | cut -d. -f2)' from module '$(echo $_HANDLER | cut -d. -f1)'. Function '$(echo $_HANDLER | cut -d. -f2)' does not exist." "InvalidHandlerException"
+  exit 1
+fi
 
 # Processing
 while true
