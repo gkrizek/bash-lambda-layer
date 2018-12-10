@@ -157,3 +157,5 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 - `$ tar`
 
 _If you would like to see more, please create an issue._
+
+Shout-out to the LambCI team for their work on [lambci/git-lambda-layer](https://github.com/lambci/git-lambda-layer) which some of the `git` and `ssh` build process was taken from.
