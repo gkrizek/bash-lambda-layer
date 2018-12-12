@@ -143,19 +143,29 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 ### Included Executables
 
 - `$ aws`
+- `$ bc`
 - `$ git`
 - `$ jq`
+- `$ rsync`
 - `$ scp`
 - `$ sftp`
 - `$ ssh`
+- `$ time`
+- `$ tree`
 - `$ wget`
 - `$ zip`
 
 **Already included in the Lambda environment:**
 
 - `$ curl`
+- `$ diff`
 - `$ gzip`
+- `$ head`
+- `$ md5sum`
 - `$ tar`
+- `$ tail`
+- `$ tee`
+- `$ xargs`
 
 _If you would like to see more, please create an issue._
 
