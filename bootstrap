@@ -28,8 +28,8 @@ sendRuntimeError () {
 # Send successful response to Lambda API
 sendResponse () {
   REQUEST_ID=$1
-  RESPONSE=$2
-  curl -sS -X POST -d "$RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
+  REQUEST_RESPONSE=$2
+  curl -sS -X POST -d "$REQUEST_RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
 }
 
 # Make sure handler file exists
@@ -58,8 +58,10 @@ fi
 # Processing
 while true
 do
-  HEADERS="$(mktemp)"
-  RESPONSE="$(mktemp)"
+  HEADERS="/tmp/headers-$(date +'%s')"
+  RESPONSE="/tmp/response-$(date +'%s')"
+  touch $HEADERS
+  touch $RESPONSE
   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/next")
   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
   # Export some additional context
@@ -81,4 +83,6 @@ do
   # Clean up
   rm -f -- "$HEADERS"
   rm -f -- "$RESPONSE"
+  unset HEADERS
+  unset RESPONSE
 done
