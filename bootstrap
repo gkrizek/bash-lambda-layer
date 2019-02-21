@@ -5,7 +5,9 @@ set -uo pipefail
 # Constants
 RUNTIME_PATH="2018-06-01/runtime"
 mkdir -p /tmp/.aws
+touch /tmp/.aws/config
 export HOME="/tmp"
+export AWS_CONFIG_FILE="/tmp/.aws/config"
 
 # Send initialization error to Lambda API
 sendInitError () {
