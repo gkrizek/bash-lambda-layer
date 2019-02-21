@@ -7,7 +7,7 @@ See the [How To](#how-to) section to understand how to use these layers. Also se
 ### ARN
 
 ```
-arn:aws:lambda:<region>:744348701589:layer:bash:4
+arn:aws:lambda:<region>:744348701589:layer:bash:5
 ```
 
 ## How To
@@ -36,7 +36,7 @@ $ aws lambda create-function \
     --role bashFunctionRole \
     --handler index.handler \
     --runtime provided \
-    --layers arn:aws:lambda:<region>:744348701589:layer:bash:4 \
+    --layers arn:aws:lambda:<region>:744348701589:layer:bash:5 \
     --zip-file fileb://function.zip
 ```
 
@@ -61,7 +61,7 @@ $ aws lambda create-function \
 ```
 $ aws lambda update-function-configuration \
     --function-name bashFunction \
-    --layers arn:aws:lambda:<region>:744348701589:layer:bash:4
+    --layers arn:aws:lambda:<region>:744348701589:layer:bash:5
 ```
 
 ### Writing Scripts
