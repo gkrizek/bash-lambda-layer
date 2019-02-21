@@ -151,6 +151,7 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 - `$ sftp`
 - `$ ssh`
 - `$ time`
+- `$ traceroute`
 - `$ tree`
 - `$ wget`
 - `$ zip`
