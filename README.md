@@ -158,11 +158,18 @@ Bash behaves in ways unlike other programming languages. As such, there are some
 
 **Already included in the Lambda environment:**
 
+- `$ awk`
+- `$ cat`
 - `$ curl`
+- `$ cut`
+- `$ date`
 - `$ diff`
+- `$ grep`
 - `$ gzip`
 - `$ head`
 - `$ md5sum`
+- `$ pwd`
+- `$ sed`
 - `$ tar`
 - `$ tail`
 - `$ tee`
