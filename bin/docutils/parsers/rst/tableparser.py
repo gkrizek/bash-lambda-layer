@@ -286,12 +286,12 @@ class GridTableParser(TableParser):
         From the data collected by `scan_cell()`, convert to the final data
         structure.
         """
-        rowseps = self.rowseps.keys()   # list of row boundaries
+        rowseps = list(self.rowseps.keys())   # list of row boundaries
         rowseps.sort()
         rowindex = {}
         for i in range(len(rowseps)):
             rowindex[rowseps[i]] = i    # row boundary -> row number mapping
-        colseps = self.colseps.keys()   # list of column boundaries
+        colseps = list(self.colseps.keys())   # list of column boundaries
         colseps.sort()
         colindex = {}
         for i in range(len(colseps)):
@@ -498,7 +498,7 @@ class SimpleTableParser(TableParser):
         """
         # "Infinite" value for a dummy last column's beginning, used to
         # check for text overflow:
-        columns.append((sys.maxint, None))
+        columns.append((sys.maxsize, None))
         lastcol = len(columns) - 2
         # combining characters do not contribute to the column width
         lines = [strip_combining_chars(line) for line in lines]
@@ -540,5 +540,5 @@ def update_dict_of_lists(master, newdata):
 
     Both parameters must be dictionaries containing list values.
     """
-    for key, values in newdata.items():
+    for key, values in list(newdata.items()):
         master.setdefault(key, []).extend(values)

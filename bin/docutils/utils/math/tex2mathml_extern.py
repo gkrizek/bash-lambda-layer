@@ -127,7 +127,7 @@ def blahtexml(math_code, inline=True, reporter=None):
     result = p.stdout.read().decode('utf8')
     err = p.stderr.read().decode('utf8')
     
-    print err
+    print(err)
     if result.find('<error>') >= 0:
         raise SyntaxError('\nMessage from external converter blahtexml:\n'
                 +result[result.find('<message>')+9:result.find('</message>')])
@@ -141,7 +141,7 @@ def blahtexml(math_code, inline=True, reporter=None):
 # self-test
 
 if __name__ == "__main__":
-    example = ur'\frac{\partial \sin^2(\alpha)}{\partial \vec r} \varpi \, \text{Grüße}'
+    example = r'\frac{\partial \sin^2(\alpha)}{\partial \vec r} \varpi \, \text{Grüße}'
     # print latexml(example).encode('utf8')
     # print ttm(example)#.encode('utf8')
-    print blahtexml(example).encode('utf8')
+    print(blahtexml(example).encode('utf8'))

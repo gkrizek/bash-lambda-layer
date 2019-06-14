@@ -201,7 +201,7 @@ class HTMLTranslator(writers._html_base.HTMLTranslator):
 
     # encode also non-breaking space
     special_characters = dict(_html_base.HTMLTranslator.special_characters)
-    special_characters[0xa0] = u'&nbsp;'
+    special_characters[0xa0] = '&nbsp;'
 
     # use character reference for dash (not valid in HTML5)
     attribution_formats = {'dash': ('&mdash;', ''),

@@ -130,6 +130,17 @@ EVENT_ALIASES = {
 }
 
 
+def ensure_boolean(val):
+    """Ensures a boolean value if a string or boolean is provided
+
+    For strings, the value for True/False is case insensitive
+    """
+    if isinstance(val, bool):
+        return val
+    else:
+        return val.lower() == 'true'
+
+
 def is_json_value_header(shape):
     """Determines if the provided shape is the special header type jsonvalue.
 
@@ -1301,9 +1312,11 @@ class ContainerMetadataFetcher(object):
             try:
                 return json.loads(response_text)
             except ValueError:
-                raise MetadataRetrievalError(
-                    error_msg=("Unable to parse JSON returned from "
-                               "ECS metadata: %s" % response_text))
+                error_msg = (
+                    "Unable to parse JSON returned from ECS metadata services"
+                )
+                logger.debug('%s:%s', error_msg, response_text)
+                raise MetadataRetrievalError(error_msg=error_msg)
         except RETRYABLE_HTTP_ERRORS as e:
             error_msg = ("Received error when attempting to retrieve "
                          "ECS metadata: %s" % e)

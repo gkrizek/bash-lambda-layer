@@ -20,7 +20,7 @@ import sys
 if sys.version_info < (3,0):
     b = bytes = str
     u_prefix = 'u'
-    from StringIO import StringIO as BytesIO
+    from io import StringIO as BytesIO
 else:
     import builtins
     bytes = builtins.bytes
@@ -37,7 +37,7 @@ else:
     BytesIO = __import__('io').BytesIO
 
 if sys.version_info < (2,5):
-    import __builtin__
+    import builtins
 
     def __import__(name, globals={}, locals={}, fromlist=[], level=-1):
         """Compatibility definition for Python 2.4.
@@ -45,4 +45,4 @@ if sys.version_info < (2,5):
         Silently ignore the `level` argument missing in Python < 2.5.
         """
         # we need the level arg because the default changed in Python 3.3
-        return __builtin__.__import__(name, globals, locals, fromlist)
+        return builtins.__import__(name, globals, locals, fromlist)

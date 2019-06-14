@@ -37,7 +37,7 @@ class SectNum(Transform):
         self.startnode.parent.remove(self.startnode)
         if self.document.settings.sectnum_xform:
             if self.maxdepth is None:
-                self.maxdepth = sys.maxint
+                self.maxdepth = sys.maxsize
             self.update_section_numbers(self.document)
         else: # store details for eventual section numbering by the writer
             self.document.settings.sectnum_depth = self.maxdepth
@@ -58,7 +58,7 @@ class SectNum(Transform):
                 # Use &nbsp; for spacing:
                 generated = nodes.generated(
                     '', (self.prefix + '.'.join(numbers) + self.suffix
-                         +  u'\u00a0' * 3),
+                         +  '\u00a0' * 3),
                     classes=['sectnum'])
                 title.insert(0, generated)
                 title['auto'] = 1
@@ -120,7 +120,7 @@ class Contents(Transform):
         sections = [sect for sect in node if isinstance(sect, nodes.section)]
         entries = []
         autonum = 0
-        depth = self.startnode.details.get('depth', sys.maxint)
+        depth = self.startnode.details.get('depth', sys.maxsize)
         for section in sections:
             title = section[0]
             auto = title.get('auto')    # May be set by SectNum.

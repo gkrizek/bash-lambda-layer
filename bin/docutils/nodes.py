@@ -49,7 +49,7 @@ class Node(object):
     line = None
     """The line number (1-based) of the beginning of this Node in `source`."""
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         Node instances are always true, even if they're empty.  A node is more
         than a simple container.  Its boolean "truth" does not depend on
@@ -64,7 +64,7 @@ class Node(object):
         # on 2.x, str(node) will be a byte string with Unicode
         # characters > 255 escaped; on 3.x this is no longer necessary
         def __str__(self):
-            return unicode(self).encode('raw_unicode_escape')
+            return str(self).encode('raw_unicode_escape')
 
     def asdom(self, dom=None):
         """Return a DOM **fragment** representation of this Node."""
@@ -248,11 +248,11 @@ class Node(object):
         if include_self and descend and not siblings:
             if condition is None:
                 return self._all_traverse()
-            elif isinstance(condition, (types.ClassType, type)):
+            elif isinstance(condition, type):
                 return self._fast_traverse(condition)
         # Check if `condition` is a class (check for TypeType for Python
         # implementations that use only new-style classes, like PyPy).
-        if isinstance(condition, (types.ClassType, type)):
+        if isinstance(condition, type):
             node_class = condition
             def condition(node, node_class=node_class):
                 return isinstance(node, node_class)
@@ -297,24 +297,24 @@ class Node(object):
             return None
 
 if sys.version_info < (3,):
-    class reprunicode(unicode):
+    class reprunicode(str):
         """
         A unicode sub-class that removes the initial u from unicode's repr.
         """
 
         def __repr__(self):
-            return unicode.__repr__(self)[1:]
+            return str.__repr__(self)[1:]
 
 
 else:
-    reprunicode = unicode
+    reprunicode = str
 
 
 def ensure_str(s):
     """
     Failsave conversion of `unicode` to `str`.
     """
-    if sys.version_info < (3,) and isinstance(s, unicode):
+    if sys.version_info < (3,) and isinstance(s, str):
         return s.encode('ascii', 'backslashreplace')
     return s
 
@@ -358,7 +358,7 @@ class Text(Node, reprunicode):
         return self.shortrepr(maxlen=68)
 
     def _dom_node(self, domroot):
-        return domroot.createTextNode(unicode(self))
+        return domroot.createTextNode(str(self))
 
     def astext(self):
         return reprunicode(self)
@@ -473,7 +473,7 @@ class Element(Node):
         for att in self.list_attributes:
             self.attributes[att] = []
 
-        for att, value in attributes.items():
+        for att, value in list(attributes.items()):
             att = att.lower()
             if att in self.list_attributes:
                 # mutable list; make a copy for this node
@@ -516,8 +516,8 @@ class Element(Node):
 
     def __unicode__(self):
         if self.children:
-            return u'%s%s%s' % (self.starttag(),
-                                ''.join([unicode(c) for c in self.children]),
+            return '%s%s%s' % (self.starttag(),
+                                ''.join([str(c) for c in self.children]),
                                 self.endtag())
         else:
             return self.emptytag()
@@ -539,16 +539,16 @@ class Element(Node):
                 values = [serial_escape('%s' % (v,)) for v in value]
                 value = ' '.join(values)
             else:
-                value = unicode(value)
+                value = str(value)
             value = quoteattr(value)
-            parts.append(u'%s=%s' % (name, value))
-        return u'<%s>' % u' '.join(parts)
+            parts.append('%s=%s' % (name, value))
+        return '<%s>' % ' '.join(parts)
 
     def endtag(self):
         return '</%s>' % self.tagname
 
     def emptytag(self):
-        return u'<%s/>' % u' '.join([self.tagname] +
+        return '<%s/>' % ' '.join([self.tagname] +
                                     ['%s="%s"' % (n, v)
                                      for n, v in self.attlist()])
 
@@ -558,47 +558,47 @@ class Element(Node):
     def __contains__(self, key):
         # support both membership test for children and attributes
         # (has_key is translated to "in" by 2to3)
-        if isinstance(key, basestring):
+        if isinstance(key, str):
             return key in self.attributes
         return key in self.children
 
     def __getitem__(self, key):
-        if isinstance(key, basestring):
+        if isinstance(key, str):
             return self.attributes[key]
         elif isinstance(key, int):
             return self.children[key]
-        elif isinstance(key, types.SliceType):
+        elif isinstance(key, slice):
             assert key.step in (None, 1), 'cannot handle slice with stride'
             return self.children[key.start:key.stop]
         else:
-            raise TypeError, ('element index must be an integer, a slice, or '
+            raise TypeError('element index must be an integer, a slice, or '
                               'an attribute name string')
 
     def __setitem__(self, key, item):
-        if isinstance(key, basestring):
+        if isinstance(key, str):
             self.attributes[str(key)] = item
         elif isinstance(key, int):
             self.setup_child(item)
             self.children[key] = item
-        elif isinstance(key, types.SliceType):
+        elif isinstance(key, slice):
             assert key.step in (None, 1), 'cannot handle slice with stride'
             for node in item:
                 self.setup_child(node)
             self.children[key.start:key.stop] = item
         else:
-            raise TypeError, ('element index must be an integer, a slice, or '
+            raise TypeError('element index must be an integer, a slice, or '
                               'an attribute name string')
 
     def __delitem__(self, key):
-        if isinstance(key, basestring):
+        if isinstance(key, str):
             del self.attributes[key]
         elif isinstance(key, int):
             del self.children[key]
-        elif isinstance(key, types.SliceType):
+        elif isinstance(key, slice):
             assert key.step in (None, 1), 'cannot handle slice with stride'
             del self.children[key.start:key.stop]
         else:
-            raise TypeError, ('element index must be an integer, a simple '
+            raise TypeError('element index must be an integer, a simple '
                               'slice, or an attribute name string')
 
     def __add__(self, other):
@@ -621,13 +621,13 @@ class Element(Node):
 
     def non_default_attributes(self):
         atts = {}
-        for key, value in self.attributes.items():
+        for key, value in list(self.attributes.items()):
             if self.is_not_default(key):
                 atts[key] = value
         return atts
 
     def attlist(self):
-        attlist = self.non_default_attributes().items()
+        attlist = list(self.non_default_attributes().items())
         attlist.sort()
         return attlist
 
@@ -954,7 +954,7 @@ class Element(Node):
                        'Losing "%s" attribute: %s' % (att, self[att])
         self.parent.replace(self, new)
 
-    def first_child_matching_class(self, childclass, start=0, end=sys.maxint):
+    def first_child_matching_class(self, childclass, start=0, end=sys.maxsize):
         """
         Return the index of the first child whose class exactly matches.
 
@@ -974,7 +974,7 @@ class Element(Node):
         return None
 
     def first_child_not_matching_class(self, childclass, start=0,
-                                       end=sys.maxint):
+                                       end=sys.maxsize):
         """
         Return the index of the first child whose class does *not* match.
 
@@ -1674,12 +1674,12 @@ class system_message(Special, BackLinkable, PreBibliographic, Element):
         try:
             Element.__init__(self, '', *children, **attributes)
         except:
-            print 'system_message: children=%r' % (children,)
+            print('system_message: children=%r' % (children,))
             raise
 
     def astext(self):
         line = self.get('line', '')
-        return u'%s:%s: (%s/%s) %s' % (self['source'], line, self['type'],
+        return '%s:%s: (%s/%s) %s' % (self['source'], line, self['type'],
                                        self['level'], Element.astext(self))
 
 
@@ -1728,7 +1728,7 @@ class pending(Special, Invisible, Element):
               '     .transform: %s.%s' % (self.transform.__module__,
                                           self.transform.__name__),
               '     .details:']
-        details = self.details.items()
+        details = list(self.details.items())
         details.sort()
         for key, value in details:
             if isinstance(value, Node):
@@ -2114,7 +2114,7 @@ def make_id(string):
     .. _CSS1 spec: http://www.w3.org/TR/REC-CSS1
     """
     id = string.lower()
-    if not isinstance(id, unicode):
+    if not isinstance(id, str):
         id = id.decode()
     id = id.translate(_non_id_translate_digraphs)
     id = id.translate(_non_id_translate)
@@ -2130,46 +2130,46 @@ def make_id(string):
 _non_id_chars = re.compile('[^a-z0-9]+')
 _non_id_at_ends = re.compile('^[-0-9]+|-+$')
 _non_id_translate = {
-    0x00f8: u'o',       # o with stroke
-    0x0111: u'd',       # d with stroke
-    0x0127: u'h',       # h with stroke
-    0x0131: u'i',       # dotless i
-    0x0142: u'l',       # l with stroke
-    0x0167: u't',       # t with stroke
-    0x0180: u'b',       # b with stroke
-    0x0183: u'b',       # b with topbar
-    0x0188: u'c',       # c with hook
-    0x018c: u'd',       # d with topbar
-    0x0192: u'f',       # f with hook
-    0x0199: u'k',       # k with hook
-    0x019a: u'l',       # l with bar
-    0x019e: u'n',       # n with long right leg
-    0x01a5: u'p',       # p with hook
-    0x01ab: u't',       # t with palatal hook
-    0x01ad: u't',       # t with hook
-    0x01b4: u'y',       # y with hook
-    0x01b6: u'z',       # z with stroke
-    0x01e5: u'g',       # g with stroke
-    0x0225: u'z',       # z with hook
-    0x0234: u'l',       # l with curl
-    0x0235: u'n',       # n with curl
-    0x0236: u't',       # t with curl
-    0x0237: u'j',       # dotless j
-    0x023c: u'c',       # c with stroke
-    0x023f: u's',       # s with swash tail
-    0x0240: u'z',       # z with swash tail
-    0x0247: u'e',       # e with stroke
-    0x0249: u'j',       # j with stroke
-    0x024b: u'q',       # q with hook tail
-    0x024d: u'r',       # r with stroke
-    0x024f: u'y',       # y with stroke
+    0x00f8: 'o',       # o with stroke
+    0x0111: 'd',       # d with stroke
+    0x0127: 'h',       # h with stroke
+    0x0131: 'i',       # dotless i
+    0x0142: 'l',       # l with stroke
+    0x0167: 't',       # t with stroke
+    0x0180: 'b',       # b with stroke
+    0x0183: 'b',       # b with topbar
+    0x0188: 'c',       # c with hook
+    0x018c: 'd',       # d with topbar
+    0x0192: 'f',       # f with hook
+    0x0199: 'k',       # k with hook
+    0x019a: 'l',       # l with bar
+    0x019e: 'n',       # n with long right leg
+    0x01a5: 'p',       # p with hook
+    0x01ab: 't',       # t with palatal hook
+    0x01ad: 't',       # t with hook
+    0x01b4: 'y',       # y with hook
+    0x01b6: 'z',       # z with stroke
+    0x01e5: 'g',       # g with stroke
+    0x0225: 'z',       # z with hook
+    0x0234: 'l',       # l with curl
+    0x0235: 'n',       # n with curl
+    0x0236: 't',       # t with curl
+    0x0237: 'j',       # dotless j
+    0x023c: 'c',       # c with stroke
+    0x023f: 's',       # s with swash tail
+    0x0240: 'z',       # z with swash tail
+    0x0247: 'e',       # e with stroke
+    0x0249: 'j',       # j with stroke
+    0x024b: 'q',       # q with hook tail
+    0x024d: 'r',       # r with stroke
+    0x024f: 'y',       # y with stroke
 }
 _non_id_translate_digraphs = {
-    0x00df: u'sz',      # ligature sz
-    0x00e6: u'ae',      # ae
-    0x0153: u'oe',      # ligature oe
-    0x0238: u'db',      # db digraph
-    0x0239: u'qp',      # qp digraph
+    0x00df: 'sz',      # ligature sz
+    0x00e6: 'ae',      # ae
+    0x0153: 'oe',      # ligature oe
+    0x0238: 'db',      # db digraph
+    0x0239: 'qp',      # qp digraph
 }
 
 def dupname(node, name):

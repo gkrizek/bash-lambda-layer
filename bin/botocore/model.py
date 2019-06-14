@@ -15,7 +15,8 @@ from collections import defaultdict
 
 from botocore.utils import CachedProperty, instance_cache, hyphenize_service_id
 from botocore.compat import OrderedDict
-
+from botocore.exceptions import MissingServiceIdError
+from botocore.exceptions import UndefinedModelAttributeError
 
 NOT_SET = object()
 
@@ -36,10 +37,6 @@ class InvalidShapeReferenceError(Exception):
     pass
 
 
-class UndefinedModelAttributeError(Exception):
-    pass
-
-
 class ServiceId(str):
     def hyphenize(self):
         return hyphenize_service_id(self)
@@ -57,7 +54,8 @@ class Shape(object):
                         'eventstream', 'event', 'eventheader', 'eventpayload',
                         'jsonvalue', 'timestampFormat', 'hostLabel']
     METADATA_ATTRS = ['required', 'min', 'max', 'sensitive', 'enum',
-                      'idempotencyToken', 'error', 'exception']
+                      'idempotencyToken', 'error', 'exception',
+                      'endpointdiscoveryid']
     MAP_TYPE = OrderedDict
 
     def __init__(self, shape_name, shape_model, shape_resolver=None):
@@ -169,6 +167,10 @@ class Shape(object):
         return "<%s(%s)>" % (self.__class__.__name__,
                              self.name)
 
+    @property
+    def event_stream_name(self):
+        return None
+
 
 class StructureShape(Shape):
     @CachedProperty
@@ -184,6 +186,13 @@ class StructureShape(Shape):
         for name, shape_ref in members.items():
             shape_members[name] = self._resolve_shape_ref(shape_ref)
         return shape_members
+
+    @CachedProperty
+    def event_stream_name(self):
+        for member_name, member in self.members.items():
+            if member.serialization.get('eventstream'):
+                return member_name
+        return None
 
 
 class ListShape(Shape):
@@ -291,7 +300,12 @@ class ServiceModel(object):
 
     @CachedProperty
     def service_id(self):
-        return ServiceId(self._get_metadata_property('serviceId'))
+        try:
+            return ServiceId(self._get_metadata_property('serviceId'))
+        except UndefinedModelAttributeError:
+            raise MissingServiceIdError(
+                service_name=self._service_name
+            )
 
     @CachedProperty
     def signing_name(self):
@@ -316,6 +330,13 @@ class ServiceModel(object):
     @CachedProperty
     def endpoint_prefix(self):
         return self._get_metadata_property('endpointPrefix')
+
+    @CachedProperty
+    def endpoint_discovery_operation(self):
+        for operation in self.operation_names:
+            model = self.operation_model(operation)
+            if model.is_endpoint_discovery_operation:
+                return model
 
     def _get_metadata_property(self, name):
         try:
@@ -416,6 +437,16 @@ class OperationModel(object):
         return self._operation_model.get('deprecated', False)
 
     @CachedProperty
+    def endpoint_discovery(self):
+        # Explicit None default. An empty dictionary for this trait means it is
+        # enabled but not required to be used.
+        return self._operation_model.get('endpointdiscovery', None)
+
+    @CachedProperty
+    def is_endpoint_discovery_operation(self):
+        return self._operation_model.get('endpointoperation', False)
+
+    @CachedProperty
     def input_shape(self):
         if 'input' not in self._operation_model:
             # Some operations do not accept any input and do not define an
@@ -475,9 +506,9 @@ class OperationModel(object):
         """Returns the event stream member's shape if any or None otherwise."""
         if shape is None:
             return None
-        for member in shape.members.values():
-            if member.serialization.get('eventstream'):
-                return member
+        event_name = shape.event_stream_name
+        if event_name:
+            return shape.members[event_name]
         return None
 
     @CachedProperty
@@ -692,8 +723,9 @@ class DenormalizedStructureBuilder(object):
         }
         if 'documentation' in model:
             shape['documentation'] = model['documentation']
-        if 'enum' in model:
-            shape['enum'] = model['enum']
+        for attr in Shape.METADATA_ATTRS:
+            if attr in model:
+                shape[attr] = model[attr]
         return shape
 
     def _build_scalar(self, model):

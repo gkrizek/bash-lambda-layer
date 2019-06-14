@@ -73,13 +73,13 @@ class Include(Directive):
             include_file = io.FileInput(source_path=path,
                                         encoding=encoding,
                                         error_handler=e_handler)
-        except UnicodeEncodeError, error:
-            raise self.severe(u'Problems with "%s" directive path:\n'
+        except UnicodeEncodeError as error:
+            raise self.severe('Problems with "%s" directive path:\n'
                               'Cannot encode input file path "%s" '
                               '(wrong locale?).' %
                               (self.name, SafeString(path)))
-        except IOError, error:
-            raise self.severe(u'Problems with "%s" directive path:\n%s.' %
+        except IOError as error:
+            raise self.severe('Problems with "%s" directive path:\n%s.' %
                       (self.name, ErrorString(error)))
         startline = self.options.get('start-line', None)
         endline = self.options.get('end-line', None)
@@ -89,8 +89,8 @@ class Include(Directive):
                 rawtext = ''.join(lines[startline:endline])
             else:
                 rawtext = include_file.read()
-        except UnicodeError, error:
-            raise self.severe(u'Problem with "%s" directive:\n%s' %
+        except UnicodeError as error:
+            raise self.severe('Problem with "%s" directive:\n%s' %
                               (self.name, ErrorString(error)))
         # start-after/end-before: no restrictions on newlines in match-text,
         # and no restrictions on matching inside lines vs. line boundaries
@@ -210,13 +210,13 @@ class Raw(Directive):
                 # TODO: currently, raw input files are recorded as
                 # dependencies even if not used for the chosen output format.
                 self.state.document.settings.record_dependencies.add(path)
-            except IOError, error:
-                raise self.severe(u'Problems with "%s" directive path:\n%s.'
+            except IOError as error:
+                raise self.severe('Problems with "%s" directive path:\n%s.'
                                   % (self.name, ErrorString(error)))
             try:
                 text = raw_file.read()
-            except UnicodeError, error:
-                raise self.severe(u'Problem with "%s" directive:\n%s'
+            except UnicodeError as error:
+                raise self.severe('Problem with "%s" directive:\n%s'
                     % (self.name, ErrorString(error)))
             attributes['source'] = path
         elif 'url' in self.options:
@@ -224,19 +224,19 @@ class Raw(Directive):
             # Do not import urllib2 at the top of the module because
             # it may fail due to broken SSL dependencies, and it takes
             # about 0.15 seconds to load.
-            import urllib2
+            import urllib.request, urllib.error, urllib.parse
             try:
-                raw_text = urllib2.urlopen(source).read()
-            except (urllib2.URLError, IOError, OSError), error:
-                raise self.severe(u'Problems with "%s" directive URL "%s":\n%s.'
+                raw_text = urllib.request.urlopen(source).read()
+            except (urllib.error.URLError, IOError, OSError) as error:
+                raise self.severe('Problems with "%s" directive URL "%s":\n%s.'
                     % (self.name, self.options['url'], ErrorString(error)))
             raw_file = io.StringInput(source=raw_text, source_path=source,
                                       encoding=encoding,
                                       error_handler=e_handler)
             try:
                 text = raw_file.read()
-            except UnicodeError, error:
-                raise self.severe(u'Problem with "%s" directive:\n%s'
+            except UnicodeError as error:
+                raise self.severe('Problem with "%s" directive:\n%s'
                                   % (self.name, ErrorString(error)))
             attributes['source'] = source
         else:
@@ -317,8 +317,8 @@ class Unicode(Directive):
         for code in codes:
             try:
                 decoded = directives.unicode_code(code)
-            except ValueError, error:
-                raise self.error(u'Invalid character code: %s\n%s'
+            except ValueError as error:
+                raise self.error('Invalid character code: %s\n%s'
                     % (code, ErrorString(error)))
             element += nodes.Text(decoded)
         return element.children
@@ -403,7 +403,7 @@ class Role(Directive):
                 self.state.parse_directive_block(
                 self.content[1:], self.content_offset, converted_role,
                 option_presets={}))
-        except states.MarkupError, detail:
+        except states.MarkupError as detail:
             error = self.state_machine.reporter.error(
                 'Error in "%s" directive:\n%s.' % (self.name, detail),
                 nodes.literal_block(self.block_text, self.block_text),
@@ -412,9 +412,9 @@ class Role(Directive):
         if 'class' not in options:
             try:
                 options['class'] = directives.class_option(new_role_name)
-            except ValueError, detail:
+            except ValueError as detail:
                 error = self.state_machine.reporter.error(
-                    u'Invalid argument for "%s" directive:\n%s.'
+                    'Invalid argument for "%s" directive:\n%s.'
                     % (self.name, SafeString(detail)), nodes.literal_block(
                     self.block_text, self.block_text), line=self.lineno)
                 return messages + [error]
@@ -475,8 +475,8 @@ class Date(Directive):
             try:
                 format_str = format_str.encode(locale_encoding or 'utf-8')
             except UnicodeEncodeError:
-                raise self.warning(u'Cannot encode date format string '
-                    u'with locale encoding "%s".' % locale_encoding)
+                raise self.warning('Cannot encode date format string '
+                    'with locale encoding "%s".' % locale_encoding)
         # @@@
         # Use timestamp from the `SOURCE_DATE_EPOCH`_ environment variable?
         # Pro: Docutils-generated documentation
@@ -502,8 +502,8 @@ class Date(Directive):
                 text = text.decode(locale_encoding or 'utf-8')
             except UnicodeDecodeError:
                 text = text.decode(locale_encoding or 'utf-8', 'replace')
-                raise self.warning(u'Error decoding "%s"'
-                    u'with locale encoding "%s".' % (text, locale_encoding))
+                raise self.warning('Error decoding "%s"'
+                    'with locale encoding "%s".' % (text, locale_encoding))
         return [nodes.Text(text)]
 
 

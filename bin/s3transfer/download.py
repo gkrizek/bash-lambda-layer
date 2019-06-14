@@ -13,23 +13,19 @@
 import logging
 import os
 import socket
-import math
 import threading
 import heapq
 
 
 from botocore.compat import six
-from botocore.exceptions import IncompleteReadError
-from botocore.vendored.requests.packages.urllib3.exceptions import \
-    ReadTimeoutError
 
-from s3transfer.compat import SOCKET_ERROR
 from s3transfer.compat import seekable
 from s3transfer.exceptions import RetriesExceededError
 from s3transfer.futures import IN_MEMORY_DOWNLOAD_TAG
-from s3transfer.utils import random_file_extension
+from s3transfer.utils import S3_RETRYABLE_DOWNLOAD_ERRORS
 from s3transfer.utils import get_callbacks
 from s3transfer.utils import invoke_progress_callbacks
+from s3transfer.utils import calculate_num_parts
 from s3transfer.utils import calculate_range_parameter
 from s3transfer.utils import FunctionContainer
 from s3transfer.utils import CountCallbackInvoker
@@ -40,10 +36,6 @@ from s3transfer.tasks import SubmissionTask
 
 
 logger = logging.getLogger(__name__)
-
-S3_RETRYABLE_ERRORS = (
-    socket.timeout, SOCKET_ERROR, ReadTimeoutError, IncompleteReadError
-)
 
 
 class DownloadOutputManager(object):
@@ -174,7 +166,7 @@ class DownloadFilenameOutputManager(DownloadOutputManager):
     def get_fileobj_for_io_writes(self, transfer_future):
         fileobj = transfer_future.meta.call_args.fileobj
         self._final_filename = fileobj
-        self._temp_filename = fileobj + os.extsep + random_file_extension()
+        self._temp_filename = self._osutil.get_temp_filename(fileobj)
         self._temp_fileobj = self._get_temp_fileobj()
         return self._temp_fileobj
 
@@ -429,8 +421,7 @@ class DownloadSubmissionTask(SubmissionTask):
 
         # Determine the number of parts
         part_size = config.multipart_chunksize
-        num_parts = int(
-            math.ceil(transfer_future.meta.size / float(part_size)))
+        num_parts = calculate_num_parts(transfer_future.meta.size, part_size)
 
         # Get any associated tags for the get object task.
         get_object_tag = download_output_manager.get_download_task_tag()
@@ -542,7 +533,7 @@ class GetObjectTask(Task):
                     else:
                         return
                 return
-            except S3_RETRYABLE_ERRORS as e:
+            except S3_RETRYABLE_DOWNLOAD_ERRORS as e:
                 logger.debug("Retrying exception caught (%s), "
                              "retrying request, (attempt %s / %s)", e, i,
                              max_attempts, exc_info=True)
@@ -575,7 +566,7 @@ class IOWriteTask(Task):
     def _main(self, fileobj, data, offset):
         """Pulls off an io queue to write contents to a file
 
-        :param f: The file handle to write content to
+        :param fileobj: The file handle to write content to
         :param data: The data to write
         :param offset: The offset to write the data to.
         """
@@ -602,7 +593,7 @@ class IOStreamingWriteTask(Task):
 class IORenameFileTask(Task):
     """A task to rename a temporary file to its final filename
 
-    :param f: The file handle that content was written to.
+    :param fileobj: The file handle that content was written to.
     :param final_filename: The final name of the file to rename to
         upon completion of writing the contents.
     :param osutil: OS utility

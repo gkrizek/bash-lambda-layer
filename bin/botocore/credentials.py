@@ -699,15 +699,19 @@ class AssumeRoleCredentialFetcher(CachedCredentialFetcher):
 
     def _assume_role_kwargs(self):
         """Get the arguments for assume role based on current configuration."""
-        assume_role_kwargs = self._assume_kwargs
+        assume_role_kwargs = deepcopy(self._assume_kwargs)
+
         mfa_serial = assume_role_kwargs.get('SerialNumber')
 
         if mfa_serial is not None:
             prompt = 'Enter MFA code for %s: ' % mfa_serial
             token_code = self._mfa_prompter(prompt)
-
-            assume_role_kwargs = deepcopy(assume_role_kwargs)
             assume_role_kwargs['TokenCode'] = token_code
+
+        duration_seconds = assume_role_kwargs.get('DurationSeconds')
+
+        if duration_seconds is not None:
+            assume_role_kwargs['DurationSeconds'] = duration_seconds
 
         return assume_role_kwargs
 
@@ -917,7 +921,10 @@ class EnvProvider(CredentialProvider):
         """
         Search for credentials in explicit environment variables.
         """
-        if self._mapping['access_key'] in self.environ:
+
+        access_key = self.environ.get(self._mapping['access_key'], '')
+
+        if access_key:
             logger.info('Found credentials in environment variables.')
             fetcher = self._create_credentials_fetcher()
             credentials = fetcher(require_expiry=False)
@@ -946,30 +953,32 @@ class EnvProvider(CredentialProvider):
         def fetch_credentials(require_expiry=True):
             credentials = {}
 
-            access_key = environ.get(mapping['access_key'])
-            if access_key is None:
+            access_key = environ.get(mapping['access_key'], '')
+            if not access_key:
                 raise PartialCredentialsError(
                     provider=method, cred_var=mapping['access_key'])
             credentials['access_key'] = access_key
 
-            secret_key = environ.get(mapping['secret_key'])
-            if secret_key is None:
+            secret_key = environ.get(mapping['secret_key'], '')
+            if not secret_key:
                 raise PartialCredentialsError(
                     provider=method, cred_var=mapping['secret_key'])
             credentials['secret_key'] = secret_key
 
-            token = None
+            credentials['token'] = None
             for token_env_var in mapping['token']:
-                if token_env_var in environ:
-                    token = environ[token_env_var]
+                token = environ.get(token_env_var, '')
+                if token:
+                    credentials['token'] = token
                     break
-            credentials['token'] = token
 
-            expiry_time = environ.get(mapping['expiry_time'])
-            if require_expiry and expiry_time is None:
+            credentials['expiry_time'] = None
+            expiry_time = environ.get(mapping['expiry_time'], '')
+            if expiry_time:
+                credentials['expiry_time'] = expiry_time
+            if require_expiry and not expiry_time:
                 raise PartialCredentialsError(
                     provider=method, cred_var=mapping['expiry_time'])
-            credentials['expiry_time'] = expiry_time
 
             return credentials
 
@@ -1245,6 +1254,10 @@ class AssumeRoleProvider(CredentialProvider):
         if mfa_serial is not None:
             extra_args['SerialNumber'] = mfa_serial
 
+        duration_seconds = role_config.get('duration_seconds')
+        if duration_seconds is not None:
+            extra_args['DurationSeconds'] = duration_seconds
+
         fetcher = AssumeRoleCredentialFetcher(
             client_creator=self._client_creator,
             source_credentials=source_credentials,
@@ -1277,6 +1290,7 @@ class AssumeRoleProvider(CredentialProvider):
         mfa_serial = profile.get('mfa_serial')
         external_id = profile.get('external_id')
         role_session_name = profile.get('role_session_name')
+        duration_seconds = profile.get('duration_seconds')
 
         role_config = {
             'role_arn': role_arn,
@@ -1286,6 +1300,12 @@ class AssumeRoleProvider(CredentialProvider):
             'source_profile': source_profile,
             'credential_source': credential_source
         }
+
+        if duration_seconds is not None:
+          try:
+            role_config['duration_seconds'] = int(duration_seconds)
+          except ValueError:
+            pass
 
         # Either the credential source or the source profile must be
         # specified, but not both.

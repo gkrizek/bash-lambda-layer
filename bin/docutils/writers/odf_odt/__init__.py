@@ -20,9 +20,9 @@ import zipfile
 from xml.dom import minidom
 import time
 import re
-import StringIO
+import io
 import copy
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import itertools
 import docutils
 try:
@@ -41,18 +41,18 @@ try:
     #from lxml import etree
     #WhichElementTree = 'lxml'
     raise ImportError('Ignoring lxml')
-except ImportError, e:
+except ImportError as e:
     try:
         # 2. Try to use ElementTree from the Python standard library.
         from xml.etree import ElementTree as etree
         WhichElementTree = 'elementtree'
-    except ImportError, e:
+    except ImportError as e:
         try:
             # 3. Try to use a version of ElementTree installed as a separate
             #    product.
             from elementtree import ElementTree as etree
             WhichElementTree = 'elementtree'
-        except ImportError, e:
+        except ImportError as e:
             s1 = 'Must install either a version of Python containing ' \
                  'ElementTree (Python version >=2.5) or install ElementTree.'
             raise ImportError(s1)
@@ -62,9 +62,9 @@ except ImportError, e:
 try:
     import pygments
     import pygments.lexers
-    from pygmentsformatter import OdtPygmentsProgFormatter, \
+    from .pygmentsformatter import OdtPygmentsProgFormatter, \
         OdtPygmentsLaTeXFormatter
-except (ImportError, SyntaxError), exp:
+except (ImportError, SyntaxError) as exp:
     pygments = None
 
 # check for the Python Imaging Library
@@ -299,7 +299,7 @@ def SubElement(parent, tag, attrib=None, nsmap=None, nsdict=CNSD):
 def fix_ns(tag, attrib, nsdict):
     nstag = add_ns(tag, nsdict)
     nsattrib = {}
-    for key, val in attrib.iteritems():
+    for key, val in attrib.items():
         nskey = add_ns(key, nsdict)
         nsattrib[nskey] = val
     return nstag, nsattrib
@@ -309,12 +309,12 @@ def add_ns(tag, nsdict=CNSD):
         nstag, name = tag.split(':')
         ns = nsdict.get(nstag)
         if ns is None:
-            raise RuntimeError, 'Invalid namespace prefix: %s' % nstag
+            raise RuntimeError('Invalid namespace prefix: %s' % nstag)
         tag = '{%s}%s' % (ns, name,)
     return tag
 
 def ToString(et):
-    outstream = StringIO.StringIO()
+    outstream = io.StringIO()
     if sys.version_info >= (3, 2):
         et.write(outstream, encoding="unicode")
     else:
@@ -683,7 +683,7 @@ class Writer(writers.Writer):
         localtime = time.localtime(time.time())
         zinfo = zipfile.ZipInfo(name, localtime)
         # Add some standard UNIX file access permissions (-rw-r--r--).
-        zinfo.external_attr = (0x81a4 & 0xFFFF) << 16L
+        zinfo.external_attr = (0x81a4 & 0xFFFF) << 16
         zinfo.compress_type = compress_type
         zfile.writestr(zinfo, bytes)
 
@@ -694,7 +694,7 @@ class Writer(writers.Writer):
                 continue
             try:
                 zfile.write(source, destination)
-            except OSError, e:
+            except OSError as e:
                 self.document.reporter.warning(
                     "Can't open file %s." % (source, ))
 
@@ -895,7 +895,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             document.reporter)
         self.format_map = {}
         if self.settings.odf_config_file:
-            from ConfigParser import ConfigParser
+            from configparser import ConfigParser
 
             parser = ConfigParser()
             parser.read(self.settings.odf_config_file)
@@ -995,7 +995,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             s2 = zfile.read('content.xml')
             zfile.close()
         else:
-            raise RuntimeError, 'stylesheet path (%s) must be %s or .xml file' %(stylespath, extension)
+            raise RuntimeError('stylesheet path (%s) must be %s or .xml file' %(stylespath, extension))
         self.str_stylesheet = s1
         self.str_stylesheetcontent = s2
         self.dom_stylesheet = etree.fromstring(self.str_stylesheet)
@@ -1118,13 +1118,13 @@ class ODFTranslator(nodes.GenericNodeVisitor):
     def setup_paper(self, root_el):
         try:
             fin = os.popen("paperconf -s 2> /dev/null")
-            w, h = map(float, fin.read().split())
+            w, h = list(map(float, fin.read().split()))
             fin.close()
         except:
             w, h = 612, 792     # default to Letter
         def walk(el):
             if el.tag == "{%s}page-layout-properties" % SNSD["style"] and \
-                    not el.attrib.has_key("{%s}page-width" % SNSD["fo"]):
+                    "{%s}page-width" % SNSD["fo"] not in el.attrib:
                 el.attrib["{%s}page-width" % SNSD["fo"]] = "%.3fpt" % w
                 el.attrib["{%s}page-height" % SNSD["fo"]] = "%.3fpt" % h
                 el.attrib["{%s}margin-left" % SNSD["fo"]] = \
@@ -1187,7 +1187,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                 elcustom = self.create_custom_headfoot(el2,
                     self.settings.custom_footer, 'footer', automatic_styles)
 
-    code_none, code_field, code_text = range(3)
+    code_none, code_field, code_text = list(range(3))
     field_pat = re.compile(r'%(..?)%')
 
     def create_custom_headfoot(self, parent, text, style_name, automatic_styles):
@@ -1203,12 +1203,12 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                     'd1', 'd2', 'd3', 'd4', 'd5',
                     's', 't', 'a'):
                     msg = 'bad field spec: %%%s%%' % (item[1], )
-                    raise RuntimeError, msg
+                    raise RuntimeError(msg)
                 el1 = self.make_field_element(parent,
                     item[1], style_name, automatic_styles)
                 if el1 is None:
                     msg = 'bad field spec: %%%s%%' % (item[1], )
-                    raise RuntimeError, msg
+                    raise RuntimeError(msg)
                 else:
                     current_element = el1
             else:
@@ -1581,7 +1581,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
         return el
 
     def encode(self, text):
-        text = text.replace(u'\u00a0', " ")
+        text = text.replace('\u00a0', " ")
         return text
 
     #
@@ -1735,7 +1735,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             if self.settings.generate_oowriter_toc:
                 pass
             else:
-                if node.has_key('classes') and \
+                if 'classes' in node and \
                         'auto-toc' in node.attributes['classes']:
                     el = SubElement(self.current_element, 'text:list', attrib={
                         'text:style-name': self.rststyle('tocenumlist'),
@@ -2184,7 +2184,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             destination = 'Pictures/1%08x%s' % (self.image_count, filename, )
             if source.startswith('http:') or source.startswith('https:'):
                 try:
-                    imgfile = urllib2.urlopen(source)
+                    imgfile = urllib.request.urlopen(source)
                     content = imgfile.read()
                     imgfile.close()
                     imgfile2 = tempfile.NamedTemporaryFile('wb', delete=False)
@@ -2192,7 +2192,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                     imgfile2.close()
                     imgfilename = imgfile2.name
                     source = imgfilename
-                except urllib2.HTTPError, e:
+                except urllib.error.HTTPError as e:
                     self.document.reporter.warning(
                         "Can't open image url %s." % (source, ))
                 spec = (source, destination,)
@@ -2239,7 +2239,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                     unit = '%'
                 else:
                     size, unit = convert_to_cm(size)
-            except ValueError, exp:
+            except ValueError as exp:
                 self.document.reporter.warning(
                     'Invalid %s for image: "%s".  '
                     'Error: "%s".' % (
@@ -2358,7 +2358,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                 page_width, _ = self.convert_to_cm(page_width)
                 margin_left, _ = self.convert_to_cm(margin_left)
                 margin_right, _ = self.convert_to_cm(margin_right)
-            except ValueError, exp:
+            except ValueError as exp:
                 self.document.reporter.warning(
                     'Stylesheet file contains invalid page width '
                     'or margin size.')
@@ -2408,7 +2408,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             el2 = SubElement(el1, 'style:text-properties', 
                 attrib=attrib, nsdict=SNSD)
         style_name = 'rstframestyle%d' % self.image_style_count
-        draw_name = 'graphics%d' % IMAGE_NAME_COUNTER.next()
+        draw_name = 'graphics%d' % next(IMAGE_NAME_COUNTER)
         # Add the styles
         attrib = {
             'style:name': style_name,
@@ -2513,7 +2513,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             attrib['style:wrap'] = 'none'
         el2 = SubElement(el1,
             'style:graphic-properties', attrib=attrib, nsdict=SNSD)
-        draw_name = 'graphics%d' % IMAGE_NAME_COUNTER.next()
+        draw_name = 'graphics%d' % next(IMAGE_NAME_COUNTER)
         # Add the content.
         #el = SubElement(current_element, 'text:p',
         #    attrib={'text:style-name': self.rststyle('textbody')})
@@ -2906,7 +2906,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
             if 'odt' in formatlist:
                 rawstr = node.astext()
                 attrstr = ' '.join(['%s="%s"' % (k, v, )
-                    for k,v in CONTENT_NAMESPACE_ATTRIB.items()])
+                    for k,v in list(CONTENT_NAMESPACE_ATTRIB.items())])
                 contentstr = '<stuff %s>%s</stuff>' % (attrstr, rawstr, )
                 if WhichElementTree != "lxml":
                     contentstr = contentstr.encode("utf-8")
@@ -2933,7 +2933,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
     def visit_reference(self, node):
         text = node.astext()
         if self.settings.create_links:
-            if node.has_key('refuri'):
+            if 'refuri' in node:
                     href = node['refuri']
                     if ( self.settings.cloak_email_addresses
                          and href.startswith('mailto:')):
@@ -2943,7 +2943,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
                         'xlink:type': 'simple',
                         })
                     self.set_current_element(el)
-            elif node.has_key('refid'):
+            elif 'refid' in node:
                 if self.settings.create_links:
                     href = node['refid']
                     el = self.append_child('text:reference-ref', attrib={
@@ -2960,7 +2960,7 @@ class ODFTranslator(nodes.GenericNodeVisitor):
 
     def depart_reference(self, node):
         if self.settings.create_links:
-            if node.has_key('refuri'):
+            if 'refuri' in node:
                 self.set_to_parent()
 
     def visit_rubric(self, node):
@@ -3208,8 +3208,8 @@ class ODFTranslator(nodes.GenericNodeVisitor):
         #
         # I don't know how to implement targets in ODF.
         # How do we create a target in oowriter?  A cross-reference?
-        if not (node.has_key('refuri') or node.has_key('refid')
-                or node.has_key('refname')):
+        if not ('refuri' in node or 'refid' in node
+                or 'refname' in node):
             pass
         else:
             pass

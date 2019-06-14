@@ -237,7 +237,7 @@ class S5HTMLTranslator(html4css1.HTMLTranslator):
         if len(required_files_copied) != len(self.required_theme_files):
             # Some required files weren't found & couldn't be copied.
             required = list(self.required_theme_files)
-            for f in required_files_copied.keys():
+            for f in list(required_files_copied.keys()):
                 required.remove(f)
             raise docutils.ApplicationError(
                 'Theme files not found: %s'

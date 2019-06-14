@@ -38,24 +38,24 @@ directives = {
       'rubrik': 'rubric',
       'epigraph': 'epigraph',
       'highlights': 'highlights',
-      u'pull-quote': 'pull-quote', # commonly used in German too
-      u'seitenansprache': 'pull-quote', # cf. http://www.typografie.info/2/wiki.php?title=Seitenansprache
+      'pull-quote': 'pull-quote', # commonly used in German too
+      'seitenansprache': 'pull-quote', # cf. http://www.typografie.info/2/wiki.php?title=Seitenansprache
       'zusammengesetzt': 'compound',
       'verbund': 'compound',
-      u'container': 'container',
+      'container': 'container',
       #'fragen': 'questions',
       'tabelle': 'table',
       'csv-tabelle': 'csv-table',
       'listentabelle': 'list-table',
-      u'mathe': 'math',
-      u'formel': 'math',
+      'mathe': 'math',
+      'formel': 'math',
       'meta': 'meta',
       #'imagemap': 'imagemap',
       'bild': 'image',
       'abbildung': 'figure',
-      u'unverändert': 'raw',
-      u'roh': 'raw',
-      u'einfügen': 'include',
+      'unverändert': 'raw',
+      'roh': 'raw',
+      'einfügen': 'include',
       'ersetzung': 'replace',
       'ersetzen': 'replace',
       'ersetze': 'replace',
@@ -63,14 +63,14 @@ directives = {
       'datum': 'date',
       'klasse': 'class',
       'rolle': 'role',
-      u'standardrolle': 'default-role',
-      u'titel': 'title',
+      'standardrolle': 'default-role',
+      'titel': 'title',
       'inhalt': 'contents',
-      u'kapitelnummerierung': 'sectnum',
-      u'abschnittsnummerierung': 'sectnum',
-      u'linkziel-fußnoten': 'target-notes',
-      u'kopfzeilen': 'header',
-      u'fußzeilen': 'footer',
+      'kapitelnummerierung': 'sectnum',
+      'abschnittsnummerierung': 'sectnum',
+      'linkziel-fußnoten': 'target-notes',
+      'kopfzeilen': 'header',
+      'fußzeilen': 'footer',
       #u'fußfnoten': 'footnotes',
       #'zitate': 'citations',
       }
@@ -78,9 +78,9 @@ directives = {
 mapping."""
 
 roles = {
-      u'abkürzung': 'abbreviation',
+      'abkürzung': 'abbreviation',
       'akronym': 'acronym',
-      u'code': 'code',
+      'code': 'code',
       'index': 'index',
       'tiefgestellt': 'subscript',
       'hochgestellt': 'superscript',
@@ -90,16 +90,16 @@ roles = {
       'betonung': 'emphasis', # for backwards compatibility
       'betont': 'emphasis',
       'fett': 'strong',
-      u'wörtlich': 'literal',
-      u'mathe': 'math',
+      'wörtlich': 'literal',
+      'mathe': 'math',
       'benannte-referenz': 'named-reference',
       'unbenannte-referenz': 'anonymous-reference',
-      u'fußfnoten-referenz': 'footnote-reference',
+      'fußfnoten-referenz': 'footnote-reference',
       'zitat-referenz': 'citation-reference',
       'ersetzungs-referenz': 'substitution-reference',
       'ziel': 'target',
       'uri-referenz': 'uri-reference',
-      u'unverändert': 'raw',
-      u'roh': 'raw',}
+      'unverändert': 'raw',
+      'roh': 'raw',}
 """Mapping of German role names to canonical role names for interpreted text.
 """

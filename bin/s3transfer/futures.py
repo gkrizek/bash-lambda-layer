@@ -27,7 +27,51 @@ from s3transfer.utils import TaskSemaphore
 logger = logging.getLogger(__name__)
 
 
-class TransferFuture(object):
+class BaseTransferFuture(object):
+    @property
+    def meta(self):
+        """The metadata associated to the TransferFuture"""
+        raise NotImplementedError('meta')
+
+    def done(self):
+        """Determines if a TransferFuture has completed
+
+        :returns: True if completed. False, otherwise.
+        """
+        raise NotImplementedError('done()')
+
+    def result(self):
+        """Waits until TransferFuture is done and returns the result
+
+        If the TransferFuture succeeded, it will return the result. If the
+        TransferFuture failed, it will raise the exception associated to the
+        failure.
+        """
+        raise NotImplementedError('result()')
+
+    def cancel(self):
+        """Cancels the request associated with the TransferFuture"""
+        raise NotImplementedError('cancel()')
+
+
+class BaseTransferMeta(object):
+    @property
+    def call_args(self):
+        """The call args used in the transfer request"""
+        raise NotImplementedError('call_args')
+
+    @property
+    def transfer_id(self):
+        """The unique id of the transfer"""
+        raise NotImplementedError('transfer_id')
+
+    @property
+    def user_context(self):
+        """A dictionary that requesters can store data in"""
+        raise NotImplementedError('user_context')
+
+
+class TransferFuture(BaseTransferFuture):
     def __init__(self, meta=None, coordinator=None):
         """The future associated to a submitted transfer request
 
@@ -49,23 +93,12 @@ class TransferFuture(object):
 
     @property
     def meta(self):
-        """The metadata associated tio the TransferFuture"""
         return self._meta
 
     def done(self):
-        """Determines if a TransferFuture has completed
-
-        :returns: True if completed. False, otherwise.
-        """
         return self._coordinator.done()
 
     def result(self):
-        """Waits until TransferFuture is done and returns the result
-
-        If the TransferFuture succeeded, it will return the result. If the
-        TransferFuture failed, it will raise the exception associated to the
-        failure.
-        """
         try:
             # Usually the result() method blocks until the transfer is done,
             # however if a KeyboardInterrupt is raised we want want to exit
@@ -76,7 +109,6 @@ class TransferFuture(object):
             raise e
 
     def cancel(self):
-        """Cancels the request associated with the TransferFuture"""
         self._coordinator.cancel()
 
     def set_exception(self, exception):
@@ -88,7 +120,7 @@ class TransferFuture(object):
         self._coordinator.set_exception(exception, override=True)
 
 
-class TransferMeta(object):
+class TransferMeta(BaseTransferMeta):
     """Holds metadata about the TransferFuture"""
     def __init__(self, call_args=None, transfer_id=None):
         self._call_args = call_args

@@ -313,7 +313,7 @@ class RSTState(StateWS):
         if blank_finish_state is None:
             blank_finish_state = initial_state
         state_machine.states[blank_finish_state].blank_finish = blank_finish
-        for key, value in extra_settings.items():
+        for key, value in list(extra_settings.items()):
             setattr(state_machine.states[initial_state], key, value)
         state_machine.run(block, input_offset, memo=self.memo,
                           node=node, match_titles=match_titles)
@@ -471,13 +471,13 @@ class Inliner:
     def init_customizations(self, settings):
         # lookahead and look-behind expressions for inline markup rules
         if getattr(settings, 'character_level_inline_markup', False):
-            start_string_prefix = u'(^|(?<!\x00))'
-            end_string_suffix = u''
+            start_string_prefix = '(^|(?<!\x00))'
+            end_string_suffix = ''
         else:
-            start_string_prefix = (u'(^|(?<=\\s|[%s%s]))' %
+            start_string_prefix = ('(^|(?<=\\s|[%s%s]))' %
                                    (punctuation_chars.openers,
                                     punctuation_chars.delimiters))
-            end_string_suffix = (u'($|(?=\\s|[\x00%s%s%s]))' %
+            end_string_suffix = ('($|(?=\\s|[\x00%s%s%s]))' %
                                  (punctuation_chars.closing_delimiters,
                                   punctuation_chars.delimiters,
                                   punctuation_chars.closers))
@@ -1067,7 +1067,7 @@ class Body(RSTState):
           'parens': Struct(prefix='(', suffix=')', start=1, end=-1),
           'rparen': Struct(prefix='', suffix=')', start=0, end=-1),
           'period': Struct(prefix='', suffix='.', start=0, end=-1)}
-    enum.formats = enum.formatinfo.keys()
+    enum.formats = list(enum.formatinfo.keys())
     enum.sequences = ['arabic', 'loweralpha', 'upperalpha',
                       'lowerroman', 'upperroman'] # ORDERED!
     enum.sequencepats = {'arabic': '[0-9]+',
@@ -1117,7 +1117,7 @@ class Body(RSTState):
               pats['enum'], re.escape(enum.formatinfo[format].suffix))
 
     patterns = {
-          'bullet': u'[-+*\u2022\u2023\u2043]( +|$)',
+          'bullet': '[-+*\u2022\u2023\u2043]( +|$)',
           'enumerator': r'(%(parens)s|%(rparen)s|%(period)s)( +|$)' % pats,
           'field_marker': r':(?![: ])([^:\\]|\\.)*(?<! ):( +|$)',
           'option_marker': r'%(option)s(, %(option)s)*(  +| ?$)' % pats,
@@ -1176,7 +1176,7 @@ class Body(RSTState):
         return elements
 
     # U+2014 is an em-dash:
-    attribution_pattern = re.compile(u'(---?(?!-)|\u2014) *(?=[^ \\n])',
+    attribution_pattern = re.compile('(---?(?!-)|\u2014) *(?=[^ \\n])',
                                      re.UNICODE)
 
     def split_attribution(self, indented, line_offset):
@@ -1480,9 +1480,9 @@ class Body(RSTState):
         (optionlist.source, optionlist.line) = self.state_machine.get_source_and_line()
         try:
             listitem, blank_finish = self.option_list_item(match)
-        except MarkupError, error:
+        except MarkupError as error:
             # This shouldn't happen; pattern won't match.
-            msg = self.reporter.error(u'Invalid option list marker: %s' %
+            msg = self.reporter.error('Invalid option list marker: %s' %
                                       error)
             self.parent += msg
             indented, indent, line_offset, blank_finish = \
@@ -1602,7 +1602,7 @@ class Body(RSTState):
         indented, indent, line_offset, blank_finish = \
             self.state_machine.get_first_known_indented(match.end(),
                                                         until_blank=True)
-        text = u'\n'.join(indented)
+        text = '\n'.join(indented)
         text_nodes, messages = self.inline_text(text, lineno)
         line = nodes.line(text, '', *text_nodes)
         if match.string.rstrip() != '|': # not empty
@@ -1669,7 +1669,7 @@ class Body(RSTState):
                              + 1)
                 table = self.build_table(tabledata, tableline)
                 nodelist = [table] + messages
-            except tableparser.TableMarkupError, err:
+            except tableparser.TableMarkupError as err:
                 nodelist = self.malformed_table(block, ' '.join(err.args),
                                                 offset=err.offset) + messages
         else:
@@ -1681,7 +1681,7 @@ class Body(RSTState):
         blank_finish = 1
         try:
             block = self.state_machine.get_text_block(flush_left=True)
-        except statemachine.UnexpectedIndentationError, err:
+        except statemachine.UnexpectedIndentationError as err:
             block, src, srcline = err.args
             messages.append(self.reporter.error('Unexpected indentation.',
                                                 source=src, line=srcline))
@@ -2117,7 +2117,7 @@ class Body(RSTState):
             arguments, options, content, content_offset = (
                 self.parse_directive_block(indented, line_offset,
                                            directive, option_presets))
-        except MarkupError, detail:
+        except MarkupError as detail:
             error = self.reporter.error(
                 'Error in "%s" directive:\n%s.' % (type_name,
                                                    ' '.join(detail.args)),
@@ -2128,7 +2128,7 @@ class Body(RSTState):
             content_offset, block_text, self, self.state_machine)
         try:
             result = directive_instance.run()
-        except docutils.parsers.rst.DirectiveError, error:
+        except docutils.parsers.rst.DirectiveError as error:
             msg_node = self.reporter.system_message(error.level, error.msg,
                                                     line=lineno)
             msg_node += nodes.literal_block(block_text, block_text)
@@ -2245,11 +2245,11 @@ class Body(RSTState):
             return 0, 'invalid option block'
         try:
             options = utils.extract_extension_options(node, option_spec)
-        except KeyError, detail:
+        except KeyError as detail:
             return 0, ('unknown option: "%s"' % detail.args[0])
-        except (ValueError, TypeError), detail:
+        except (ValueError, TypeError) as detail:
             return 0, ('invalid option value: %s' % ' '.join(detail.args))
-        except utils.ExtensionOptionError, detail:
+        except utils.ExtensionOptionError as detail:
             return 0, ('invalid option data: %s' % ' '.join(detail.args))
         if blank_finish:
             return 1, options
@@ -2336,7 +2336,7 @@ class Body(RSTState):
             if expmatch:
                 try:
                     return method(self, expmatch)
-                except MarkupError, error:
+                except MarkupError as error:
                     lineno = self.state_machine.abs_line_number()
                     message = ' '.join(error.args)
                     errors.append(self.reporter.warning(message, line=lineno))
@@ -2759,7 +2759,7 @@ class Text(RSTState):
         msg = None
         try:
             block = self.state_machine.get_text_block(flush_left=True)
-        except statemachine.UnexpectedIndentationError, err:
+        except statemachine.UnexpectedIndentationError as err:
             block, src, srcline = err.args
             msg = self.reporter.error('Unexpected indentation.',
                                       source=src, line=srcline)

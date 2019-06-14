@@ -84,489 +84,489 @@ class BibStylesConfig(object):
 
   abbrvnat = {
       
-      u'@article':u'$authors. $title. <i>$journal</i>,{ {$volume:}$pages,} $month $year.{ doi: $doi.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$surname($year)', 
-      u'default':u'$authors. <i>$title</i>. $publisher, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors. $title. <i>$journal</i>,{ {$volume:}$pages,} $month $year.{ doi: $doi.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$surname($year)', 
+      'default':'$authors. <i>$title</i>. $publisher, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
       }
 
   alpha = {
       
-      u'@article':u'$authors. $title.{ <i>$journal</i>{, {$volume}{($number)}}{: $pages}{, $year}.}{ <a href="$url">$url</a>.}{ <a href="$filename">$filename</a>.}{ $note.}', 
-      u'cite':u'$Sur$YY', 
-      u'default':u'$authors. $title.{ <i>$journal</i>,} $year.{ <a href="$url">$url</a>.}{ <a href="$filename">$filename</a>.}{ $note.}', 
+      '@article':'$authors. $title.{ <i>$journal</i>{, {$volume}{($number)}}{: $pages}{, $year}.}{ <a href="$url">$url</a>.}{ <a href="$filename">$filename</a>.}{ $note.}', 
+      'cite':'$Sur$YY', 
+      'default':'$authors. $title.{ <i>$journal</i>,} $year.{ <a href="$url">$url</a>.}{ <a href="$filename">$filename</a>.}{ $note.}', 
       }
 
   authordate2 = {
       
-      u'@article':u'$authors. $year. $title. <i>$journal</i>, <b>$volume</b>($number), $pages.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@book':u'$authors. $year. <i>$title</i>. $publisher.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$surname, $year', 
-      u'default':u'$authors. $year. <i>$title</i>. $publisher.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors. $year. $title. <i>$journal</i>, <b>$volume</b>($number), $pages.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@book':'$authors. $year. <i>$title</i>. $publisher.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$surname, $year', 
+      'default':'$authors. $year. <i>$title</i>. $publisher.{ URL <a href="$url">$url</a>.}{ $note.}', 
       }
 
   default = {
       
-      u'@article':u'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@book':u'{$authors: }<i>$title</i>{ ($editor, ed.)}.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@booklet':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@conference':u'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@inbook':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@incollection':u'$authors: <i>$title</i>{ in <i>$booktitle</i>{ ($editor, ed.)}}.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@inproceedings':u'$authors: “$title”, <i>$booktitle</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@manual':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@mastersthesis':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@misc':u'$authors: <i>$title</i>.{{ $publisher,}{ $howpublished,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@phdthesis':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@proceedings':u'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@techreport':u'$authors: <i>$title</i>, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@unpublished':u'$authors: “$title”, <i>$journal</i>, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$index', 
-      u'default':u'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@book':'{$authors: }<i>$title</i>{ ($editor, ed.)}.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@booklet':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@conference':'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@inbook':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@incollection':'$authors: <i>$title</i>{ in <i>$booktitle</i>{ ($editor, ed.)}}.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@inproceedings':'$authors: “$title”, <i>$booktitle</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@manual':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@mastersthesis':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@misc':'$authors: <i>$title</i>.{{ $publisher,}{ $howpublished,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@phdthesis':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@proceedings':'$authors: “$title”, <i>$journal</i>,{ pp. $pages,} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@techreport':'$authors: <i>$title</i>, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@unpublished':'$authors: “$title”, <i>$journal</i>, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$index', 
+      'default':'$authors: <i>$title</i>.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
       }
 
   defaulttags = {
-      u'YY':u'??', u'authors':u'', u'surname':u'', 
+      'YY':'??', 'authors':'', 'surname':'', 
       }
 
   ieeetr = {
       
-      u'@article':u'$authors, “$title”, <i>$journal</i>, vol. $volume, no. $number, pp. $pages, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@book':u'$authors, <i>$title</i>. $publisher, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$index', 
-      u'default':u'$authors, “$title”. $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors, “$title”, <i>$journal</i>, vol. $volume, no. $number, pp. $pages, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@book':'$authors, <i>$title</i>. $publisher, $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$index', 
+      'default':'$authors, “$title”. $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
       }
 
   plain = {
       
-      u'@article':u'$authors. $title.{ <i>$journal</i>{, {$volume}{($number)}}{:$pages}{, $year}.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@book':u'$authors. <i>$title</i>. $publisher,{ $month} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@incollection':u'$authors. $title.{ In <i>$booktitle</i> {($editor, ed.)}.} $publisher,{ $month} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'@inproceedings':u'$authors. $title. { <i>$booktitle</i>{, {$volume}{($number)}}{:$pages}{, $year}.}{ URL <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$index', 
-      u'default':u'{$authors. }$title.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors. $title.{ <i>$journal</i>{, {$volume}{($number)}}{:$pages}{, $year}.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@book':'$authors. <i>$title</i>. $publisher,{ $month} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@incollection':'$authors. $title.{ In <i>$booktitle</i> {($editor, ed.)}.} $publisher,{ $month} $year.{ URL <a href="$url">$url</a>.}{ $note.}', 
+      '@inproceedings':'$authors. $title. { <i>$booktitle</i>{, {$volume}{($number)}}{:$pages}{, $year}.}{ URL <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$index', 
+      'default':'{$authors. }$title.{{ $publisher,} $year.}{ URL <a href="$url">$url</a>.}{ $note.}', 
       }
 
   vancouver = {
       
-      u'@article':u'$authors. $title. <i>$journal</i>, $year{;{<b>$volume</b>}{($number)}{:$pages}}.{ URL: <a href="$url">$url</a>.}{ $note.}', 
-      u'@book':u'$authors. $title. {$publisher, }$year.{ URL: <a href="$url">$url</a>.}{ $note.}', 
-      u'cite':u'$index', 
-      u'default':u'$authors. $title; {$publisher, }$year.{ $howpublished.}{ URL: <a href="$url">$url</a>.}{ $note.}', 
+      '@article':'$authors. $title. <i>$journal</i>, $year{;{<b>$volume</b>}{($number)}{:$pages}}.{ URL: <a href="$url">$url</a>.}{ $note.}', 
+      '@book':'$authors. $title. {$publisher, }$year.{ URL: <a href="$url">$url</a>.}{ $note.}', 
+      'cite':'$index', 
+      'default':'$authors. $title; {$publisher, }$year.{ $howpublished.}{ URL: <a href="$url">$url</a>.}{ $note.}', 
       }
 
 class BibTeXConfig(object):
   "Configuration class from elyxer.config file"
 
   replaced = {
-      u'--':u'—', u'..':u'.', 
+      '--':'—', '..':'.', 
       }
 
 class ContainerConfig(object):
   "Configuration class from elyxer.config file"
 
   endings = {
-      u'Align':u'\\end_layout', u'BarredText':u'\\bar', 
-      u'BoldText':u'\\series', u'Cell':u'</cell', 
-      u'ChangeDeleted':u'\\change_unchanged', 
-      u'ChangeInserted':u'\\change_unchanged', u'ColorText':u'\\color', 
-      u'EmphaticText':u'\\emph', u'Hfill':u'\\hfill', u'Inset':u'\\end_inset', 
-      u'Layout':u'\\end_layout', u'LyXFooter':u'\\end_document', 
-      u'LyXHeader':u'\\end_header', u'Row':u'</row', u'ShapedText':u'\\shape', 
-      u'SizeText':u'\\size', u'StrikeOut':u'\\strikeout', 
-      u'TextFamily':u'\\family', u'VersalitasText':u'\\noun', 
+      'Align':'\\end_layout', 'BarredText':'\\bar', 
+      'BoldText':'\\series', 'Cell':'</cell', 
+      'ChangeDeleted':'\\change_unchanged', 
+      'ChangeInserted':'\\change_unchanged', 'ColorText':'\\color', 
+      'EmphaticText':'\\emph', 'Hfill':'\\hfill', 'Inset':'\\end_inset', 
+      'Layout':'\\end_layout', 'LyXFooter':'\\end_document', 
+      'LyXHeader':'\\end_header', 'Row':'</row', 'ShapedText':'\\shape', 
+      'SizeText':'\\size', 'StrikeOut':'\\strikeout', 
+      'TextFamily':'\\family', 'VersalitasText':'\\noun', 
       }
 
   extracttext = {
-      u'allowed':[u'StringContainer',u'Constant',u'FormulaConstant',], 
-      u'cloned':[u'',], 
-      u'extracted':[u'PlainLayout',u'TaggedText',u'Align',u'Caption',u'TextFamily',u'EmphaticText',u'VersalitasText',u'BarredText',u'SizeText',u'ColorText',u'LangLine',u'Formula',u'Bracket',u'RawText',u'BibTag',u'FormulaNumber',u'AlphaCommand',u'EmptyCommand',u'OneParamFunction',u'SymbolFunction',u'TextFunction',u'FontFunction',u'CombiningFunction',u'DecoratingFunction',u'FormulaSymbol',u'BracketCommand',u'TeXCode',], 
+      'allowed':['StringContainer','Constant','FormulaConstant',], 
+      'cloned':['',], 
+      'extracted':['PlainLayout','TaggedText','Align','Caption','TextFamily','EmphaticText','VersalitasText','BarredText','SizeText','ColorText','LangLine','Formula','Bracket','RawText','BibTag','FormulaNumber','AlphaCommand','EmptyCommand','OneParamFunction','SymbolFunction','TextFunction','FontFunction','CombiningFunction','DecoratingFunction','FormulaSymbol','BracketCommand','TeXCode',], 
       }
 
   startendings = {
-      u'\\begin_deeper':u'\\end_deeper', u'\\begin_inset':u'\\end_inset', 
-      u'\\begin_layout':u'\\end_layout', 
+      '\\begin_deeper':'\\end_deeper', '\\begin_inset':'\\end_inset', 
+      '\\begin_layout':'\\end_layout', 
       }
 
   starts = {
-      u'':u'StringContainer', u'#LyX':u'BlackBox', u'</lyxtabular':u'BlackBox', 
-      u'<cell':u'Cell', u'<column':u'Column', u'<row':u'Row', 
-      u'\\align':u'Align', u'\\bar':u'BarredText', 
-      u'\\bar default':u'BlackBox', u'\\bar no':u'BlackBox', 
-      u'\\begin_body':u'BlackBox', u'\\begin_deeper':u'DeeperList', 
-      u'\\begin_document':u'BlackBox', u'\\begin_header':u'LyXHeader', 
-      u'\\begin_inset Argument':u'ShortTitle', 
-      u'\\begin_inset Box':u'BoxInset', u'\\begin_inset Branch':u'Branch', 
-      u'\\begin_inset Caption':u'Caption', 
-      u'\\begin_inset CommandInset bibitem':u'BiblioEntry', 
-      u'\\begin_inset CommandInset bibtex':u'BibTeX', 
-      u'\\begin_inset CommandInset citation':u'BiblioCitation', 
-      u'\\begin_inset CommandInset href':u'URL', 
-      u'\\begin_inset CommandInset include':u'IncludeInset', 
-      u'\\begin_inset CommandInset index_print':u'PrintIndex', 
-      u'\\begin_inset CommandInset label':u'Label', 
-      u'\\begin_inset CommandInset line':u'LineInset', 
-      u'\\begin_inset CommandInset nomencl_print':u'PrintNomenclature', 
-      u'\\begin_inset CommandInset nomenclature':u'NomenclatureEntry', 
-      u'\\begin_inset CommandInset ref':u'Reference', 
-      u'\\begin_inset CommandInset toc':u'TableOfContents', 
-      u'\\begin_inset ERT':u'ERT', u'\\begin_inset Flex':u'FlexInset', 
-      u'\\begin_inset Flex Chunkref':u'NewfangledChunkRef', 
-      u'\\begin_inset Flex Marginnote':u'SideNote', 
-      u'\\begin_inset Flex Sidenote':u'SideNote', 
-      u'\\begin_inset Flex URL':u'FlexURL', u'\\begin_inset Float':u'Float', 
-      u'\\begin_inset FloatList':u'ListOf', u'\\begin_inset Foot':u'Footnote', 
-      u'\\begin_inset Formula':u'Formula', 
-      u'\\begin_inset FormulaMacro':u'FormulaMacro', 
-      u'\\begin_inset Graphics':u'Image', 
-      u'\\begin_inset Index':u'IndexReference', 
-      u'\\begin_inset Info':u'InfoInset', 
-      u'\\begin_inset LatexCommand bibitem':u'BiblioEntry', 
-      u'\\begin_inset LatexCommand bibtex':u'BibTeX', 
-      u'\\begin_inset LatexCommand cite':u'BiblioCitation', 
-      u'\\begin_inset LatexCommand citealt':u'BiblioCitation', 
-      u'\\begin_inset LatexCommand citep':u'BiblioCitation', 
-      u'\\begin_inset LatexCommand citet':u'BiblioCitation', 
-      u'\\begin_inset LatexCommand htmlurl':u'URL', 
-      u'\\begin_inset LatexCommand index':u'IndexReference', 
-      u'\\begin_inset LatexCommand label':u'Label', 
-      u'\\begin_inset LatexCommand nomenclature':u'NomenclatureEntry', 
-      u'\\begin_inset LatexCommand prettyref':u'Reference', 
-      u'\\begin_inset LatexCommand printindex':u'PrintIndex', 
-      u'\\begin_inset LatexCommand printnomenclature':u'PrintNomenclature', 
-      u'\\begin_inset LatexCommand ref':u'Reference', 
-      u'\\begin_inset LatexCommand tableofcontents':u'TableOfContents', 
-      u'\\begin_inset LatexCommand url':u'URL', 
-      u'\\begin_inset LatexCommand vref':u'Reference', 
-      u'\\begin_inset Marginal':u'SideNote', 
-      u'\\begin_inset Newline':u'NewlineInset', 
-      u'\\begin_inset Newpage':u'NewPageInset', u'\\begin_inset Note':u'Note', 
-      u'\\begin_inset OptArg':u'ShortTitle', 
-      u'\\begin_inset Phantom':u'PhantomText', 
-      u'\\begin_inset Quotes':u'QuoteContainer', 
-      u'\\begin_inset Tabular':u'Table', u'\\begin_inset Text':u'InsetText', 
-      u'\\begin_inset VSpace':u'VerticalSpace', u'\\begin_inset Wrap':u'Wrap', 
-      u'\\begin_inset listings':u'Listing', 
-      u'\\begin_inset script':u'ScriptInset', u'\\begin_inset space':u'Space', 
-      u'\\begin_layout':u'Layout', u'\\begin_layout Abstract':u'Abstract', 
-      u'\\begin_layout Author':u'Author', 
-      u'\\begin_layout Bibliography':u'Bibliography', 
-      u'\\begin_layout Chunk':u'NewfangledChunk', 
-      u'\\begin_layout Description':u'Description', 
-      u'\\begin_layout Enumerate':u'ListItem', 
-      u'\\begin_layout Itemize':u'ListItem', u'\\begin_layout List':u'List', 
-      u'\\begin_layout LyX-Code':u'LyXCode', 
-      u'\\begin_layout Plain':u'PlainLayout', 
-      u'\\begin_layout Standard':u'StandardLayout', 
-      u'\\begin_layout Title':u'Title', u'\\begin_preamble':u'LyXPreamble', 
-      u'\\change_deleted':u'ChangeDeleted', 
-      u'\\change_inserted':u'ChangeInserted', 
-      u'\\change_unchanged':u'BlackBox', u'\\color':u'ColorText', 
-      u'\\color inherit':u'BlackBox', u'\\color none':u'BlackBox', 
-      u'\\emph default':u'BlackBox', u'\\emph off':u'BlackBox', 
-      u'\\emph on':u'EmphaticText', u'\\emph toggle':u'EmphaticText', 
-      u'\\end_body':u'LyXFooter', u'\\family':u'TextFamily', 
-      u'\\family default':u'BlackBox', u'\\family roman':u'BlackBox', 
-      u'\\hfill':u'Hfill', u'\\labelwidthstring':u'BlackBox', 
-      u'\\lang':u'LangLine', u'\\length':u'InsetLength', 
-      u'\\lyxformat':u'LyXFormat', u'\\lyxline':u'LyXLine', 
-      u'\\newline':u'Newline', u'\\newpage':u'NewPage', 
-      u'\\noindent':u'BlackBox', u'\\noun default':u'BlackBox', 
-      u'\\noun off':u'BlackBox', u'\\noun on':u'VersalitasText', 
-      u'\\paragraph_spacing':u'BlackBox', u'\\series bold':u'BoldText', 
-      u'\\series default':u'BlackBox', u'\\series medium':u'BlackBox', 
-      u'\\shape':u'ShapedText', u'\\shape default':u'BlackBox', 
-      u'\\shape up':u'BlackBox', u'\\size':u'SizeText', 
-      u'\\size normal':u'BlackBox', u'\\start_of_appendix':u'StartAppendix', 
-      u'\\strikeout default':u'BlackBox', u'\\strikeout on':u'StrikeOut', 
+      '':'StringContainer', '#LyX':'BlackBox', '</lyxtabular':'BlackBox', 
+      '<cell':'Cell', '<column':'Column', '<row':'Row', 
+      '\\align':'Align', '\\bar':'BarredText', 
+      '\\bar default':'BlackBox', '\\bar no':'BlackBox', 
+      '\\begin_body':'BlackBox', '\\begin_deeper':'DeeperList', 
+      '\\begin_document':'BlackBox', '\\begin_header':'LyXHeader', 
+      '\\begin_inset Argument':'ShortTitle', 
+      '\\begin_inset Box':'BoxInset', '\\begin_inset Branch':'Branch', 
+      '\\begin_inset Caption':'Caption', 
+      '\\begin_inset CommandInset bibitem':'BiblioEntry', 
+      '\\begin_inset CommandInset bibtex':'BibTeX', 
+      '\\begin_inset CommandInset citation':'BiblioCitation', 
+      '\\begin_inset CommandInset href':'URL', 
+      '\\begin_inset CommandInset include':'IncludeInset', 
+      '\\begin_inset CommandInset index_print':'PrintIndex', 
+      '\\begin_inset CommandInset label':'Label', 
+      '\\begin_inset CommandInset line':'LineInset', 
+      '\\begin_inset CommandInset nomencl_print':'PrintNomenclature', 
+      '\\begin_inset CommandInset nomenclature':'NomenclatureEntry', 
+      '\\begin_inset CommandInset ref':'Reference', 
+      '\\begin_inset CommandInset toc':'TableOfContents', 
+      '\\begin_inset ERT':'ERT', '\\begin_inset Flex':'FlexInset', 
+      '\\begin_inset Flex Chunkref':'NewfangledChunkRef', 
+      '\\begin_inset Flex Marginnote':'SideNote', 
+      '\\begin_inset Flex Sidenote':'SideNote', 
+      '\\begin_inset Flex URL':'FlexURL', '\\begin_inset Float':'Float', 
+      '\\begin_inset FloatList':'ListOf', '\\begin_inset Foot':'Footnote', 
+      '\\begin_inset Formula':'Formula', 
+      '\\begin_inset FormulaMacro':'FormulaMacro', 
+      '\\begin_inset Graphics':'Image', 
+      '\\begin_inset Index':'IndexReference', 
+      '\\begin_inset Info':'InfoInset', 
+      '\\begin_inset LatexCommand bibitem':'BiblioEntry', 
+      '\\begin_inset LatexCommand bibtex':'BibTeX', 
+      '\\begin_inset LatexCommand cite':'BiblioCitation', 
+      '\\begin_inset LatexCommand citealt':'BiblioCitation', 
+      '\\begin_inset LatexCommand citep':'BiblioCitation', 
+      '\\begin_inset LatexCommand citet':'BiblioCitation', 
+      '\\begin_inset LatexCommand htmlurl':'URL', 
+      '\\begin_inset LatexCommand index':'IndexReference', 
+      '\\begin_inset LatexCommand label':'Label', 
+      '\\begin_inset LatexCommand nomenclature':'NomenclatureEntry', 
+      '\\begin_inset LatexCommand prettyref':'Reference', 
+      '\\begin_inset LatexCommand printindex':'PrintIndex', 
+      '\\begin_inset LatexCommand printnomenclature':'PrintNomenclature', 
+      '\\begin_inset LatexCommand ref':'Reference', 
+      '\\begin_inset LatexCommand tableofcontents':'TableOfContents', 
+      '\\begin_inset LatexCommand url':'URL', 
+      '\\begin_inset LatexCommand vref':'Reference', 
+      '\\begin_inset Marginal':'SideNote', 
+      '\\begin_inset Newline':'NewlineInset', 
+      '\\begin_inset Newpage':'NewPageInset', '\\begin_inset Note':'Note', 
+      '\\begin_inset OptArg':'ShortTitle', 
+      '\\begin_inset Phantom':'PhantomText', 
+      '\\begin_inset Quotes':'QuoteContainer', 
+      '\\begin_inset Tabular':'Table', '\\begin_inset Text':'InsetText', 
+      '\\begin_inset VSpace':'VerticalSpace', '\\begin_inset Wrap':'Wrap', 
+      '\\begin_inset listings':'Listing', 
+      '\\begin_inset script':'ScriptInset', '\\begin_inset space':'Space', 
+      '\\begin_layout':'Layout', '\\begin_layout Abstract':'Abstract', 
+      '\\begin_layout Author':'Author', 
+      '\\begin_layout Bibliography':'Bibliography', 
+      '\\begin_layout Chunk':'NewfangledChunk', 
+      '\\begin_layout Description':'Description', 
+      '\\begin_layout Enumerate':'ListItem', 
+      '\\begin_layout Itemize':'ListItem', '\\begin_layout List':'List', 
+      '\\begin_layout LyX-Code':'LyXCode', 
+      '\\begin_layout Plain':'PlainLayout', 
+      '\\begin_layout Standard':'StandardLayout', 
+      '\\begin_layout Title':'Title', '\\begin_preamble':'LyXPreamble', 
+      '\\change_deleted':'ChangeDeleted', 
+      '\\change_inserted':'ChangeInserted', 
+      '\\change_unchanged':'BlackBox', '\\color':'ColorText', 
+      '\\color inherit':'BlackBox', '\\color none':'BlackBox', 
+      '\\emph default':'BlackBox', '\\emph off':'BlackBox', 
+      '\\emph on':'EmphaticText', '\\emph toggle':'EmphaticText', 
+      '\\end_body':'LyXFooter', '\\family':'TextFamily', 
+      '\\family default':'BlackBox', '\\family roman':'BlackBox', 
+      '\\hfill':'Hfill', '\\labelwidthstring':'BlackBox', 
+      '\\lang':'LangLine', '\\length':'InsetLength', 
+      '\\lyxformat':'LyXFormat', '\\lyxline':'LyXLine', 
+      '\\newline':'Newline', '\\newpage':'NewPage', 
+      '\\noindent':'BlackBox', '\\noun default':'BlackBox', 
+      '\\noun off':'BlackBox', '\\noun on':'VersalitasText', 
+      '\\paragraph_spacing':'BlackBox', '\\series bold':'BoldText', 
+      '\\series default':'BlackBox', '\\series medium':'BlackBox', 
+      '\\shape':'ShapedText', '\\shape default':'BlackBox', 
+      '\\shape up':'BlackBox', '\\size':'SizeText', 
+      '\\size normal':'BlackBox', '\\start_of_appendix':'StartAppendix', 
+      '\\strikeout default':'BlackBox', '\\strikeout on':'StrikeOut', 
       }
 
   string = {
-      u'startcommand':u'\\', 
+      'startcommand':'\\', 
       }
 
   table = {
-      u'headers':[u'<lyxtabular',u'<features',], 
+      'headers':['<lyxtabular','<features',], 
       }
 
 class EscapeConfig(object):
   "Configuration class from elyxer.config file"
 
   chars = {
-      u'\n':u'', u' -- ':u' — ', u' --- ':u' — ', u'\'':u'’', u'`':u'‘', 
+      '\n':'', ' -- ':' — ', ' --- ':' — ', '\'':'’', '`':'‘', 
       }
 
   commands = {
-      u'\\InsetSpace \\space{}':u' ', u'\\InsetSpace \\thinspace{}':u' ', 
-      u'\\InsetSpace ~':u' ', u'\\SpecialChar \\-':u'', 
-      u'\\SpecialChar \\@.':u'.', u'\\SpecialChar \\ldots{}':u'…', 
-      u'\\SpecialChar \\menuseparator':u' ▷ ', 
-      u'\\SpecialChar \\nobreakdash-':u'-', u'\\SpecialChar \\slash{}':u'/', 
-      u'\\SpecialChar \\textcompwordmark{}':u'', u'\\backslash':u'\\', 
+      '\\InsetSpace \\space{}':' ', '\\InsetSpace \\thinspace{}':' ', 
+      '\\InsetSpace ~':' ', '\\SpecialChar \\-':'', 
+      '\\SpecialChar \\@.':'.', '\\SpecialChar \\ldots{}':'…', 
+      '\\SpecialChar \\menuseparator':' ▷ ', 
+      '\\SpecialChar \\nobreakdash-':'-', '\\SpecialChar \\slash{}':'/', 
+      '\\SpecialChar \\textcompwordmark{}':'', '\\backslash':'\\', 
       }
 
   entities = {
-      u'&':u'&amp;', u'<':u'&lt;', u'>':u'&gt;', 
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', 
       }
 
   html = {
-      u'/>':u'>', 
+      '/>':'>', 
       }
 
   iso885915 = {
-      u' ':u'&nbsp;', u' ':u'&emsp;', u' ':u'&#8197;', 
+      ' ':'&nbsp;', ' ':'&emsp;', ' ':'&#8197;', 
       }
 
   nonunicode = {
-      u' ':u' ', 
+      ' ':' ', 
       }
 
 class FormulaConfig(object):
   "Configuration class from elyxer.config file"
 
   alphacommands = {
-      u'\\AA':u'Å', u'\\AE':u'Æ', 
-      u'\\AmS':u'<span class="versalitas">AmS</span>', u'\\Angstroem':u'Å', 
-      u'\\DH':u'Ð', u'\\Koppa':u'Ϟ', u'\\L':u'Ł', u'\\Micro':u'µ', u'\\O':u'Ø', 
-      u'\\OE':u'Œ', u'\\Sampi':u'Ϡ', u'\\Stigma':u'Ϛ', u'\\TH':u'Þ', 
-      u'\\aa':u'å', u'\\ae':u'æ', u'\\alpha':u'α', u'\\beta':u'β', 
-      u'\\delta':u'δ', u'\\dh':u'ð', u'\\digamma':u'ϝ', u'\\epsilon':u'ϵ', 
-      u'\\eta':u'η', u'\\eth':u'ð', u'\\gamma':u'γ', u'\\i':u'ı', 
-      u'\\imath':u'ı', u'\\iota':u'ι', u'\\j':u'ȷ', u'\\jmath':u'ȷ', 
-      u'\\kappa':u'κ', u'\\koppa':u'ϟ', u'\\l':u'ł', u'\\lambda':u'λ', 
-      u'\\mu':u'μ', u'\\nu':u'ν', u'\\o':u'ø', u'\\oe':u'œ', u'\\omega':u'ω', 
-      u'\\phi':u'φ', u'\\pi':u'π', u'\\psi':u'ψ', u'\\rho':u'ρ', 
-      u'\\sampi':u'ϡ', u'\\sigma':u'σ', u'\\ss':u'ß', u'\\stigma':u'ϛ', 
-      u'\\tau':u'τ', u'\\tcohm':u'Ω', u'\\textcrh':u'ħ', u'\\th':u'þ', 
-      u'\\theta':u'θ', u'\\upsilon':u'υ', u'\\varDelta':u'∆', 
-      u'\\varGamma':u'Γ', u'\\varLambda':u'Λ', u'\\varOmega':u'Ω', 
-      u'\\varPhi':u'Φ', u'\\varPi':u'Π', u'\\varPsi':u'Ψ', u'\\varSigma':u'Σ', 
-      u'\\varTheta':u'Θ', u'\\varUpsilon':u'Υ', u'\\varXi':u'Ξ', 
-      u'\\varbeta':u'ϐ', u'\\varepsilon':u'ε', u'\\varkappa':u'ϰ', 
-      u'\\varphi':u'φ', u'\\varpi':u'ϖ', u'\\varrho':u'ϱ', u'\\varsigma':u'ς', 
-      u'\\vartheta':u'ϑ', u'\\xi':u'ξ', u'\\zeta':u'ζ', 
+      '\\AA':'Å', '\\AE':'Æ', 
+      '\\AmS':'<span class="versalitas">AmS</span>', '\\Angstroem':'Å', 
+      '\\DH':'Ð', '\\Koppa':'Ϟ', '\\L':'Ł', '\\Micro':'µ', '\\O':'Ø', 
+      '\\OE':'Œ', '\\Sampi':'Ϡ', '\\Stigma':'Ϛ', '\\TH':'Þ', 
+      '\\aa':'å', '\\ae':'æ', '\\alpha':'α', '\\beta':'β', 
+      '\\delta':'δ', '\\dh':'ð', '\\digamma':'ϝ', '\\epsilon':'ϵ', 
+      '\\eta':'η', '\\eth':'ð', '\\gamma':'γ', '\\i':'ı', 
+      '\\imath':'ı', '\\iota':'ι', '\\j':'ȷ', '\\jmath':'ȷ', 
+      '\\kappa':'κ', '\\koppa':'ϟ', '\\l':'ł', '\\lambda':'λ', 
+      '\\mu':'μ', '\\nu':'ν', '\\o':'ø', '\\oe':'œ', '\\omega':'ω', 
+      '\\phi':'φ', '\\pi':'π', '\\psi':'ψ', '\\rho':'ρ', 
+      '\\sampi':'ϡ', '\\sigma':'σ', '\\ss':'ß', '\\stigma':'ϛ', 
+      '\\tau':'τ', '\\tcohm':'Ω', '\\textcrh':'ħ', '\\th':'þ', 
+      '\\theta':'θ', '\\upsilon':'υ', '\\varDelta':'∆', 
+      '\\varGamma':'Γ', '\\varLambda':'Λ', '\\varOmega':'Ω', 
+      '\\varPhi':'Φ', '\\varPi':'Π', '\\varPsi':'Ψ', '\\varSigma':'Σ', 
+      '\\varTheta':'Θ', '\\varUpsilon':'Υ', '\\varXi':'Ξ', 
+      '\\varbeta':'ϐ', '\\varepsilon':'ε', '\\varkappa':'ϰ', 
+      '\\varphi':'φ', '\\varpi':'ϖ', '\\varrho':'ϱ', '\\varsigma':'ς', 
+      '\\vartheta':'ϑ', '\\xi':'ξ', '\\zeta':'ζ', 
       }
 
   array = {
-      u'begin':u'\\begin', u'cellseparator':u'&', u'end':u'\\end', 
-      u'rowseparator':u'\\\\', 
+      'begin':'\\begin', 'cellseparator':'&', 'end':'\\end', 
+      'rowseparator':'\\\\', 
       }
 
   bigbrackets = {
-      u'(':[u'⎛',u'⎜',u'⎝',], u')':[u'⎞',u'⎟',u'⎠',], u'[':[u'⎡',u'⎢',u'⎣',], 
-      u']':[u'⎤',u'⎥',u'⎦',], u'{':[u'⎧',u'⎪',u'⎨',u'⎩',], u'|':[u'|',], 
-      u'}':[u'⎫',u'⎪',u'⎬',u'⎭',], u'∥':[u'∥',], 
+      '(':['⎛','⎜','⎝',], ')':['⎞','⎟','⎠',], '[':['⎡','⎢','⎣',], 
+      ']':['⎤','⎥','⎦',], '{':['⎧','⎪','⎨','⎩',], '|':['|',], 
+      '}':['⎫','⎪','⎬','⎭',], '∥':['∥',], 
       }
 
   bigsymbols = {
-      u'∑':[u'⎲',u'⎳',], u'∫':[u'⌠',u'⌡',], 
+      '∑':['⎲','⎳',], '∫':['⌠','⌡',], 
       }
 
   bracketcommands = {
-      u'\\left':u'span class="symbol"', 
-      u'\\left.':u'<span class="leftdot"></span>', 
-      u'\\middle':u'span class="symbol"', u'\\right':u'span class="symbol"', 
-      u'\\right.':u'<span class="rightdot"></span>', 
+      '\\left':'span class="symbol"', 
+      '\\left.':'<span class="leftdot"></span>', 
+      '\\middle':'span class="symbol"', '\\right':'span class="symbol"', 
+      '\\right.':'<span class="rightdot"></span>', 
       }
 
   combiningfunctions = {
-      u'\\"':u'̈', u'\\\'':u'́', u'\\^':u'̂', u'\\`':u'̀', u'\\acute':u'́', 
-      u'\\bar':u'̄', u'\\breve':u'̆', u'\\c':u'̧', u'\\check':u'̌', 
-      u'\\dddot':u'⃛', u'\\ddot':u'̈', u'\\dot':u'̇', u'\\grave':u'̀', 
-      u'\\hat':u'̂', u'\\mathring':u'̊', u'\\overleftarrow':u'⃖', 
-      u'\\overrightarrow':u'⃗', u'\\r':u'̊', u'\\s':u'̩', 
-      u'\\textcircled':u'⃝', u'\\textsubring':u'̥', u'\\tilde':u'̃', 
-      u'\\v':u'̌', u'\\vec':u'⃗', u'\\~':u'̃', 
+      '\\"':'̈', '\\\'':'́', '\\^':'̂', '\\`':'̀', '\\acute':'́', 
+      '\\bar':'̄', '\\breve':'̆', '\\c':'̧', '\\check':'̌', 
+      '\\dddot':'⃛', '\\ddot':'̈', '\\dot':'̇', '\\grave':'̀', 
+      '\\hat':'̂', '\\mathring':'̊', '\\overleftarrow':'⃖', 
+      '\\overrightarrow':'⃗', '\\r':'̊', '\\s':'̩', 
+      '\\textcircled':'⃝', '\\textsubring':'̥', '\\tilde':'̃', 
+      '\\v':'̌', '\\vec':'⃗', '\\~':'̃', 
       }
 
   commands = {
-      u'\\ ':u' ', u'\\!':u'', u'\\#':u'#', u'\\$':u'$', u'\\%':u'%', 
-      u'\\&':u'&', u'\\,':u' ', u'\\:':u' ', u'\\;':u' ', u'\\AC':u'∿', 
-      u'\\APLcomment':u'⍝', u'\\APLdownarrowbox':u'⍗', u'\\APLinput':u'⍞', 
-      u'\\APLinv':u'⌹', u'\\APLleftarrowbox':u'⍇', u'\\APLlog':u'⍟', 
-      u'\\APLrightarrowbox':u'⍈', u'\\APLuparrowbox':u'⍐', u'\\Box':u'□', 
-      u'\\Bumpeq':u'≎', u'\\CIRCLE':u'●', u'\\Cap':u'⋒', 
-      u'\\CapitalDifferentialD':u'ⅅ', u'\\CheckedBox':u'☑', u'\\Circle':u'○', 
-      u'\\Coloneqq':u'⩴', u'\\ComplexI':u'ⅈ', u'\\ComplexJ':u'ⅉ', 
-      u'\\Corresponds':u'≙', u'\\Cup':u'⋓', u'\\Delta':u'Δ', u'\\Diamond':u'◇', 
-      u'\\Diamondblack':u'◆', u'\\Diamonddot':u'⟐', u'\\DifferentialD':u'ⅆ', 
-      u'\\Downarrow':u'⇓', u'\\EUR':u'€', u'\\Euler':u'ℇ', 
-      u'\\ExponetialE':u'ⅇ', u'\\Finv':u'Ⅎ', u'\\Game':u'⅁', u'\\Gamma':u'Γ', 
-      u'\\Im':u'ℑ', u'\\Join':u'⨝', u'\\LEFTCIRCLE':u'◖', u'\\LEFTcircle':u'◐', 
-      u'\\LHD':u'◀', u'\\Lambda':u'Λ', u'\\Lbag':u'⟅', u'\\Leftarrow':u'⇐', 
-      u'\\Lleftarrow':u'⇚', u'\\Longleftarrow':u'⟸', 
-      u'\\Longleftrightarrow':u'⟺', u'\\Longrightarrow':u'⟹', u'\\Lparen':u'⦅', 
-      u'\\Lsh':u'↰', u'\\Mapsfrom':u'⇐|', u'\\Mapsto':u'|⇒', u'\\Omega':u'Ω', 
-      u'\\P':u'¶', u'\\Phi':u'Φ', u'\\Pi':u'Π', u'\\Pr':u'Pr', u'\\Psi':u'Ψ', 
-      u'\\Qoppa':u'Ϙ', u'\\RHD':u'▶', u'\\RIGHTCIRCLE':u'◗', 
-      u'\\RIGHTcircle':u'◑', u'\\Rbag':u'⟆', u'\\Re':u'ℜ', u'\\Rparen':u'⦆', 
-      u'\\Rrightarrow':u'⇛', u'\\Rsh':u'↱', u'\\S':u'§', u'\\Sigma':u'Σ', 
-      u'\\Square':u'☐', u'\\Subset':u'⋐', u'\\Sun':u'☉', u'\\Supset':u'⋑', 
-      u'\\Theta':u'Θ', u'\\Uparrow':u'⇑', u'\\Updownarrow':u'⇕', 
-      u'\\Upsilon':u'Υ', u'\\Vdash':u'⊩', u'\\Vert':u'∥', u'\\Vvdash':u'⊪', 
-      u'\\XBox':u'☒', u'\\Xi':u'Ξ', u'\\Yup':u'⅄', u'\\\\':u'<br/>', 
-      u'\\_':u'_', u'\\aleph':u'ℵ', u'\\amalg':u'∐', u'\\anchor':u'⚓', 
-      u'\\angle':u'∠', u'\\aquarius':u'♒', u'\\arccos':u'arccos', 
-      u'\\arcsin':u'arcsin', u'\\arctan':u'arctan', u'\\arg':u'arg', 
-      u'\\aries':u'♈', u'\\arrowbullet':u'➢', u'\\ast':u'∗', u'\\asymp':u'≍', 
-      u'\\backepsilon':u'∍', u'\\backprime':u'‵', u'\\backsimeq':u'⋍', 
-      u'\\backslash':u'\\', u'\\ballotx':u'✗', u'\\barwedge':u'⊼', 
-      u'\\because':u'∵', u'\\beth':u'ℶ', u'\\between':u'≬', u'\\bigcap':u'∩', 
-      u'\\bigcirc':u'○', u'\\bigcup':u'∪', u'\\bigodot':u'⊙', 
-      u'\\bigoplus':u'⊕', u'\\bigotimes':u'⊗', u'\\bigsqcup':u'⊔', 
-      u'\\bigstar':u'★', u'\\bigtriangledown':u'▽', u'\\bigtriangleup':u'△', 
-      u'\\biguplus':u'⊎', u'\\bigvee':u'∨', u'\\bigwedge':u'∧', 
-      u'\\biohazard':u'☣', u'\\blacklozenge':u'⧫', u'\\blacksmiley':u'☻', 
-      u'\\blacksquare':u'■', u'\\blacktriangle':u'▲', 
-      u'\\blacktriangledown':u'▼', u'\\blacktriangleleft':u'◂', 
-      u'\\blacktriangleright':u'▶', u'\\blacktriangleup':u'▴', u'\\bot':u'⊥', 
-      u'\\bowtie':u'⋈', u'\\box':u'▫', u'\\boxast':u'⧆', u'\\boxbar':u'◫', 
-      u'\\boxbox':u'⧈', u'\\boxbslash':u'⧅', u'\\boxcircle':u'⧇', 
-      u'\\boxdot':u'⊡', u'\\boxminus':u'⊟', u'\\boxplus':u'⊞', 
-      u'\\boxslash':u'⧄', u'\\boxtimes':u'⊠', u'\\bullet':u'•', 
-      u'\\bumpeq':u'≏', u'\\cancer':u'♋', u'\\cap':u'∩', u'\\capricornus':u'♑', 
-      u'\\cat':u'⁀', u'\\cdot':u'⋅', u'\\cdots':u'⋯', u'\\cent':u'¢', 
-      u'\\centerdot':u'∙', u'\\checkmark':u'✓', u'\\chi':u'χ', u'\\circ':u'∘', 
-      u'\\circeq':u'≗', u'\\circlearrowleft':u'↺', u'\\circlearrowright':u'↻', 
-      u'\\circledR':u'®', u'\\circledast':u'⊛', u'\\circledbslash':u'⦸', 
-      u'\\circledcirc':u'⊚', u'\\circleddash':u'⊝', u'\\circledgtr':u'⧁', 
-      u'\\circledless':u'⧀', u'\\clubsuit':u'♣', u'\\colon':u': ', u'\\coloneqq':u'≔', 
-      u'\\complement':u'∁', u'\\cong':u'≅', u'\\coprod':u'∐', 
-      u'\\copyright':u'©', u'\\cos':u'cos', u'\\cosh':u'cosh', u'\\cot':u'cot', 
-      u'\\coth':u'coth', u'\\csc':u'csc', u'\\cup':u'∪', u'\\curlyvee':u'⋎', 
-      u'\\curlywedge':u'⋏', u'\\curvearrowleft':u'↶', 
-      u'\\curvearrowright':u'↷', u'\\dag':u'†', u'\\dagger':u'†', 
-      u'\\daleth':u'ℸ', u'\\dashleftarrow':u'⇠', u'\\dashv':u'⊣', 
-      u'\\ddag':u'‡', u'\\ddagger':u'‡', u'\\ddots':u'⋱', u'\\deg':u'deg', 
-      u'\\det':u'det', u'\\diagdown':u'╲', u'\\diagup':u'╱', 
-      u'\\diameter':u'⌀', u'\\diamond':u'◇', u'\\diamondsuit':u'♦', 
-      u'\\dim':u'dim', u'\\div':u'÷', u'\\divideontimes':u'⋇', 
-      u'\\dotdiv':u'∸', u'\\doteq':u'≐', u'\\doteqdot':u'≑', u'\\dotplus':u'∔', 
-      u'\\dots':u'…', u'\\doublebarwedge':u'⌆', u'\\downarrow':u'↓', 
-      u'\\downdownarrows':u'⇊', u'\\downharpoonleft':u'⇃', 
-      u'\\downharpoonright':u'⇂', u'\\dsub':u'⩤', u'\\earth':u'♁', 
-      u'\\eighthnote':u'♪', u'\\ell':u'ℓ', u'\\emptyset':u'∅', 
-      u'\\eqcirc':u'≖', u'\\eqcolon':u'≕', u'\\eqsim':u'≂', u'\\euro':u'€', 
-      u'\\exists':u'∃', u'\\exp':u'exp', u'\\fallingdotseq':u'≒', 
-      u'\\fcmp':u'⨾', u'\\female':u'♀', u'\\flat':u'♭', u'\\forall':u'∀', 
-      u'\\fourth':u'⁗', u'\\frown':u'⌢', u'\\frownie':u'☹', u'\\gcd':u'gcd', 
-      u'\\gemini':u'♊', u'\\geq)':u'≥', u'\\geqq':u'≧', u'\\geqslant':u'≥', 
-      u'\\gets':u'←', u'\\gg':u'≫', u'\\ggg':u'⋙', u'\\gimel':u'ℷ', 
-      u'\\gneqq':u'≩', u'\\gnsim':u'⋧', u'\\gtrdot':u'⋗', u'\\gtreqless':u'⋚', 
-      u'\\gtreqqless':u'⪌', u'\\gtrless':u'≷', u'\\gtrsim':u'≳', 
-      u'\\guillemotleft':u'«', u'\\guillemotright':u'»', u'\\hbar':u'ℏ', 
-      u'\\heartsuit':u'♥', u'\\hfill':u'<span class="hfill"> </span>', 
-      u'\\hom':u'hom', u'\\hookleftarrow':u'↩', u'\\hookrightarrow':u'↪', 
-      u'\\hslash':u'ℏ', u'\\idotsint':u'<span class="bigsymbol">∫⋯∫</span>', 
-      u'\\iiint':u'<span class="bigsymbol">∭</span>', 
-      u'\\iint':u'<span class="bigsymbol">∬</span>', u'\\imath':u'ı', 
-      u'\\inf':u'inf', u'\\infty':u'∞', u'\\intercal':u'⊺', 
-      u'\\interleave':u'⫴', u'\\invamp':u'⅋', u'\\invneg':u'⌐', 
-      u'\\jmath':u'ȷ', u'\\jupiter':u'♃', u'\\ker':u'ker', u'\\land':u'∧', 
-      u'\\landupint':u'<span class="bigsymbol">∱</span>', u'\\lang':u'⟪', 
-      u'\\langle':u'⟨', u'\\lblot':u'⦉', u'\\lbrace':u'{', u'\\lbrace)':u'{', 
-      u'\\lbrack':u'[', u'\\lceil':u'⌈', u'\\ldots':u'…', u'\\leadsto':u'⇝', 
-      u'\\leftarrow)':u'←', u'\\leftarrowtail':u'↢', u'\\leftarrowtobar':u'⇤', 
-      u'\\leftharpoondown':u'↽', u'\\leftharpoonup':u'↼', 
-      u'\\leftleftarrows':u'⇇', u'\\leftleftharpoons':u'⥢', u'\\leftmoon':u'☾', 
-      u'\\leftrightarrow':u'↔', u'\\leftrightarrows':u'⇆', 
-      u'\\leftrightharpoons':u'⇋', u'\\leftthreetimes':u'⋋', u'\\leo':u'♌', 
-      u'\\leq)':u'≤', u'\\leqq':u'≦', u'\\leqslant':u'≤', u'\\lessdot':u'⋖', 
-      u'\\lesseqgtr':u'⋛', u'\\lesseqqgtr':u'⪋', u'\\lessgtr':u'≶', 
-      u'\\lesssim':u'≲', u'\\lfloor':u'⌊', u'\\lg':u'lg', u'\\lgroup':u'⟮', 
-      u'\\lhd':u'⊲', u'\\libra':u'♎', u'\\lightning':u'↯', u'\\limg':u'⦇', 
-      u'\\liminf':u'liminf', u'\\limsup':u'limsup', u'\\ll':u'≪', 
-      u'\\llbracket':u'⟦', u'\\llcorner':u'⌞', u'\\lll':u'⋘', u'\\ln':u'ln', 
-      u'\\lneqq':u'≨', u'\\lnot':u'¬', u'\\lnsim':u'⋦', u'\\log':u'log', 
-      u'\\longleftarrow':u'⟵', u'\\longleftrightarrow':u'⟷', 
-      u'\\longmapsto':u'⟼', u'\\longrightarrow':u'⟶', u'\\looparrowleft':u'↫', 
-      u'\\looparrowright':u'↬', u'\\lor':u'∨', u'\\lozenge':u'◊', 
-      u'\\lrcorner':u'⌟', u'\\ltimes':u'⋉', u'\\lyxlock':u'', u'\\male':u'♂', 
-      u'\\maltese':u'✠', u'\\mapsfrom':u'↤', u'\\mapsto':u'↦', 
-      u'\\mathcircumflex':u'^', u'\\max':u'max', u'\\measuredangle':u'∡', 
-      u'\\medbullet':u'⚫', u'\\medcirc':u'⚪', u'\\mercury':u'☿', u'\\mho':u'℧', 
-      u'\\mid':u'∣', u'\\min':u'min', u'\\models':u'⊨', u'\\mp':u'∓', 
-      u'\\multimap':u'⊸', u'\\nLeftarrow':u'⇍', u'\\nLeftrightarrow':u'⇎', 
-      u'\\nRightarrow':u'⇏', u'\\nVDash':u'⊯', u'\\nabla':u'∇', 
-      u'\\napprox':u'≉', u'\\natural':u'♮', u'\\ncong':u'≇', u'\\nearrow':u'↗', 
-      u'\\neg':u'¬', u'\\neg)':u'¬', u'\\neptune':u'♆', u'\\nequiv':u'≢', 
-      u'\\newline':u'<br/>', u'\\nexists':u'∄', u'\\ngeqslant':u'≱', 
-      u'\\ngtr':u'≯', u'\\ngtrless':u'≹', u'\\ni':u'∋', u'\\ni)':u'∋', 
-      u'\\nleftarrow':u'↚', u'\\nleftrightarrow':u'↮', u'\\nleqslant':u'≰', 
-      u'\\nless':u'≮', u'\\nlessgtr':u'≸', u'\\nmid':u'∤', u'\\nolimits':u'', 
-      u'\\nonumber':u'', u'\\not':u'¬', u'\\not<':u'≮', u'\\not=':u'≠', 
-      u'\\not>':u'≯', u'\\notbackslash':u'⍀', u'\\notin':u'∉', u'\\notni':u'∌', 
-      u'\\notslash':u'⌿', u'\\nparallel':u'∦', u'\\nprec':u'⊀', 
-      u'\\nrightarrow':u'↛', u'\\nsim':u'≁', u'\\nsimeq':u'≄', 
-      u'\\nsqsubset':u'⊏̸', u'\\nsubseteq':u'⊈', u'\\nsucc':u'⊁', 
-      u'\\nsucccurlyeq':u'⋡', u'\\nsupset':u'⊅', u'\\nsupseteq':u'⊉', 
-      u'\\ntriangleleft':u'⋪', u'\\ntrianglelefteq':u'⋬', 
-      u'\\ntriangleright':u'⋫', u'\\ntrianglerighteq':u'⋭', u'\\nvDash':u'⊭', 
-      u'\\nvdash':u'⊬', u'\\nwarrow':u'↖', u'\\odot':u'⊙', 
-      u'\\officialeuro':u'€', u'\\oiiint':u'<span class="bigsymbol">∰</span>', 
-      u'\\oiint':u'<span class="bigsymbol">∯</span>', 
-      u'\\oint':u'<span class="bigsymbol">∮</span>', 
-      u'\\ointclockwise':u'<span class="bigsymbol">∲</span>', 
-      u'\\ointctrclockwise':u'<span class="bigsymbol">∳</span>', 
-      u'\\ominus':u'⊖', u'\\oplus':u'⊕', u'\\oslash':u'⊘', u'\\otimes':u'⊗', 
-      u'\\owns':u'∋', u'\\parallel':u'∥', u'\\partial':u'∂', u'\\pencil':u'✎', 
-      u'\\perp':u'⊥', u'\\pisces':u'♓', u'\\pitchfork':u'⋔', u'\\pluto':u'♇', 
-      u'\\pm':u'±', u'\\pointer':u'➪', u'\\pointright':u'☞', u'\\pounds':u'£', 
-      u'\\prec':u'≺', u'\\preccurlyeq':u'≼', u'\\preceq':u'≼', 
-      u'\\precsim':u'≾', u'\\prime':u'′', u'\\prompto':u'∝', u'\\qoppa':u'ϙ', 
-      u'\\qquad':u'  ', u'\\quad':u' ', u'\\quarternote':u'♩', 
-      u'\\radiation':u'☢', u'\\rang':u'⟫', u'\\rangle':u'⟩', u'\\rblot':u'⦊', 
-      u'\\rbrace':u'}', u'\\rbrace)':u'}', u'\\rbrack':u']', u'\\rceil':u'⌉', 
-      u'\\recycle':u'♻', u'\\rfloor':u'⌋', u'\\rgroup':u'⟯', u'\\rhd':u'⊳', 
-      u'\\rightangle':u'∟', u'\\rightarrow)':u'→', u'\\rightarrowtail':u'↣', 
-      u'\\rightarrowtobar':u'⇥', u'\\rightharpoondown':u'⇁', 
-      u'\\rightharpoonup':u'⇀', u'\\rightharpooondown':u'⇁', 
-      u'\\rightharpooonup':u'⇀', u'\\rightleftarrows':u'⇄', 
-      u'\\rightleftharpoons':u'⇌', u'\\rightmoon':u'☽', 
-      u'\\rightrightarrows':u'⇉', u'\\rightrightharpoons':u'⥤', 
-      u'\\rightthreetimes':u'⋌', u'\\rimg':u'⦈', u'\\risingdotseq':u'≓', 
-      u'\\rrbracket':u'⟧', u'\\rsub':u'⩥', u'\\rtimes':u'⋊', 
-      u'\\sagittarius':u'♐', u'\\saturn':u'♄', u'\\scorpio':u'♏', 
-      u'\\searrow':u'↘', u'\\sec':u'sec', u'\\second':u'″', u'\\setminus':u'∖', 
-      u'\\sharp':u'♯', u'\\simeq':u'≃', u'\\sin':u'sin', u'\\sinh':u'sinh', 
-      u'\\sixteenthnote':u'♬', u'\\skull':u'☠', u'\\slash':u'∕', 
-      u'\\smallsetminus':u'∖', u'\\smalltriangledown':u'▿', 
-      u'\\smalltriangleleft':u'◃', u'\\smalltriangleright':u'▹', 
-      u'\\smalltriangleup':u'▵', u'\\smile':u'⌣', u'\\smiley':u'☺', 
-      u'\\spadesuit':u'♠', u'\\spddot':u'¨', u'\\sphat':u'', 
-      u'\\sphericalangle':u'∢', u'\\spot':u'⦁', u'\\sptilde':u'~', 
-      u'\\sqcap':u'⊓', u'\\sqcup':u'⊔', u'\\sqsubset':u'⊏', 
-      u'\\sqsubseteq':u'⊑', u'\\sqsupset':u'⊐', u'\\sqsupseteq':u'⊒', 
-      u'\\square':u'□', u'\\sslash':u'⫽', u'\\star':u'⋆', u'\\steaming':u'☕', 
-      u'\\subseteqq':u'⫅', u'\\subsetneqq':u'⫋', u'\\succ':u'≻', 
-      u'\\succcurlyeq':u'≽', u'\\succeq':u'≽', u'\\succnsim':u'⋩', 
-      u'\\succsim':u'≿', u'\\sun':u'☼', u'\\sup':u'sup', u'\\supseteqq':u'⫆', 
-      u'\\supsetneqq':u'⫌', u'\\surd':u'√', u'\\swarrow':u'↙', 
-      u'\\swords':u'⚔', u'\\talloblong':u'⫾', u'\\tan':u'tan', 
-      u'\\tanh':u'tanh', u'\\taurus':u'♉', u'\\textasciicircum':u'^', 
-      u'\\textasciitilde':u'~', u'\\textbackslash':u'\\', 
-      u'\\textcopyright':u'©\'', u'\\textdegree':u'°', u'\\textellipsis':u'…', 
-      u'\\textemdash':u'—', u'\\textendash':u'—', u'\\texteuro':u'€', 
-      u'\\textgreater':u'>', u'\\textless':u'<', u'\\textordfeminine':u'ª', 
-      u'\\textordmasculine':u'º', u'\\textquotedblleft':u'“', 
-      u'\\textquotedblright':u'”', u'\\textquoteright':u'’', 
-      u'\\textregistered':u'®', u'\\textrightarrow':u'→', 
-      u'\\textsection':u'§', u'\\texttrademark':u'™', 
-      u'\\texttwosuperior':u'²', u'\\textvisiblespace':u' ', 
-      u'\\therefore':u'∴', u'\\third':u'‴', u'\\top':u'⊤', u'\\triangle':u'△', 
-      u'\\triangleleft':u'⊲', u'\\trianglelefteq':u'⊴', u'\\triangleq':u'≜', 
-      u'\\triangleright':u'▷', u'\\trianglerighteq':u'⊵', 
-      u'\\twoheadleftarrow':u'↞', u'\\twoheadrightarrow':u'↠', 
-      u'\\twonotes':u'♫', u'\\udot':u'⊍', u'\\ulcorner':u'⌜', u'\\unlhd':u'⊴', 
-      u'\\unrhd':u'⊵', u'\\unrhl':u'⊵', u'\\uparrow':u'↑', 
-      u'\\updownarrow':u'↕', u'\\upharpoonleft':u'↿', u'\\upharpoonright':u'↾', 
-      u'\\uplus':u'⊎', u'\\upuparrows':u'⇈', u'\\uranus':u'♅', 
-      u'\\urcorner':u'⌝', u'\\vDash':u'⊨', u'\\varclubsuit':u'♧', 
-      u'\\vardiamondsuit':u'♦', u'\\varheartsuit':u'♥', u'\\varnothing':u'∅', 
-      u'\\varspadesuit':u'♤', u'\\vdash':u'⊢', u'\\vdots':u'⋮', u'\\vee':u'∨', 
-      u'\\vee)':u'∨', u'\\veebar':u'⊻', u'\\vert':u'∣', u'\\virgo':u'♍', 
-      u'\\warning':u'⚠', u'\\wasylozenge':u'⌑', u'\\wedge':u'∧', 
-      u'\\wedge)':u'∧', u'\\wp':u'℘', u'\\wr':u'≀', u'\\yen':u'¥', 
-      u'\\yinyang':u'☯', u'\\{':u'{', u'\\|':u'∥', u'\\}':u'}', 
+      '\\ ':' ', '\\!':'', '\\#':'#', '\\$':'$', '\\%':'%', 
+      '\\&':'&', '\\,':' ', '\\:':' ', '\\;':' ', '\\AC':'∿', 
+      '\\APLcomment':'⍝', '\\APLdownarrowbox':'⍗', '\\APLinput':'⍞', 
+      '\\APLinv':'⌹', '\\APLleftarrowbox':'⍇', '\\APLlog':'⍟', 
+      '\\APLrightarrowbox':'⍈', '\\APLuparrowbox':'⍐', '\\Box':'□', 
+      '\\Bumpeq':'≎', '\\CIRCLE':'●', '\\Cap':'⋒', 
+      '\\CapitalDifferentialD':'ⅅ', '\\CheckedBox':'☑', '\\Circle':'○', 
+      '\\Coloneqq':'⩴', '\\ComplexI':'ⅈ', '\\ComplexJ':'ⅉ', 
+      '\\Corresponds':'≙', '\\Cup':'⋓', '\\Delta':'Δ', '\\Diamond':'◇', 
+      '\\Diamondblack':'◆', '\\Diamonddot':'⟐', '\\DifferentialD':'ⅆ', 
+      '\\Downarrow':'⇓', '\\EUR':'€', '\\Euler':'ℇ', 
+      '\\ExponetialE':'ⅇ', '\\Finv':'Ⅎ', '\\Game':'⅁', '\\Gamma':'Γ', 
+      '\\Im':'ℑ', '\\Join':'⨝', '\\LEFTCIRCLE':'◖', '\\LEFTcircle':'◐', 
+      '\\LHD':'◀', '\\Lambda':'Λ', '\\Lbag':'⟅', '\\Leftarrow':'⇐', 
+      '\\Lleftarrow':'⇚', '\\Longleftarrow':'⟸', 
+      '\\Longleftrightarrow':'⟺', '\\Longrightarrow':'⟹', '\\Lparen':'⦅', 
+      '\\Lsh':'↰', '\\Mapsfrom':'⇐|', '\\Mapsto':'|⇒', '\\Omega':'Ω', 
+      '\\P':'¶', '\\Phi':'Φ', '\\Pi':'Π', '\\Pr':'Pr', '\\Psi':'Ψ', 
+      '\\Qoppa':'Ϙ', '\\RHD':'▶', '\\RIGHTCIRCLE':'◗', 
+      '\\RIGHTcircle':'◑', '\\Rbag':'⟆', '\\Re':'ℜ', '\\Rparen':'⦆', 
+      '\\Rrightarrow':'⇛', '\\Rsh':'↱', '\\S':'§', '\\Sigma':'Σ', 
+      '\\Square':'☐', '\\Subset':'⋐', '\\Sun':'☉', '\\Supset':'⋑', 
+      '\\Theta':'Θ', '\\Uparrow':'⇑', '\\Updownarrow':'⇕', 
+      '\\Upsilon':'Υ', '\\Vdash':'⊩', '\\Vert':'∥', '\\Vvdash':'⊪', 
+      '\\XBox':'☒', '\\Xi':'Ξ', '\\Yup':'⅄', '\\\\':'<br/>', 
+      '\\_':'_', '\\aleph':'ℵ', '\\amalg':'∐', '\\anchor':'⚓', 
+      '\\angle':'∠', '\\aquarius':'♒', '\\arccos':'arccos', 
+      '\\arcsin':'arcsin', '\\arctan':'arctan', '\\arg':'arg', 
+      '\\aries':'♈', '\\arrowbullet':'➢', '\\ast':'∗', '\\asymp':'≍', 
+      '\\backepsilon':'∍', '\\backprime':'‵', '\\backsimeq':'⋍', 
+      '\\backslash':'\\', '\\ballotx':'✗', '\\barwedge':'⊼', 
+      '\\because':'∵', '\\beth':'ℶ', '\\between':'≬', '\\bigcap':'∩', 
+      '\\bigcirc':'○', '\\bigcup':'∪', '\\bigodot':'⊙', 
+      '\\bigoplus':'⊕', '\\bigotimes':'⊗', '\\bigsqcup':'⊔', 
+      '\\bigstar':'★', '\\bigtriangledown':'▽', '\\bigtriangleup':'△', 
+      '\\biguplus':'⊎', '\\bigvee':'∨', '\\bigwedge':'∧', 
+      '\\biohazard':'☣', '\\blacklozenge':'⧫', '\\blacksmiley':'☻', 
+      '\\blacksquare':'■', '\\blacktriangle':'▲', 
+      '\\blacktriangledown':'▼', '\\blacktriangleleft':'◂', 
+      '\\blacktriangleright':'▶', '\\blacktriangleup':'▴', '\\bot':'⊥', 
+      '\\bowtie':'⋈', '\\box':'▫', '\\boxast':'⧆', '\\boxbar':'◫', 
+      '\\boxbox':'⧈', '\\boxbslash':'⧅', '\\boxcircle':'⧇', 
+      '\\boxdot':'⊡', '\\boxminus':'⊟', '\\boxplus':'⊞', 
+      '\\boxslash':'⧄', '\\boxtimes':'⊠', '\\bullet':'•', 
+      '\\bumpeq':'≏', '\\cancer':'♋', '\\cap':'∩', '\\capricornus':'♑', 
+      '\\cat':'⁀', '\\cdot':'⋅', '\\cdots':'⋯', '\\cent':'¢', 
+      '\\centerdot':'∙', '\\checkmark':'✓', '\\chi':'χ', '\\circ':'∘', 
+      '\\circeq':'≗', '\\circlearrowleft':'↺', '\\circlearrowright':'↻', 
+      '\\circledR':'®', '\\circledast':'⊛', '\\circledbslash':'⦸', 
+      '\\circledcirc':'⊚', '\\circleddash':'⊝', '\\circledgtr':'⧁', 
+      '\\circledless':'⧀', '\\clubsuit':'♣', '\\colon':': ', '\\coloneqq':'≔', 
+      '\\complement':'∁', '\\cong':'≅', '\\coprod':'∐', 
+      '\\copyright':'©', '\\cos':'cos', '\\cosh':'cosh', '\\cot':'cot', 
+      '\\coth':'coth', '\\csc':'csc', '\\cup':'∪', '\\curlyvee':'⋎', 
+      '\\curlywedge':'⋏', '\\curvearrowleft':'↶', 
+      '\\curvearrowright':'↷', '\\dag':'†', '\\dagger':'†', 
+      '\\daleth':'ℸ', '\\dashleftarrow':'⇠', '\\dashv':'⊣', 
+      '\\ddag':'‡', '\\ddagger':'‡', '\\ddots':'⋱', '\\deg':'deg', 
+      '\\det':'det', '\\diagdown':'╲', '\\diagup':'╱', 
+      '\\diameter':'⌀', '\\diamond':'◇', '\\diamondsuit':'♦', 
+      '\\dim':'dim', '\\div':'÷', '\\divideontimes':'⋇', 
+      '\\dotdiv':'∸', '\\doteq':'≐', '\\doteqdot':'≑', '\\dotplus':'∔', 
+      '\\dots':'…', '\\doublebarwedge':'⌆', '\\downarrow':'↓', 
+      '\\downdownarrows':'⇊', '\\downharpoonleft':'⇃', 
+      '\\downharpoonright':'⇂', '\\dsub':'⩤', '\\earth':'♁', 
+      '\\eighthnote':'♪', '\\ell':'ℓ', '\\emptyset':'∅', 
+      '\\eqcirc':'≖', '\\eqcolon':'≕', '\\eqsim':'≂', '\\euro':'€', 
+      '\\exists':'∃', '\\exp':'exp', '\\fallingdotseq':'≒', 
+      '\\fcmp':'⨾', '\\female':'♀', '\\flat':'♭', '\\forall':'∀', 
+      '\\fourth':'⁗', '\\frown':'⌢', '\\frownie':'☹', '\\gcd':'gcd', 
+      '\\gemini':'♊', '\\geq)':'≥', '\\geqq':'≧', '\\geqslant':'≥', 
+      '\\gets':'←', '\\gg':'≫', '\\ggg':'⋙', '\\gimel':'ℷ', 
+      '\\gneqq':'≩', '\\gnsim':'⋧', '\\gtrdot':'⋗', '\\gtreqless':'⋚', 
+      '\\gtreqqless':'⪌', '\\gtrless':'≷', '\\gtrsim':'≳', 
+      '\\guillemotleft':'«', '\\guillemotright':'»', '\\hbar':'ℏ', 
+      '\\heartsuit':'♥', '\\hfill':'<span class="hfill"> </span>', 
+      '\\hom':'hom', '\\hookleftarrow':'↩', '\\hookrightarrow':'↪', 
+      '\\hslash':'ℏ', '\\idotsint':'<span class="bigsymbol">∫⋯∫</span>', 
+      '\\iiint':'<span class="bigsymbol">∭</span>', 
+      '\\iint':'<span class="bigsymbol">∬</span>', '\\imath':'ı', 
+      '\\inf':'inf', '\\infty':'∞', '\\intercal':'⊺', 
+      '\\interleave':'⫴', '\\invamp':'⅋', '\\invneg':'⌐', 
+      '\\jmath':'ȷ', '\\jupiter':'♃', '\\ker':'ker', '\\land':'∧', 
+      '\\landupint':'<span class="bigsymbol">∱</span>', '\\lang':'⟪', 
+      '\\langle':'⟨', '\\lblot':'⦉', '\\lbrace':'{', '\\lbrace)':'{', 
+      '\\lbrack':'[', '\\lceil':'⌈', '\\ldots':'…', '\\leadsto':'⇝', 
+      '\\leftarrow)':'←', '\\leftarrowtail':'↢', '\\leftarrowtobar':'⇤', 
+      '\\leftharpoondown':'↽', '\\leftharpoonup':'↼', 
+      '\\leftleftarrows':'⇇', '\\leftleftharpoons':'⥢', '\\leftmoon':'☾', 
+      '\\leftrightarrow':'↔', '\\leftrightarrows':'⇆', 
+      '\\leftrightharpoons':'⇋', '\\leftthreetimes':'⋋', '\\leo':'♌', 
+      '\\leq)':'≤', '\\leqq':'≦', '\\leqslant':'≤', '\\lessdot':'⋖', 
+      '\\lesseqgtr':'⋛', '\\lesseqqgtr':'⪋', '\\lessgtr':'≶', 
+      '\\lesssim':'≲', '\\lfloor':'⌊', '\\lg':'lg', '\\lgroup':'⟮', 
+      '\\lhd':'⊲', '\\libra':'♎', '\\lightning':'↯', '\\limg':'⦇', 
+      '\\liminf':'liminf', '\\limsup':'limsup', '\\ll':'≪', 
+      '\\llbracket':'⟦', '\\llcorner':'⌞', '\\lll':'⋘', '\\ln':'ln', 
+      '\\lneqq':'≨', '\\lnot':'¬', '\\lnsim':'⋦', '\\log':'log', 
+      '\\longleftarrow':'⟵', '\\longleftrightarrow':'⟷', 
+      '\\longmapsto':'⟼', '\\longrightarrow':'⟶', '\\looparrowleft':'↫', 
+      '\\looparrowright':'↬', '\\lor':'∨', '\\lozenge':'◊', 
+      '\\lrcorner':'⌟', '\\ltimes':'⋉', '\\lyxlock':'', '\\male':'♂', 
+      '\\maltese':'✠', '\\mapsfrom':'↤', '\\mapsto':'↦', 
+      '\\mathcircumflex':'^', '\\max':'max', '\\measuredangle':'∡', 
+      '\\medbullet':'⚫', '\\medcirc':'⚪', '\\mercury':'☿', '\\mho':'℧', 
+      '\\mid':'∣', '\\min':'min', '\\models':'⊨', '\\mp':'∓', 
+      '\\multimap':'⊸', '\\nLeftarrow':'⇍', '\\nLeftrightarrow':'⇎', 
+      '\\nRightarrow':'⇏', '\\nVDash':'⊯', '\\nabla':'∇', 
+      '\\napprox':'≉', '\\natural':'♮', '\\ncong':'≇', '\\nearrow':'↗', 
+      '\\neg':'¬', '\\neg)':'¬', '\\neptune':'♆', '\\nequiv':'≢', 
+      '\\newline':'<br/>', '\\nexists':'∄', '\\ngeqslant':'≱', 
+      '\\ngtr':'≯', '\\ngtrless':'≹', '\\ni':'∋', '\\ni)':'∋', 
+      '\\nleftarrow':'↚', '\\nleftrightarrow':'↮', '\\nleqslant':'≰', 
+      '\\nless':'≮', '\\nlessgtr':'≸', '\\nmid':'∤', '\\nolimits':'', 
+      '\\nonumber':'', '\\not':'¬', '\\not<':'≮', '\\not=':'≠', 
+      '\\not>':'≯', '\\notbackslash':'⍀', '\\notin':'∉', '\\notni':'∌', 
+      '\\notslash':'⌿', '\\nparallel':'∦', '\\nprec':'⊀', 
+      '\\nrightarrow':'↛', '\\nsim':'≁', '\\nsimeq':'≄', 
+      '\\nsqsubset':'⊏̸', '\\nsubseteq':'⊈', '\\nsucc':'⊁', 
+      '\\nsucccurlyeq':'⋡', '\\nsupset':'⊅', '\\nsupseteq':'⊉', 
+      '\\ntriangleleft':'⋪', '\\ntrianglelefteq':'⋬', 
+      '\\ntriangleright':'⋫', '\\ntrianglerighteq':'⋭', '\\nvDash':'⊭', 
+      '\\nvdash':'⊬', '\\nwarrow':'↖', '\\odot':'⊙', 
+      '\\officialeuro':'€', '\\oiiint':'<span class="bigsymbol">∰</span>', 
+      '\\oiint':'<span class="bigsymbol">∯</span>', 
+      '\\oint':'<span class="bigsymbol">∮</span>', 
+      '\\ointclockwise':'<span class="bigsymbol">∲</span>', 
+      '\\ointctrclockwise':'<span class="bigsymbol">∳</span>', 
+      '\\ominus':'⊖', '\\oplus':'⊕', '\\oslash':'⊘', '\\otimes':'⊗', 
+      '\\owns':'∋', '\\parallel':'∥', '\\partial':'∂', '\\pencil':'✎', 
+      '\\perp':'⊥', '\\pisces':'♓', '\\pitchfork':'⋔', '\\pluto':'♇', 
+      '\\pm':'±', '\\pointer':'➪', '\\pointright':'☞', '\\pounds':'£', 
+      '\\prec':'≺', '\\preccurlyeq':'≼', '\\preceq':'≼', 
+      '\\precsim':'≾', '\\prime':'′', '\\prompto':'∝', '\\qoppa':'ϙ', 
+      '\\qquad':'  ', '\\quad':' ', '\\quarternote':'♩', 
+      '\\radiation':'☢', '\\rang':'⟫', '\\rangle':'⟩', '\\rblot':'⦊', 
+      '\\rbrace':'}', '\\rbrace)':'}', '\\rbrack':']', '\\rceil':'⌉', 
+      '\\recycle':'♻', '\\rfloor':'⌋', '\\rgroup':'⟯', '\\rhd':'⊳', 
+      '\\rightangle':'∟', '\\rightarrow)':'→', '\\rightarrowtail':'↣', 
+      '\\rightarrowtobar':'⇥', '\\rightharpoondown':'⇁', 
+      '\\rightharpoonup':'⇀', '\\rightharpooondown':'⇁', 
+      '\\rightharpooonup':'⇀', '\\rightleftarrows':'⇄', 
+      '\\rightleftharpoons':'⇌', '\\rightmoon':'☽', 
+      '\\rightrightarrows':'⇉', '\\rightrightharpoons':'⥤', 
+      '\\rightthreetimes':'⋌', '\\rimg':'⦈', '\\risingdotseq':'≓', 
+      '\\rrbracket':'⟧', '\\rsub':'⩥', '\\rtimes':'⋊', 
+      '\\sagittarius':'♐', '\\saturn':'♄', '\\scorpio':'♏', 
+      '\\searrow':'↘', '\\sec':'sec', '\\second':'″', '\\setminus':'∖', 
+      '\\sharp':'♯', '\\simeq':'≃', '\\sin':'sin', '\\sinh':'sinh', 
+      '\\sixteenthnote':'♬', '\\skull':'☠', '\\slash':'∕', 
+      '\\smallsetminus':'∖', '\\smalltriangledown':'▿', 
+      '\\smalltriangleleft':'◃', '\\smalltriangleright':'▹', 
+      '\\smalltriangleup':'▵', '\\smile':'⌣', '\\smiley':'☺', 
+      '\\spadesuit':'♠', '\\spddot':'¨', '\\sphat':'', 
+      '\\sphericalangle':'∢', '\\spot':'⦁', '\\sptilde':'~', 
+      '\\sqcap':'⊓', '\\sqcup':'⊔', '\\sqsubset':'⊏', 
+      '\\sqsubseteq':'⊑', '\\sqsupset':'⊐', '\\sqsupseteq':'⊒', 
+      '\\square':'□', '\\sslash':'⫽', '\\star':'⋆', '\\steaming':'☕', 
+      '\\subseteqq':'⫅', '\\subsetneqq':'⫋', '\\succ':'≻', 
+      '\\succcurlyeq':'≽', '\\succeq':'≽', '\\succnsim':'⋩', 
+      '\\succsim':'≿', '\\sun':'☼', '\\sup':'sup', '\\supseteqq':'⫆', 
+      '\\supsetneqq':'⫌', '\\surd':'√', '\\swarrow':'↙', 
+      '\\swords':'⚔', '\\talloblong':'⫾', '\\tan':'tan', 
+      '\\tanh':'tanh', '\\taurus':'♉', '\\textasciicircum':'^', 
+      '\\textasciitilde':'~', '\\textbackslash':'\\', 
+      '\\textcopyright':'©\'', '\\textdegree':'°', '\\textellipsis':'…', 
+      '\\textemdash':'—', '\\textendash':'—', '\\texteuro':'€', 
+      '\\textgreater':'>', '\\textless':'<', '\\textordfeminine':'ª', 
+      '\\textordmasculine':'º', '\\textquotedblleft':'“', 
+      '\\textquotedblright':'”', '\\textquoteright':'’', 
+      '\\textregistered':'®', '\\textrightarrow':'→', 
+      '\\textsection':'§', '\\texttrademark':'™', 
+      '\\texttwosuperior':'²', '\\textvisiblespace':' ', 
+      '\\therefore':'∴', '\\third':'‴', '\\top':'⊤', '\\triangle':'△', 
+      '\\triangleleft':'⊲', '\\trianglelefteq':'⊴', '\\triangleq':'≜', 
+      '\\triangleright':'▷', '\\trianglerighteq':'⊵', 
+      '\\twoheadleftarrow':'↞', '\\twoheadrightarrow':'↠', 
+      '\\twonotes':'♫', '\\udot':'⊍', '\\ulcorner':'⌜', '\\unlhd':'⊴', 
+      '\\unrhd':'⊵', '\\unrhl':'⊵', '\\uparrow':'↑', 
+      '\\updownarrow':'↕', '\\upharpoonleft':'↿', '\\upharpoonright':'↾', 
+      '\\uplus':'⊎', '\\upuparrows':'⇈', '\\uranus':'♅', 
+      '\\urcorner':'⌝', '\\vDash':'⊨', '\\varclubsuit':'♧', 
+      '\\vardiamondsuit':'♦', '\\varheartsuit':'♥', '\\varnothing':'∅', 
+      '\\varspadesuit':'♤', '\\vdash':'⊢', '\\vdots':'⋮', '\\vee':'∨', 
+      '\\vee)':'∨', '\\veebar':'⊻', '\\vert':'∣', '\\virgo':'♍', 
+      '\\warning':'⚠', '\\wasylozenge':'⌑', '\\wedge':'∧', 
+      '\\wedge)':'∧', '\\wp':'℘', '\\wr':'≀', '\\yen':'¥', 
+      '\\yinyang':'☯', '\\{':'{', '\\|':'∥', '\\}':'}', 
       }
 
   decoratedcommand = {
@@ -574,245 +574,245 @@ class FormulaConfig(object):
       }
 
   decoratingfunctions = {
-      u'\\overleftarrow':u'⟵', u'\\overrightarrow':u'⟶', u'\\widehat':u'^', 
+      '\\overleftarrow':'⟵', '\\overrightarrow':'⟶', '\\widehat':'^', 
       }
 
   endings = {
-      u'bracket':u'}', u'complex':u'\\]', u'endafter':u'}', 
-      u'endbefore':u'\\end{', u'squarebracket':u']', 
+      'bracket':'}', 'complex':'\\]', 'endafter':'}', 
+      'endbefore':'\\end{', 'squarebracket':']', 
       }
 
   environments = {
-      u'align':[u'r',u'l',], u'eqnarray':[u'r',u'c',u'l',], 
-      u'gathered':[u'l',u'l',], 
+      'align':['r','l',], 'eqnarray':['r','c','l',], 
+      'gathered':['l','l',], 
       }
 
   fontfunctions = {
-      u'\\boldsymbol':u'b', u'\\mathbb':u'span class="blackboard"', 
-      u'\\mathbb{A}':u'𝔸', u'\\mathbb{B}':u'𝔹', u'\\mathbb{C}':u'ℂ', 
-      u'\\mathbb{D}':u'𝔻', u'\\mathbb{E}':u'𝔼', u'\\mathbb{F}':u'𝔽', 
-      u'\\mathbb{G}':u'𝔾', u'\\mathbb{H}':u'ℍ', u'\\mathbb{J}':u'𝕁', 
-      u'\\mathbb{K}':u'𝕂', u'\\mathbb{L}':u'𝕃', u'\\mathbb{N}':u'ℕ', 
-      u'\\mathbb{O}':u'𝕆', u'\\mathbb{P}':u'ℙ', u'\\mathbb{Q}':u'ℚ', 
-      u'\\mathbb{R}':u'ℝ', u'\\mathbb{S}':u'𝕊', u'\\mathbb{T}':u'𝕋', 
-      u'\\mathbb{W}':u'𝕎', u'\\mathbb{Z}':u'ℤ', u'\\mathbf':u'b', 
-      u'\\mathcal':u'span class="scriptfont"', u'\\mathcal{B}':u'ℬ', 
-      u'\\mathcal{E}':u'ℰ', u'\\mathcal{F}':u'ℱ', u'\\mathcal{H}':u'ℋ', 
-      u'\\mathcal{I}':u'ℐ', u'\\mathcal{L}':u'ℒ', u'\\mathcal{M}':u'ℳ', 
-      u'\\mathcal{R}':u'ℛ', u'\\mathfrak':u'span class="fraktur"', 
-      u'\\mathfrak{C}':u'ℭ', u'\\mathfrak{F}':u'𝔉', u'\\mathfrak{H}':u'ℌ', 
-      u'\\mathfrak{I}':u'ℑ', u'\\mathfrak{R}':u'ℜ', u'\\mathfrak{Z}':u'ℨ', 
-      u'\\mathit':u'i', u'\\mathring{A}':u'Å', u'\\mathring{U}':u'Ů', 
-      u'\\mathring{a}':u'å', u'\\mathring{u}':u'ů', u'\\mathring{w}':u'ẘ', 
-      u'\\mathring{y}':u'ẙ', u'\\mathrm':u'span class="mathrm"', 
-      u'\\mathscr':u'span class="scriptfont"', u'\\mathscr{B}':u'ℬ', 
-      u'\\mathscr{E}':u'ℰ', u'\\mathscr{F}':u'ℱ', u'\\mathscr{H}':u'ℋ', 
-      u'\\mathscr{I}':u'ℐ', u'\\mathscr{L}':u'ℒ', u'\\mathscr{M}':u'ℳ', 
-      u'\\mathscr{R}':u'ℛ', u'\\mathsf':u'span class="mathsf"', 
-      u'\\mathtt':u'tt', 
+      '\\boldsymbol':'b', '\\mathbb':'span class="blackboard"', 
+      '\\mathbb{A}':'𝔸', '\\mathbb{B}':'𝔹', '\\mathbb{C}':'ℂ', 
+      '\\mathbb{D}':'𝔻', '\\mathbb{E}':'𝔼', '\\mathbb{F}':'𝔽', 
+      '\\mathbb{G}':'𝔾', '\\mathbb{H}':'ℍ', '\\mathbb{J}':'𝕁', 
+      '\\mathbb{K}':'𝕂', '\\mathbb{L}':'𝕃', '\\mathbb{N}':'ℕ', 
+      '\\mathbb{O}':'𝕆', '\\mathbb{P}':'ℙ', '\\mathbb{Q}':'ℚ', 
+      '\\mathbb{R}':'ℝ', '\\mathbb{S}':'𝕊', '\\mathbb{T}':'𝕋', 
+      '\\mathbb{W}':'𝕎', '\\mathbb{Z}':'ℤ', '\\mathbf':'b', 
+      '\\mathcal':'span class="scriptfont"', '\\mathcal{B}':'ℬ', 
+      '\\mathcal{E}':'ℰ', '\\mathcal{F}':'ℱ', '\\mathcal{H}':'ℋ', 
+      '\\mathcal{I}':'ℐ', '\\mathcal{L}':'ℒ', '\\mathcal{M}':'ℳ', 
+      '\\mathcal{R}':'ℛ', '\\mathfrak':'span class="fraktur"', 
+      '\\mathfrak{C}':'ℭ', '\\mathfrak{F}':'𝔉', '\\mathfrak{H}':'ℌ', 
+      '\\mathfrak{I}':'ℑ', '\\mathfrak{R}':'ℜ', '\\mathfrak{Z}':'ℨ', 
+      '\\mathit':'i', '\\mathring{A}':'Å', '\\mathring{U}':'Ů', 
+      '\\mathring{a}':'å', '\\mathring{u}':'ů', '\\mathring{w}':'ẘ', 
+      '\\mathring{y}':'ẙ', '\\mathrm':'span class="mathrm"', 
+      '\\mathscr':'span class="scriptfont"', '\\mathscr{B}':'ℬ', 
+      '\\mathscr{E}':'ℰ', '\\mathscr{F}':'ℱ', '\\mathscr{H}':'ℋ', 
+      '\\mathscr{I}':'ℐ', '\\mathscr{L}':'ℒ', '\\mathscr{M}':'ℳ', 
+      '\\mathscr{R}':'ℛ', '\\mathsf':'span class="mathsf"', 
+      '\\mathtt':'tt', 
       }
 
   hybridfunctions = {
-      u'\\addcontentsline':[u'{$p!}{$q!}{$r!}',u'f0{}',u'ignored',], 
-      u'\\addtocontents':[u'{$p!}{$q!}',u'f0{}',u'ignored',], 
-      u'\\backmatter':[u'',u'f0{}',u'ignored',], 
-      u'\\binom':[u'{$1}{$2}',u'f2{(}f0{f1{$1}f1{$2}}f2{)}',u'span class="binom"',u'span class="binomstack"',u'span class="bigsymbol"',], 
-      u'\\boxed':[u'{$1}',u'f0{$1}',u'span class="boxed"',], 
-      u'\\cfrac':[u'[$p!]{$1}{$2}',u'f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}',u'span class="fullfraction"',u'span class="numerator align-$p"',u'span class="denominator"',u'span class="ignored"',], 
-      u'\\color':[u'{$p!}{$1}',u'f0{$1}',u'span style="color: $p;"',], 
-      u'\\colorbox':[u'{$p!}{$1}',u'f0{$1}',u'span class="colorbox" style="background: $p;"',], 
-      u'\\dbinom':[u'{$1}{$2}',u'(f0{f1{f2{$1}}f1{f2{ }}f1{f2{$2}}})',u'span class="binomial"',u'span class="binomrow"',u'span class="binomcell"',], 
-      u'\\dfrac':[u'{$1}{$2}',u'f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}',u'span class="fullfraction"',u'span class="numerator"',u'span class="denominator"',u'span class="ignored"',], 
-      u'\\displaystyle':[u'{$1}',u'f0{$1}',u'span class="displaystyle"',], 
-      u'\\fancyfoot':[u'[$p!]{$q!}',u'f0{}',u'ignored',], 
-      u'\\fancyhead':[u'[$p!]{$q!}',u'f0{}',u'ignored',], 
-      u'\\fbox':[u'{$1}',u'f0{$1}',u'span class="fbox"',], 
-      u'\\fboxrule':[u'{$p!}',u'f0{}',u'ignored',], 
-      u'\\fboxsep':[u'{$p!}',u'f0{}',u'ignored',], 
-      u'\\fcolorbox':[u'{$p!}{$q!}{$1}',u'f0{$1}',u'span class="boxed" style="border-color: $p; background: $q;"',], 
-      u'\\frac':[u'{$1}{$2}',u'f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}',u'span class="fraction"',u'span class="numerator"',u'span class="denominator"',u'span class="ignored"',], 
-      u'\\framebox':[u'[$p!][$q!]{$1}',u'f0{$1}',u'span class="framebox align-$q" style="width: $p;"',], 
-      u'\\frontmatter':[u'',u'f0{}',u'ignored',], 
-      u'\\href':[u'[$o]{$u!}{$t!}',u'f0{$t}',u'a href="$u"',], 
-      u'\\hspace':[u'{$p!}',u'f0{ }',u'span class="hspace" style="width: $p;"',], 
-      u'\\leftroot':[u'{$p!}',u'f0{ }',u'span class="leftroot" style="width: $p;px"',], 
-      u'\\mainmatter':[u'',u'f0{}',u'ignored',], 
-      u'\\markboth':[u'{$p!}{$q!}',u'f0{}',u'ignored',], 
-      u'\\markright':[u'{$p!}',u'f0{}',u'ignored',], 
-      u'\\nicefrac':[u'{$1}{$2}',u'f0{f1{$1}⁄f2{$2}}',u'span class="fraction"',u'sup class="numerator"',u'sub class="denominator"',u'span class="ignored"',], 
-      u'\\parbox':[u'[$p!]{$w!}{$1}',u'f0{1}',u'div class="Boxed" style="width: $w;"',], 
-      u'\\raisebox':[u'{$p!}{$1}',u'f0{$1.font}',u'span class="raisebox" style="vertical-align: $p;"',], 
-      u'\\renewenvironment':[u'{$1!}{$2!}{$3!}',u'',], 
-      u'\\rule':[u'[$v!]{$w!}{$h!}',u'f0/',u'hr class="line" style="width: $w; height: $h;"',], 
-      u'\\scriptscriptstyle':[u'{$1}',u'f0{$1}',u'span class="scriptscriptstyle"',], 
-      u'\\scriptstyle':[u'{$1}',u'f0{$1}',u'span class="scriptstyle"',], 
-      u'\\sqrt':[u'[$0]{$1}',u'f0{f1{$0}f2{√}f4{(}f3{$1}f4{)}}',u'span class="sqrt"',u'sup class="root"',u'span class="radical"',u'span class="root"',u'span class="ignored"',], 
-      u'\\stackrel':[u'{$1}{$2}',u'f0{f1{$1}f2{$2}}',u'span class="stackrel"',u'span class="upstackrel"',u'span class="downstackrel"',], 
-      u'\\tbinom':[u'{$1}{$2}',u'(f0{f1{f2{$1}}f1{f2{ }}f1{f2{$2}}})',u'span class="binomial"',u'span class="binomrow"',u'span class="binomcell"',], 
-      u'\\textcolor':[u'{$p!}{$1}',u'f0{$1}',u'span style="color: $p;"',], 
-      u'\\textstyle':[u'{$1}',u'f0{$1}',u'span class="textstyle"',], 
-      u'\\thispagestyle':[u'{$p!}',u'f0{}',u'ignored',], 
-      u'\\unit':[u'[$0]{$1}',u'$0f0{$1.font}',u'span class="unit"',], 
-      u'\\unitfrac':[u'[$0]{$1}{$2}',u'$0f0{f1{$1.font}⁄f2{$2.font}}',u'span class="fraction"',u'sup class="unit"',u'sub class="unit"',], 
-      u'\\uproot':[u'{$p!}',u'f0{ }',u'span class="uproot" style="width: $p;px"',], 
-      u'\\url':[u'{$u!}',u'f0{$u}',u'a href="$u"',], 
-      u'\\vspace':[u'{$p!}',u'f0{ }',u'span class="vspace" style="height: $p;"',], 
+      '\\addcontentsline':['{$p!}{$q!}{$r!}','f0{}','ignored',], 
+      '\\addtocontents':['{$p!}{$q!}','f0{}','ignored',], 
+      '\\backmatter':['','f0{}','ignored',], 
+      '\\binom':['{$1}{$2}','f2{(}f0{f1{$1}f1{$2}}f2{)}','span class="binom"','span class="binomstack"','span class="bigsymbol"',], 
+      '\\boxed':['{$1}','f0{$1}','span class="boxed"',], 
+      '\\cfrac':['[$p!]{$1}{$2}','f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}','span class="fullfraction"','span class="numerator align-$p"','span class="denominator"','span class="ignored"',], 
+      '\\color':['{$p!}{$1}','f0{$1}','span style="color: $p;"',], 
+      '\\colorbox':['{$p!}{$1}','f0{$1}','span class="colorbox" style="background: $p;"',], 
+      '\\dbinom':['{$1}{$2}','(f0{f1{f2{$1}}f1{f2{ }}f1{f2{$2}}})','span class="binomial"','span class="binomrow"','span class="binomcell"',], 
+      '\\dfrac':['{$1}{$2}','f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}','span class="fullfraction"','span class="numerator"','span class="denominator"','span class="ignored"',], 
+      '\\displaystyle':['{$1}','f0{$1}','span class="displaystyle"',], 
+      '\\fancyfoot':['[$p!]{$q!}','f0{}','ignored',], 
+      '\\fancyhead':['[$p!]{$q!}','f0{}','ignored',], 
+      '\\fbox':['{$1}','f0{$1}','span class="fbox"',], 
+      '\\fboxrule':['{$p!}','f0{}','ignored',], 
+      '\\fboxsep':['{$p!}','f0{}','ignored',], 
+      '\\fcolorbox':['{$p!}{$q!}{$1}','f0{$1}','span class="boxed" style="border-color: $p; background: $q;"',], 
+      '\\frac':['{$1}{$2}','f0{f3{(}f1{$1}f3{)/(}f2{$2}f3{)}}','span class="fraction"','span class="numerator"','span class="denominator"','span class="ignored"',], 
+      '\\framebox':['[$p!][$q!]{$1}','f0{$1}','span class="framebox align-$q" style="width: $p;"',], 
+      '\\frontmatter':['','f0{}','ignored',], 
+      '\\href':['[$o]{$u!}{$t!}','f0{$t}','a href="$u"',], 
+      '\\hspace':['{$p!}','f0{ }','span class="hspace" style="width: $p;"',], 
+      '\\leftroot':['{$p!}','f0{ }','span class="leftroot" style="width: $p;px"',], 
+      '\\mainmatter':['','f0{}','ignored',], 
+      '\\markboth':['{$p!}{$q!}','f0{}','ignored',], 
+      '\\markright':['{$p!}','f0{}','ignored',], 
+      '\\nicefrac':['{$1}{$2}','f0{f1{$1}⁄f2{$2}}','span class="fraction"','sup class="numerator"','sub class="denominator"','span class="ignored"',], 
+      '\\parbox':['[$p!]{$w!}{$1}','f0{1}','div class="Boxed" style="width: $w;"',], 
+      '\\raisebox':['{$p!}{$1}','f0{$1.font}','span class="raisebox" style="vertical-align: $p;"',], 
+      '\\renewenvironment':['{$1!}{$2!}{$3!}','',], 
+      '\\rule':['[$v!]{$w!}{$h!}','f0/','hr class="line" style="width: $w; height: $h;"',], 
+      '\\scriptscriptstyle':['{$1}','f0{$1}','span class="scriptscriptstyle"',], 
+      '\\scriptstyle':['{$1}','f0{$1}','span class="scriptstyle"',], 
+      '\\sqrt':['[$0]{$1}','f0{f1{$0}f2{√}f4{(}f3{$1}f4{)}}','span class="sqrt"','sup class="root"','span class="radical"','span class="root"','span class="ignored"',], 
+      '\\stackrel':['{$1}{$2}','f0{f1{$1}f2{$2}}','span class="stackrel"','span class="upstackrel"','span class="downstackrel"',], 
+      '\\tbinom':['{$1}{$2}','(f0{f1{f2{$1}}f1{f2{ }}f1{f2{$2}}})','span class="binomial"','span class="binomrow"','span class="binomcell"',], 
+      '\\textcolor':['{$p!}{$1}','f0{$1}','span style="color: $p;"',], 
+      '\\textstyle':['{$1}','f0{$1}','span class="textstyle"',], 
+      '\\thispagestyle':['{$p!}','f0{}','ignored',], 
+      '\\unit':['[$0]{$1}','$0f0{$1.font}','span class="unit"',], 
+      '\\unitfrac':['[$0]{$1}{$2}','$0f0{f1{$1.font}⁄f2{$2.font}}','span class="fraction"','sup class="unit"','sub class="unit"',], 
+      '\\uproot':['{$p!}','f0{ }','span class="uproot" style="width: $p;px"',], 
+      '\\url':['{$u!}','f0{$u}','a href="$u"',], 
+      '\\vspace':['{$p!}','f0{ }','span class="vspace" style="height: $p;"',], 
       }
 
   hybridsizes = {
-      u'\\binom':u'$1+$2', u'\\cfrac':u'$1+$2', u'\\dbinom':u'$1+$2+1', 
-      u'\\dfrac':u'$1+$2', u'\\frac':u'$1+$2', u'\\tbinom':u'$1+$2+1', 
+      '\\binom':'$1+$2', '\\cfrac':'$1+$2', '\\dbinom':'$1+$2+1', 
+      '\\dfrac':'$1+$2', '\\frac':'$1+$2', '\\tbinom':'$1+$2+1', 
       }
 
   labelfunctions = {
-      u'\\label':u'a name="#"', 
+      '\\label':'a name="#"', 
       }
 
   limitcommands = {
-      u'\\biginterleave':u'⫼', u'\\bigsqcap':u'⨅', u'\\fint':u'⨏', 
-      u'\\iiiint':u'⨌', u'\\int':u'∫', u'\\intop':u'∫', u'\\lim':u'lim', 
-      u'\\prod':u'∏', u'\\smallint':u'∫', u'\\sqint':u'⨖', u'\\sum':u'∑', 
-      u'\\varointclockwise':u'∲', u'\\varprod':u'⨉', u'\\zcmp':u'⨟', 
-      u'\\zhide':u'⧹', u'\\zpipe':u'⨠', u'\\zproject':u'⨡', 
+      '\\biginterleave':'⫼', '\\bigsqcap':'⨅', '\\fint':'⨏', 
+      '\\iiiint':'⨌', '\\int':'∫', '\\intop':'∫', '\\lim':'lim', 
+      '\\prod':'∏', '\\smallint':'∫', '\\sqint':'⨖', '\\sum':'∑', 
+      '\\varointclockwise':'∲', '\\varprod':'⨉', '\\zcmp':'⨟', 
+      '\\zhide':'⧹', '\\zpipe':'⨠', '\\zproject':'⨡', 
       }
 
   misccommands = {
-      u'\\limits':u'LimitPreviousCommand', u'\\newcommand':u'MacroDefinition', 
-      u'\\renewcommand':u'MacroDefinition', 
-      u'\\setcounter':u'SetCounterFunction', u'\\tag':u'FormulaTag', 
-      u'\\tag*':u'FormulaTag', u'\\today':u'TodayCommand', 
+      '\\limits':'LimitPreviousCommand', '\\newcommand':'MacroDefinition', 
+      '\\renewcommand':'MacroDefinition', 
+      '\\setcounter':'SetCounterFunction', '\\tag':'FormulaTag', 
+      '\\tag*':'FormulaTag', '\\today':'TodayCommand', 
       }
 
   modified = {
-      u'\n':u'', u' ':u'', u'$':u'', u'&':u'	', u'\'':u'’', u'+':u' + ', 
-      u',':u', ', u'-':u' − ', u'/':u' ⁄ ', u':':u' : ', u'<':u' &lt; ', 
-      u'=':u' = ', u'>':u' &gt; ', u'@':u'', u'~':u'', 
+      '\n':'', ' ':'', '$':'', '&':'	', '\'':'’', '+':' + ', 
+      ',':', ', '-':' − ', '/':' ⁄ ', ':':' : ', '<':' &lt; ', 
+      '=':' = ', '>':' &gt; ', '@':'', '~':'', 
       }
 
   onefunctions = {
-      u'\\Big':u'span class="bigsymbol"', u'\\Bigg':u'span class="hugesymbol"', 
-      u'\\bar':u'span class="bar"', u'\\begin{array}':u'span class="arraydef"', 
-      u'\\big':u'span class="symbol"', u'\\bigg':u'span class="largesymbol"', 
-      u'\\bigl':u'span class="bigsymbol"', u'\\bigr':u'span class="bigsymbol"', 
-      u'\\centering':u'span class="align-center"', 
-      u'\\ensuremath':u'span class="ensuremath"', 
-      u'\\hphantom':u'span class="phantom"', 
-      u'\\noindent':u'span class="noindent"', 
-      u'\\overbrace':u'span class="overbrace"', 
-      u'\\overline':u'span class="overline"', 
-      u'\\phantom':u'span class="phantom"', 
-      u'\\underbrace':u'span class="underbrace"', u'\\underline':u'u', 
-      u'\\vphantom':u'span class="phantom"', 
+      '\\Big':'span class="bigsymbol"', '\\Bigg':'span class="hugesymbol"', 
+      '\\bar':'span class="bar"', '\\begin{array}':'span class="arraydef"', 
+      '\\big':'span class="symbol"', '\\bigg':'span class="largesymbol"', 
+      '\\bigl':'span class="bigsymbol"', '\\bigr':'span class="bigsymbol"', 
+      '\\centering':'span class="align-center"', 
+      '\\ensuremath':'span class="ensuremath"', 
+      '\\hphantom':'span class="phantom"', 
+      '\\noindent':'span class="noindent"', 
+      '\\overbrace':'span class="overbrace"', 
+      '\\overline':'span class="overline"', 
+      '\\phantom':'span class="phantom"', 
+      '\\underbrace':'span class="underbrace"', '\\underline':'u', 
+      '\\vphantom':'span class="phantom"', 
       }
 
   spacedcommands = {
-      u'\\Bot':u'⫫', u'\\Doteq':u'≑', u'\\DownArrowBar':u'⤓', 
-      u'\\DownLeftTeeVector':u'⥞', u'\\DownLeftVectorBar':u'⥖', 
-      u'\\DownRightTeeVector':u'⥟', u'\\DownRightVectorBar':u'⥗', 
-      u'\\Equal':u'⩵', u'\\LeftArrowBar':u'⇤', u'\\LeftDownTeeVector':u'⥡', 
-      u'\\LeftDownVectorBar':u'⥙', u'\\LeftTeeVector':u'⥚', 
-      u'\\LeftTriangleBar':u'⧏', u'\\LeftUpTeeVector':u'⥠', 
-      u'\\LeftUpVectorBar':u'⥘', u'\\LeftVectorBar':u'⥒', 
-      u'\\Leftrightarrow':u'⇔', u'\\Longmapsfrom':u'⟽', u'\\Longmapsto':u'⟾', 
-      u'\\MapsDown':u'↧', u'\\MapsUp':u'↥', u'\\Nearrow':u'⇗', 
-      u'\\NestedGreaterGreater':u'⪢', u'\\NestedLessLess':u'⪡', 
-      u'\\NotGreaterLess':u'≹', u'\\NotGreaterTilde':u'≵', 
-      u'\\NotLessTilde':u'≴', u'\\Nwarrow':u'⇖', u'\\Proportion':u'∷', 
-      u'\\RightArrowBar':u'⇥', u'\\RightDownTeeVector':u'⥝', 
-      u'\\RightDownVectorBar':u'⥕', u'\\RightTeeVector':u'⥛', 
-      u'\\RightTriangleBar':u'⧐', u'\\RightUpTeeVector':u'⥜', 
-      u'\\RightUpVectorBar':u'⥔', u'\\RightVectorBar':u'⥓', 
-      u'\\Rightarrow':u'⇒', u'\\Same':u'⩶', u'\\Searrow':u'⇘', 
-      u'\\Swarrow':u'⇙', u'\\Top':u'⫪', u'\\UpArrowBar':u'⤒', u'\\VDash':u'⊫', 
-      u'\\approx':u'≈', u'\\approxeq':u'≊', u'\\backsim':u'∽', u'\\barin':u'⋶', 
-      u'\\barleftharpoon':u'⥫', u'\\barrightharpoon':u'⥭', u'\\bij':u'⤖', 
-      u'\\coloneq':u'≔', u'\\corresponds':u'≙', u'\\curlyeqprec':u'⋞', 
-      u'\\curlyeqsucc':u'⋟', u'\\dashrightarrow':u'⇢', u'\\dlsh':u'↲', 
-      u'\\downdownharpoons':u'⥥', u'\\downuparrows':u'⇵', 
-      u'\\downupharpoons':u'⥯', u'\\drsh':u'↳', u'\\eqslantgtr':u'⪖', 
-      u'\\eqslantless':u'⪕', u'\\equiv':u'≡', u'\\ffun':u'⇻', u'\\finj':u'⤕', 
-      u'\\ge':u'≥', u'\\geq':u'≥', u'\\ggcurly':u'⪼', u'\\gnapprox':u'⪊', 
-      u'\\gneq':u'⪈', u'\\gtrapprox':u'⪆', u'\\hash':u'⋕', u'\\iddots':u'⋰', 
-      u'\\implies':u' ⇒ ', u'\\in':u'∈', u'\\le':u'≤', u'\\leftarrow':u'←', 
-      u'\\leftarrowtriangle':u'⇽', u'\\leftbarharpoon':u'⥪', 
-      u'\\leftrightarrowtriangle':u'⇿', u'\\leftrightharpoon':u'⥊', 
-      u'\\leftrightharpoondown':u'⥐', u'\\leftrightharpoonup':u'⥎', 
-      u'\\leftrightsquigarrow':u'↭', u'\\leftslice':u'⪦', 
-      u'\\leftsquigarrow':u'⇜', u'\\leftupdownharpoon':u'⥑', u'\\leq':u'≤', 
-      u'\\lessapprox':u'⪅', u'\\llcurly':u'⪻', u'\\lnapprox':u'⪉', 
-      u'\\lneq':u'⪇', u'\\longmapsfrom':u'⟻', u'\\multimapboth':u'⧟', 
-      u'\\multimapdotbothA':u'⊶', u'\\multimapdotbothB':u'⊷', 
-      u'\\multimapinv':u'⟜', u'\\nVdash':u'⊮', u'\\ne':u'≠', u'\\neq':u'≠', 
-      u'\\ngeq':u'≱', u'\\nleq':u'≰', u'\\nni':u'∌', u'\\not\\in':u'∉', 
-      u'\\notasymp':u'≭', u'\\npreceq':u'⋠', u'\\nsqsubseteq':u'⋢', 
-      u'\\nsqsupseteq':u'⋣', u'\\nsubset':u'⊄', u'\\nsucceq':u'⋡', 
-      u'\\pfun':u'⇸', u'\\pinj':u'⤔', u'\\precapprox':u'⪷', u'\\preceqq':u'⪳', 
-      u'\\precnapprox':u'⪹', u'\\precnsim':u'⋨', u'\\propto':u'∝', 
-      u'\\psur':u'⤀', u'\\rightarrow':u'→', u'\\rightarrowtriangle':u'⇾', 
-      u'\\rightbarharpoon':u'⥬', u'\\rightleftharpoon':u'⥋', 
-      u'\\rightslice':u'⪧', u'\\rightsquigarrow':u'⇝', 
-      u'\\rightupdownharpoon':u'⥏', u'\\sim':u'~', u'\\strictfi':u'⥼', 
-      u'\\strictif':u'⥽', u'\\subset':u'⊂', u'\\subseteq':u'⊆', 
-      u'\\subsetneq':u'⊊', u'\\succapprox':u'⪸', u'\\succeqq':u'⪴', 
-      u'\\succnapprox':u'⪺', u'\\supset':u'⊃', u'\\supseteq':u'⊇', 
-      u'\\supsetneq':u'⊋', u'\\times':u'×', u'\\to':u'→', 
-      u'\\updownarrows':u'⇅', u'\\updownharpoons':u'⥮', u'\\upupharpoons':u'⥣', 
-      u'\\vartriangleleft':u'⊲', u'\\vartriangleright':u'⊳', 
+      '\\Bot':'⫫', '\\Doteq':'≑', '\\DownArrowBar':'⤓', 
+      '\\DownLeftTeeVector':'⥞', '\\DownLeftVectorBar':'⥖', 
+      '\\DownRightTeeVector':'⥟', '\\DownRightVectorBar':'⥗', 
+      '\\Equal':'⩵', '\\LeftArrowBar':'⇤', '\\LeftDownTeeVector':'⥡', 
+      '\\LeftDownVectorBar':'⥙', '\\LeftTeeVector':'⥚', 
+      '\\LeftTriangleBar':'⧏', '\\LeftUpTeeVector':'⥠', 
+      '\\LeftUpVectorBar':'⥘', '\\LeftVectorBar':'⥒', 
+      '\\Leftrightarrow':'⇔', '\\Longmapsfrom':'⟽', '\\Longmapsto':'⟾', 
+      '\\MapsDown':'↧', '\\MapsUp':'↥', '\\Nearrow':'⇗', 
+      '\\NestedGreaterGreater':'⪢', '\\NestedLessLess':'⪡', 
+      '\\NotGreaterLess':'≹', '\\NotGreaterTilde':'≵', 
+      '\\NotLessTilde':'≴', '\\Nwarrow':'⇖', '\\Proportion':'∷', 
+      '\\RightArrowBar':'⇥', '\\RightDownTeeVector':'⥝', 
+      '\\RightDownVectorBar':'⥕', '\\RightTeeVector':'⥛', 
+      '\\RightTriangleBar':'⧐', '\\RightUpTeeVector':'⥜', 
+      '\\RightUpVectorBar':'⥔', '\\RightVectorBar':'⥓', 
+      '\\Rightarrow':'⇒', '\\Same':'⩶', '\\Searrow':'⇘', 
+      '\\Swarrow':'⇙', '\\Top':'⫪', '\\UpArrowBar':'⤒', '\\VDash':'⊫', 
+      '\\approx':'≈', '\\approxeq':'≊', '\\backsim':'∽', '\\barin':'⋶', 
+      '\\barleftharpoon':'⥫', '\\barrightharpoon':'⥭', '\\bij':'⤖', 
+      '\\coloneq':'≔', '\\corresponds':'≙', '\\curlyeqprec':'⋞', 
+      '\\curlyeqsucc':'⋟', '\\dashrightarrow':'⇢', '\\dlsh':'↲', 
+      '\\downdownharpoons':'⥥', '\\downuparrows':'⇵', 
+      '\\downupharpoons':'⥯', '\\drsh':'↳', '\\eqslantgtr':'⪖', 
+      '\\eqslantless':'⪕', '\\equiv':'≡', '\\ffun':'⇻', '\\finj':'⤕', 
+      '\\ge':'≥', '\\geq':'≥', '\\ggcurly':'⪼', '\\gnapprox':'⪊', 
+      '\\gneq':'⪈', '\\gtrapprox':'⪆', '\\hash':'⋕', '\\iddots':'⋰', 
+      '\\implies':' ⇒ ', '\\in':'∈', '\\le':'≤', '\\leftarrow':'←', 
+      '\\leftarrowtriangle':'⇽', '\\leftbarharpoon':'⥪', 
+      '\\leftrightarrowtriangle':'⇿', '\\leftrightharpoon':'⥊', 
+      '\\leftrightharpoondown':'⥐', '\\leftrightharpoonup':'⥎', 
+      '\\leftrightsquigarrow':'↭', '\\leftslice':'⪦', 
+      '\\leftsquigarrow':'⇜', '\\leftupdownharpoon':'⥑', '\\leq':'≤', 
+      '\\lessapprox':'⪅', '\\llcurly':'⪻', '\\lnapprox':'⪉', 
+      '\\lneq':'⪇', '\\longmapsfrom':'⟻', '\\multimapboth':'⧟', 
+      '\\multimapdotbothA':'⊶', '\\multimapdotbothB':'⊷', 
+      '\\multimapinv':'⟜', '\\nVdash':'⊮', '\\ne':'≠', '\\neq':'≠', 
+      '\\ngeq':'≱', '\\nleq':'≰', '\\nni':'∌', '\\not\\in':'∉', 
+      '\\notasymp':'≭', '\\npreceq':'⋠', '\\nsqsubseteq':'⋢', 
+      '\\nsqsupseteq':'⋣', '\\nsubset':'⊄', '\\nsucceq':'⋡', 
+      '\\pfun':'⇸', '\\pinj':'⤔', '\\precapprox':'⪷', '\\preceqq':'⪳', 
+      '\\precnapprox':'⪹', '\\precnsim':'⋨', '\\propto':'∝', 
+      '\\psur':'⤀', '\\rightarrow':'→', '\\rightarrowtriangle':'⇾', 
+      '\\rightbarharpoon':'⥬', '\\rightleftharpoon':'⥋', 
+      '\\rightslice':'⪧', '\\rightsquigarrow':'⇝', 
+      '\\rightupdownharpoon':'⥏', '\\sim':'~', '\\strictfi':'⥼', 
+      '\\strictif':'⥽', '\\subset':'⊂', '\\subseteq':'⊆', 
+      '\\subsetneq':'⊊', '\\succapprox':'⪸', '\\succeqq':'⪴', 
+      '\\succnapprox':'⪺', '\\supset':'⊃', '\\supseteq':'⊇', 
+      '\\supsetneq':'⊋', '\\times':'×', '\\to':'→', 
+      '\\updownarrows':'⇅', '\\updownharpoons':'⥮', '\\upupharpoons':'⥣', 
+      '\\vartriangleleft':'⊲', '\\vartriangleright':'⊳', 
       }
 
   starts = {
-      u'beginafter':u'}', u'beginbefore':u'\\begin{', u'bracket':u'{', 
-      u'command':u'\\', u'comment':u'%', u'complex':u'\\[', u'simple':u'$', 
-      u'squarebracket':u'[', u'unnumbered':u'*', 
+      'beginafter':'}', 'beginbefore':'\\begin{', 'bracket':'{', 
+      'command':'\\', 'comment':'%', 'complex':'\\[', 'simple':'$', 
+      'squarebracket':'[', 'unnumbered':'*', 
       }
 
   symbolfunctions = {
-      u'^':u'sup', u'_':u'sub', 
+      '^':'sup', '_':'sub', 
       }
 
   textfunctions = {
-      u'\\mbox':u'span class="mbox"', u'\\text':u'span class="text"', 
-      u'\\textbf':u'b', u'\\textipa':u'span class="textipa"', u'\\textit':u'i', 
-      u'\\textnormal':u'span class="textnormal"', 
-      u'\\textrm':u'span class="textrm"', 
-      u'\\textsc':u'span class="versalitas"', 
-      u'\\textsf':u'span class="textsf"', u'\\textsl':u'i', u'\\texttt':u'tt', 
-      u'\\textup':u'span class="normal"', 
+      '\\mbox':'span class="mbox"', '\\text':'span class="text"', 
+      '\\textbf':'b', '\\textipa':'span class="textipa"', '\\textit':'i', 
+      '\\textnormal':'span class="textnormal"', 
+      '\\textrm':'span class="textrm"', 
+      '\\textsc':'span class="versalitas"', 
+      '\\textsf':'span class="textsf"', '\\textsl':'i', '\\texttt':'tt', 
+      '\\textup':'span class="normal"', 
       }
 
   unmodified = {
       
-      u'characters':[u'.',u'*',u'€',u'(',u')',u'[',u']',u'·',u'!',u';',u'|',u'§',u'"',], 
+      'characters':['.','*','€','(',')','[',']','·','!',';','|','§','"',], 
       }
 
   urls = {
-      u'googlecharts':u'http://chart.googleapis.com/chart?cht=tx&chl=', 
+      'googlecharts':'http://chart.googleapis.com/chart?cht=tx&chl=', 
       }
 
 class GeneralConfig(object):
   "Configuration class from elyxer.config file"
 
   version = {
-      u'date':u'2015-02-26', u'lyxformat':u'413', u'number':u'1.2.5', 
+      'date':'2015-02-26', 'lyxformat':'413', 'number':'1.2.5', 
       }
 
 class HeaderConfig(object):
   "Configuration class from elyxer.config file"
 
   parameters = {
-      u'beginpreamble':u'\\begin_preamble', u'branch':u'\\branch', 
-      u'documentclass':u'\\textclass', u'endbranch':u'\\end_branch', 
-      u'endpreamble':u'\\end_preamble', u'language':u'\\language', 
-      u'lstset':u'\\lstset', u'outputchanges':u'\\output_changes', 
-      u'paragraphseparation':u'\\paragraph_separation', 
-      u'pdftitle':u'\\pdf_title', u'secnumdepth':u'\\secnumdepth', 
-      u'tocdepth':u'\\tocdepth', 
+      'beginpreamble':'\\begin_preamble', 'branch':'\\branch', 
+      'documentclass':'\\textclass', 'endbranch':'\\end_branch', 
+      'endpreamble':'\\end_preamble', 'language':'\\language', 
+      'lstset':'\\lstset', 'outputchanges':'\\output_changes', 
+      'paragraphseparation':'\\paragraph_separation', 
+      'pdftitle':'\\pdf_title', 'secnumdepth':'\\secnumdepth', 
+      'tocdepth':'\\tocdepth', 
       }
 
   styles = {
       
-      u'article':[u'article',u'aastex',u'aapaper',u'acmsiggraph',u'sigplanconf',u'achemso',u'amsart',u'apa',u'arab-article',u'armenian-article',u'article-beamer',u'chess',u'dtk',u'elsarticle',u'heb-article',u'IEEEtran',u'iopart',u'kluwer',u'scrarticle-beamer',u'scrartcl',u'extarticle',u'paper',u'mwart',u'revtex4',u'spie',u'svglobal3',u'ltugboat',u'agu-dtd',u'jgrga',u'agums',u'entcs',u'egs',u'ijmpc',u'ijmpd',u'singlecol-new',u'doublecol-new',u'isprs',u'tarticle',u'jsarticle',u'jarticle',u'jss',u'literate-article',u'siamltex',u'cl2emult',u'llncs',u'svglobal',u'svjog',u'svprobth',], 
-      u'book':[u'book',u'amsbook',u'scrbook',u'extbook',u'tufte-book',u'report',u'extreport',u'scrreprt',u'memoir',u'tbook',u'jsbook',u'jbook',u'mwbk',u'svmono',u'svmult',u'treport',u'jreport',u'mwrep',], 
+      'article':['article','aastex','aapaper','acmsiggraph','sigplanconf','achemso','amsart','apa','arab-article','armenian-article','article-beamer','chess','dtk','elsarticle','heb-article','IEEEtran','iopart','kluwer','scrarticle-beamer','scrartcl','extarticle','paper','mwart','revtex4','spie','svglobal3','ltugboat','agu-dtd','jgrga','agums','entcs','egs','ijmpc','ijmpd','singlecol-new','doublecol-new','isprs','tarticle','jsarticle','jarticle','jss','literate-article','siamltex','cl2emult','llncs','svglobal','svjog','svprobth',], 
+      'book':['book','amsbook','scrbook','extbook','tufte-book','report','extreport','scrreprt','memoir','tbook','jsbook','jbook','mwbk','svmono','svmult','treport','jreport','mwrep',], 
       }
 
 class ImageConfig(object):
@@ -820,17 +820,17 @@ class ImageConfig(object):
 
   converters = {
       
-      u'imagemagick':u'convert[ -density $scale][ -define $format:use-cropbox=true] "$input" "$output"', 
-      u'inkscape':u'inkscape "$input" --export-png="$output"', 
-      u'lyx':u'lyx -C "$input" "$output"', 
+      'imagemagick':'convert[ -density $scale][ -define $format:use-cropbox=true] "$input" "$output"', 
+      'inkscape':'inkscape "$input" --export-png="$output"', 
+      'lyx':'lyx -C "$input" "$output"', 
       }
 
   cropboxformats = {
-      u'.eps':u'ps', u'.pdf':u'pdf', u'.ps':u'ps', 
+      '.eps':'ps', '.pdf':'pdf', '.ps':'ps', 
       }
 
   formats = {
-      u'default':u'.png', u'vector':[u'.svg',u'.eps',], 
+      'default':'.png', 'vector':['.svg','.eps',], 
       }
 
 class LayoutConfig(object):
@@ -838,15 +838,15 @@ class LayoutConfig(object):
 
   groupable = {
       
-      u'allowed':[u'StringContainer',u'Constant',u'TaggedText',u'Align',u'TextFamily',u'EmphaticText',u'VersalitasText',u'BarredText',u'SizeText',u'ColorText',u'LangLine',u'Formula',], 
+      'allowed':['StringContainer','Constant','TaggedText','Align','TextFamily','EmphaticText','VersalitasText','BarredText','SizeText','ColorText','LangLine','Formula',], 
       }
 
 class NewfangleConfig(object):
   "Configuration class from elyxer.config file"
 
   constants = {
-      u'chunkref':u'chunkref{', u'endcommand':u'}', u'endmark':u'&gt;', 
-      u'startcommand':u'\\', u'startmark':u'=&lt;', 
+      'chunkref':'chunkref{', 'endcommand':'}', 'endmark':'&gt;', 
+      'startcommand':'\\', 'startmark':'=&lt;', 
       }
 
 class NumberingConfig(object):
@@ -854,47 +854,47 @@ class NumberingConfig(object):
 
   layouts = {
       
-      u'ordered':[u'Chapter',u'Section',u'Subsection',u'Subsubsection',u'Paragraph',], 
-      u'roman':[u'Part',u'Book',], 
+      'ordered':['Chapter','Section','Subsection','Subsubsection','Paragraph',], 
+      'roman':['Part','Book',], 
       }
 
   sequence = {
-      u'symbols':[u'*',u'**',u'†',u'‡',u'§',u'§§',u'¶',u'¶¶',u'#',u'##',], 
+      'symbols':['*','**','†','‡','§','§§','¶','¶¶','#','##',], 
       }
 
 class StyleConfig(object):
   "Configuration class from elyxer.config file"
 
   hspaces = {
-      u'\\enskip{}':u' ', u'\\hfill{}':u'<span class="hfill"> </span>', 
-      u'\\hspace*{\\fill}':u' ', u'\\hspace*{}':u'', u'\\hspace{}':u' ', 
-      u'\\negthinspace{}':u'', u'\\qquad{}':u'  ', u'\\quad{}':u' ', 
-      u'\\space{}':u' ', u'\\thinspace{}':u' ', u'~':u' ', 
+      '\\enskip{}':' ', '\\hfill{}':'<span class="hfill"> </span>', 
+      '\\hspace*{\\fill}':' ', '\\hspace*{}':'', '\\hspace{}':' ', 
+      '\\negthinspace{}':'', '\\qquad{}':'  ', '\\quad{}':' ', 
+      '\\space{}':' ', '\\thinspace{}':' ', '~':' ', 
       }
 
   quotes = {
-      u'ald':u'»', u'als':u'›', u'ard':u'«', u'ars':u'‹', u'eld':u'&ldquo;', 
-      u'els':u'&lsquo;', u'erd':u'&rdquo;', u'ers':u'&rsquo;', u'fld':u'«', 
-      u'fls':u'‹', u'frd':u'»', u'frs':u'›', u'gld':u'„', u'gls':u'‚', 
-      u'grd':u'“', u'grs':u'‘', u'pld':u'„', u'pls':u'‚', u'prd':u'”', 
-      u'prs':u'’', u'sld':u'”', u'srd':u'”', 
+      'ald':'»', 'als':'›', 'ard':'«', 'ars':'‹', 'eld':'&ldquo;', 
+      'els':'&lsquo;', 'erd':'&rdquo;', 'ers':'&rsquo;', 'fld':'«', 
+      'fls':'‹', 'frd':'»', 'frs':'›', 'gld':'„', 'gls':'‚', 
+      'grd':'“', 'grs':'‘', 'pld':'„', 'pls':'‚', 'prd':'”', 
+      'prs':'’', 'sld':'”', 'srd':'”', 
       }
 
   referenceformats = {
-      u'eqref':u'(@↕)', u'formatted':u'¶↕', u'nameref':u'$↕', u'pageref':u'#↕', 
-      u'ref':u'@↕', u'vpageref':u'on-page#↕', u'vref':u'@on-page#↕', 
+      'eqref':'(@↕)', 'formatted':'¶↕', 'nameref':'$↕', 'pageref':'#↕', 
+      'ref':'@↕', 'vpageref':'on-page#↕', 'vref':'@on-page#↕', 
       }
 
   size = {
-      u'ignoredtexts':[u'col',u'text',u'line',u'page',u'theight',u'pheight',], 
+      'ignoredtexts':['col','text','line','page','theight','pheight',], 
       }
 
   vspaces = {
-      u'bigskip':u'<div class="bigskip"> </div>', 
-      u'defskip':u'<div class="defskip"> </div>', 
-      u'medskip':u'<div class="medskip"> </div>', 
-      u'smallskip':u'<div class="smallskip"> </div>', 
-      u'vfill':u'<div class="vfill"> </div>', 
+      'bigskip':'<div class="bigskip"> </div>', 
+      'defskip':'<div class="defskip"> </div>', 
+      'medskip':'<div class="medskip"> </div>', 
+      'smallskip':'<div class="smallskip"> </div>', 
+      'vfill':'<div class="vfill"> </div>', 
       }
 
 class TOCConfig(object):
@@ -902,87 +902,87 @@ class TOCConfig(object):
 
   extractplain = {
       
-      u'allowed':[u'StringContainer',u'Constant',u'TaggedText',u'Align',u'TextFamily',u'EmphaticText',u'VersalitasText',u'BarredText',u'SizeText',u'ColorText',u'LangLine',u'Formula',], 
-      u'cloned':[u'',], u'extracted':[u'',], 
+      'allowed':['StringContainer','Constant','TaggedText','Align','TextFamily','EmphaticText','VersalitasText','BarredText','SizeText','ColorText','LangLine','Formula',], 
+      'cloned':['',], 'extracted':['',], 
       }
 
   extracttitle = {
-      u'allowed':[u'StringContainer',u'Constant',u'Space',], 
-      u'cloned':[u'TextFamily',u'EmphaticText',u'VersalitasText',u'BarredText',u'SizeText',u'ColorText',u'LangLine',u'Formula',], 
-      u'extracted':[u'PlainLayout',u'TaggedText',u'Align',u'Caption',u'StandardLayout',u'FlexInset',], 
+      'allowed':['StringContainer','Constant','Space',], 
+      'cloned':['TextFamily','EmphaticText','VersalitasText','BarredText','SizeText','ColorText','LangLine','Formula',], 
+      'extracted':['PlainLayout','TaggedText','Align','Caption','StandardLayout','FlexInset',], 
       }
 
 class TagConfig(object):
   "Configuration class from elyxer.config file"
 
   barred = {
-      u'under':u'u', 
+      'under':'u', 
       }
 
   family = {
-      u'sans':u'span class="sans"', u'typewriter':u'tt', 
+      'sans':'span class="sans"', 'typewriter':'tt', 
       }
 
   flex = {
-      u'CharStyle:Code':u'span class="code"', 
-      u'CharStyle:MenuItem':u'span class="menuitem"', 
-      u'Code':u'span class="code"', u'MenuItem':u'span class="menuitem"', 
-      u'Noun':u'span class="noun"', u'Strong':u'span class="strong"', 
+      'CharStyle:Code':'span class="code"', 
+      'CharStyle:MenuItem':'span class="menuitem"', 
+      'Code':'span class="code"', 'MenuItem':'span class="menuitem"', 
+      'Noun':'span class="noun"', 'Strong':'span class="strong"', 
       }
 
   group = {
-      u'layouts':[u'Quotation',u'Quote',], 
+      'layouts':['Quotation','Quote',], 
       }
 
   layouts = {
-      u'Center':u'div', u'Chapter':u'h?', u'Date':u'h2', u'Paragraph':u'div', 
-      u'Part':u'h1', u'Quotation':u'blockquote', u'Quote':u'blockquote', 
-      u'Section':u'h?', u'Subsection':u'h?', u'Subsubsection':u'h?', 
+      'Center':'div', 'Chapter':'h?', 'Date':'h2', 'Paragraph':'div', 
+      'Part':'h1', 'Quotation':'blockquote', 'Quote':'blockquote', 
+      'Section':'h?', 'Subsection':'h?', 'Subsubsection':'h?', 
       }
 
   listitems = {
-      u'Enumerate':u'ol', u'Itemize':u'ul', 
+      'Enumerate':'ol', 'Itemize':'ul', 
       }
 
   notes = {
-      u'Comment':u'', u'Greyedout':u'span class="greyedout"', u'Note':u'', 
+      'Comment':'', 'Greyedout':'span class="greyedout"', 'Note':'', 
       }
 
   script = {
-      u'subscript':u'sub', u'superscript':u'sup', 
+      'subscript':'sub', 'superscript':'sup', 
       }
 
   shaped = {
-      u'italic':u'i', u'slanted':u'i', u'smallcaps':u'span class="versalitas"', 
+      'italic':'i', 'slanted':'i', 'smallcaps':'span class="versalitas"', 
       }
 
 class TranslationConfig(object):
   "Configuration class from elyxer.config file"
 
   constants = {
-      u'Appendix':u'Appendix', u'Book':u'Book', u'Chapter':u'Chapter', 
-      u'Paragraph':u'Paragraph', u'Part':u'Part', u'Section':u'Section', 
-      u'Subsection':u'Subsection', u'Subsubsection':u'Subsubsection', 
-      u'abstract':u'Abstract', u'bibliography':u'Bibliography', 
-      u'figure':u'figure', u'float-algorithm':u'Algorithm ', 
-      u'float-figure':u'Figure ', u'float-listing':u'Listing ', 
-      u'float-table':u'Table ', u'float-tableau':u'Tableau ', 
-      u'footnotes':u'Footnotes', u'generated-by':u'Document generated by ', 
-      u'generated-on':u' on ', u'index':u'Index', 
-      u'jsmath-enable':u'Please enable JavaScript on your browser.', 
-      u'jsmath-requires':u' requires JavaScript to correctly process the mathematics on this page. ', 
-      u'jsmath-warning':u'Warning: ', u'list-algorithm':u'List of Algorithms', 
-      u'list-figure':u'List of Figures', u'list-table':u'List of Tables', 
-      u'list-tableau':u'List of Tableaux', u'main-page':u'Main page', 
-      u'next':u'Next', u'nomenclature':u'Nomenclature', 
-      u'on-page':u' on page ', u'prev':u'Prev', u'references':u'References', 
-      u'toc':u'Table of Contents', u'toc-for':u'Contents for ', u'up':u'Up', 
+      'Appendix':'Appendix', 'Book':'Book', 'Chapter':'Chapter', 
+      'Paragraph':'Paragraph', 'Part':'Part', 'Section':'Section', 
+      'Subsection':'Subsection', 'Subsubsection':'Subsubsection', 
+      'abstract':'Abstract', 'bibliography':'Bibliography', 
+      'figure':'figure', 'float-algorithm':'Algorithm ', 
+      'float-figure':'Figure ', 'float-listing':'Listing ', 
+      'float-table':'Table ', 'float-tableau':'Tableau ', 
+      'footnotes':'Footnotes', 'generated-by':'Document generated by ', 
+      'generated-on':' on ', 'index':'Index', 
+      'jsmath-enable':'Please enable JavaScript on your browser.', 
+      'jsmath-requires':' requires JavaScript to correctly process the mathematics on this page. ', 
+      'jsmath-warning':'Warning: ', 'list-algorithm':'List of Algorithms', 
+      'list-figure':'List of Figures', 'list-table':'List of Tables', 
+      'list-tableau':'List of Tableaux', 'main-page':'Main page', 
+      'next':'Next', 'nomenclature':'Nomenclature', 
+      'on-page':' on page ', 'prev':'Prev', 'references':'References', 
+      'toc':'Table of Contents', 'toc-for':'Contents for ', 'up':'Up', 
       }
 
   languages = {
-      u'american':u'en', u'british':u'en', u'deutsch':u'de', u'dutch':u'nl', 
-      u'english':u'en', u'french':u'fr', u'ngerman':u'de', u'russian':u'ru', 
-      u'spanish':u'es', 
+      'american':'en', 'british':'en', 'deutsch':'de', 'dutch':'nl', 
+      'english':'en', 'french':'fr', 'ngerman':'de', 'russian':'ru', 
+      'spanish':'es', 
       }
 
 
@@ -1075,7 +1075,7 @@ class Options(object):
   html = False
   help = False
   showlines = True
-  unicode = False
+  str = False
   iso885915 = False
   css = []
   favicon = ''
@@ -1302,12 +1302,12 @@ class BranchOptions(object):
 
   def __unicode__(self):
     "String representation"
-    return 'options for ' + self.name + ': ' + unicode(self.options)
+    return 'options for ' + self.name + ': ' + str(self.options)
 
 
 
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 
@@ -1440,7 +1440,7 @@ class Parser(object):
   def parseending(self, reader, process):
     "Parse until the current ending is found"
     if not self.ending:
-      Trace.error('No ending for ' + unicode(self))
+      Trace.error('No ending for ' + str(self))
       return
     while not reader.currentline().startswith(self.ending):
       process()
@@ -1453,7 +1453,7 @@ class Parser(object):
 
   def __unicode__(self):
     "Return a description"
-    return self.__class__.__name__ + ' (' + unicode(self.begin) + ')'
+    return self.__class__.__name__ + ' (' + str(self.begin) + ')'
 
 class LoneCommand(Parser):
   "A parser for just one command line"
@@ -1560,7 +1560,7 @@ class ContainerOutput(object):
 
   def gethtml(self, container):
     "Show an error."
-    Trace.error('gethtml() not implemented for ' + unicode(self))
+    Trace.error('gethtml() not implemented for ' + str(self))
 
   def isempty(self):
     "Decide if the output is empty: by default, not empty."
@@ -1593,7 +1593,7 @@ class ContentsOutput(ContainerOutput):
       return html
     for element in container.contents:
       if not hasattr(element, 'gethtml'):
-        Trace.error('No html in ' + element.__class__.__name__ + ': ' + unicode(element))
+        Trace.error('No html in ' + element.__class__.__name__ + ': ' + str(element))
         return html
       html += element.gethtml()
     return html
@@ -1658,7 +1658,7 @@ class TaggedOutput(ContentsOutput):
   def checktag(self):
     "Check that the tag is valid."
     if not self.tag:
-      Trace.error('No tag in ' + unicode(container))
+      Trace.error('No tag in ' + str(container))
       return False
     if self.tag == '':
       return False
@@ -1761,7 +1761,7 @@ class LineReader(object):
     self.current = self.current.rstrip('\n\r')
     self.linenumber += 1
     self.mustread = False
-    Trace.prefix = 'Line ' + unicode(self.linenumber) + ': '
+    Trace.prefix = 'Line ' + str(self.linenumber) + ': '
     if self.linenumber % 1000 == 0:
       Trace.message('Parsing')
 
@@ -1791,8 +1791,8 @@ class LineWriter(object):
   def write(self, strings):
     "Write a list of strings"
     for string in strings:
-      if not isinstance(string, basestring):
-        Trace.error('Not a string: ' + unicode(string) + ' in ' + unicode(strings))
+      if not isinstance(string, str):
+        Trace.error('Not a string: ' + str(string) + ' in ' + str(strings))
         return
       self.writestring(string)
 
@@ -1986,13 +1986,13 @@ class EndingList(object):
   def checkpending(self):
     "Check if there are any pending endings"
     if len(self.endings) != 0:
-      Trace.error('Pending ' + unicode(self) + ' left open')
+      Trace.error('Pending ' + str(self) + ' left open')
 
   def __unicode__(self):
     "Printable representation"
     string = 'endings ['
     for ending in self.endings:
-      string += unicode(ending) + ','
+      string += str(ending) + ','
     if len(self.endings) > 0:
       string = string[:-1]
     return string + ']'
@@ -2057,7 +2057,7 @@ class Position(Globable):
     self.skip(current)
     return current
 
-  def next(self):
+  def __next__(self):
     "Advance the position and return the next character."
     self.skipcurrent()
     return self.current()
@@ -2143,13 +2143,13 @@ class FilePosition(Position):
     "Return the current line and line number in the file."
     before = self.reader.currentline()[:self.pos - 1]
     after = self.reader.currentline()[self.pos:]
-    return 'line ' + unicode(self.getlinenumber()) + ': ' + before + '*' + after
+    return 'line ' + str(self.getlinenumber()) + ': ' + before + '*' + after
 
   def isout(self):
     "Find out if we are out of the text yet."
     if self.pos > len(self.reader.currentline()):
       if self.pos > len(self.reader.currentline()) + 1:
-        Trace.error('Out of the line ' + self.reader.currentline() + ': ' + unicode(self.pos))
+        Trace.error('Out of the line ' + self.reader.currentline() + ': ' + str(self.pos))
       self.nextline()
     return self.reader.finished()
 
@@ -2158,7 +2158,7 @@ class FilePosition(Position):
     if self.pos == len(self.reader.currentline()):
       return '\n'
     if self.pos > len(self.reader.currentline()):
-      Trace.error('Out of the line ' + self.reader.currentline() + ': ' + unicode(self.pos))
+      Trace.error('Out of the line ' + self.reader.currentline() + ': ' + str(self.pos))
       return '*'
     return self.reader.currentline()[self.pos]
 
@@ -2187,7 +2187,7 @@ class Container(object):
   def gethtml(self):
     "Get the resulting HTML"
     html = self.output.gethtml(self)
-    if isinstance(html, basestring):
+    if isinstance(html, str):
       Trace.error('Raw string ' + html)
       html = [html]
     return self.escapeall(html)
@@ -2201,14 +2201,14 @@ class Container(object):
       if Options.iso885915:
         line = self.escape(line, EscapeConfig.iso885915)
         line = self.escapeentities(line)
-      elif not Options.unicode:
+      elif not Options.str:
         line = self.escape(line, EscapeConfig.nonunicode)
       result.append(line)
     return result
 
   def escape(self, line, replacements = EscapeConfig.entities):
     "Escape a line with replacements from elyxer.a map"
-    pieces = replacements.keys()
+    pieces = list(replacements.keys())
     # do them in order
     pieces.sort()
     for piece in pieces:
@@ -2224,7 +2224,7 @@ class Container(object):
       if ord(pos.current()) > 128:
         codepoint = hex(ord(pos.current()))
         if codepoint == '0xd835':
-          codepoint = hex(ord(pos.next()) + 0xf800)
+          codepoint = hex(ord(next(pos)) + 0xf800)
         result += '&#' + codepoint[1:] + ';'
       else:
         result += pos.current()
@@ -2292,7 +2292,7 @@ class Container(object):
 
   def tree(self, level = 0):
     "Show in a tree"
-    Trace.debug("  " * level + unicode(self))
+    Trace.debug("  " * level + str(self))
     for container in self.contents:
       container.tree(level + 1)
 
@@ -2322,7 +2322,7 @@ class Container(object):
     "Get a description"
     if not self.begin:
       return self.__class__.__name__
-    return self.__class__.__name__ + '@' + unicode(self.begin)
+    return self.__class__.__name__ + '@' + str(self.begin)
 
 class BlackBox(Container):
   "A container that does not output anything"
@@ -2366,7 +2366,7 @@ class StringContainer(Container):
     if ContainerConfig.string['startcommand'] in replaced and len(replaced) > 1:
       # unprocessed commands
       if self.begin:
-        message = 'Unknown command at ' + unicode(self.begin) + ': '
+        message = 'Unknown command at ' + str(self.begin) + ': '
       else:
         message = 'Unknown command: '
       Trace.error(message + replaced.strip())
@@ -2387,7 +2387,7 @@ class StringContainer(Container):
     "Return a printable representation."
     result = 'StringContainer'
     if self.begin:
-      result += '@' + unicode(self.begin)
+      result += '@' + str(self.begin)
     ellipsis = '...'
     if len(self.string.strip()) <= 15:
       ellipsis = ''
@@ -2799,7 +2799,7 @@ class Bracket(FormulaBit):
 
   def innertext(self, pos):
     "Parse some text inside the bracket, following textual rules."
-    specialchars = FormulaConfig.symbolfunctions.keys()
+    specialchars = list(FormulaConfig.symbolfunctions.keys())
     specialchars.append(FormulaConfig.starts['command'])
     specialchars.append(FormulaConfig.starts['bracket'])
     specialchars.append(Comment.start)
@@ -2840,7 +2840,7 @@ class MathsProcessor(object):
 
   def process(self, contents, index):
     "Process an element inside a formula."
-    Trace.error('Unimplemented process() in ' + unicode(self))
+    Trace.error('Unimplemented process() in ' + str(self))
 
   def __unicode__(self):
     "Return a printable description."
@@ -2882,7 +2882,7 @@ class FormulaProcessor(object):
       if bit.type == 'alpha':
         self.italicize(bit, contents)
       elif bit.type == 'font' and last and last.type == 'number':
-        bit.contents.insert(0, FormulaConstant(u' '))
+        bit.contents.insert(0, FormulaConstant(' '))
       last = bit
 
   def traverse(self, bit):
@@ -2943,7 +2943,7 @@ class Formula(Container):
 
   def googlecharts(self):
     "Make the contents using Google Charts http://code.google.com/apis/chart/."
-    url = FormulaConfig.urls['googlecharts'] + urllib.quote_plus(self.parsed)
+    url = FormulaConfig.urls['googlecharts'] + urllib.parse.quote_plus(self.parsed)
     img = '<img class="chart" src="' + url + '" alt="' + self.parsed + '"/>'
     self.contents = [Constant(img)]
 
@@ -3143,7 +3143,7 @@ class Translator(object):
     try:
       self.translation = gettext.translation('elyxer', None, langcodes)
     except IOError:
-      Trace.error('No translation for ' + unicode(langcodes))
+      Trace.error('No translation for ' + str(langcodes))
 
   def getmessage(self, key):
     "Get the translated message for the given key."
@@ -3202,7 +3202,7 @@ class NumberCounter(object):
 
   def gettext(self):
     "Get the next value as a text string."
-    return unicode(self.value)
+    return str(self.value)
 
   def getletter(self):
     "Get the next value as a letter."
@@ -3485,11 +3485,11 @@ class ContainerSize(object):
   def checkimage(self, width, height):
     "Check image dimensions, set them if possible."
     if width:
-      self.maxwidth = unicode(width) + 'px'
+      self.maxwidth = str(width) + 'px'
       if self.scale and not self.width:
         self.width = self.scalevalue(width)
     if height:
-      self.maxheight = unicode(height) + 'px'
+      self.maxheight = str(height) + 'px'
       if self.scale and not self.height:
         self.height = self.scalevalue(height)
     if self.width and not self.height:
@@ -3500,7 +3500,7 @@ class ContainerSize(object):
   def scalevalue(self, value):
     "Scale the value according to the image scale and return it as unicode."
     scaled = value * int(self.scale) / 100
-    return unicode(int(scaled)) + 'px'
+    return str(int(scaled)) + 'px'
 
   def removepercentwidth(self):
     "Remove percent width if present, to set it at the figure level."
@@ -3517,7 +3517,7 @@ class ContainerSize(object):
   def addstyle(self, container):
     "Add the proper style attribute to the output tag."
     if not isinstance(container.output, TaggedOutput):
-      Trace.error('No tag to add style, in ' + unicode(container))
+      Trace.error('No tag to add style, in ' + str(container))
     if not self.width and not self.height and not self.maxwidth and not self.maxheight:
       # nothing to see here; move along
       return
@@ -3988,10 +3988,10 @@ class Reference(Link):
     "Read the reference and set the arrow."
     self.key = self.getparameter('reference')
     if self.key in Label.names:
-      self.direction = u'↑'
+      self.direction = '↑'
       label = Label.names[self.key]
     else:
-      self.direction = u'↓'
+      self.direction = '↓'
       label = Label().complete(' ', self.key, 'preref')
     self.destination = label
     self.formatcontents()
@@ -4004,18 +4004,18 @@ class Reference(Link):
     formatkey = self.getparameter('LatexCommand')
     if not formatkey:
       formatkey = 'ref'
-    self.formatted = u'↕'
+    self.formatted = '↕'
     if formatkey in StyleConfig.referenceformats:
       self.formatted = StyleConfig.referenceformats[formatkey]
     else:
       Trace.error('Unknown reference format ' + formatkey)
-    self.replace(u'↕', self.direction)
+    self.replace('↕', self.direction)
     self.replace('#', '1')
     self.replace('on-page', Translator.translate('on-page'))
     partkey = self.destination.findpartkey()
     # only if partkey and partkey.number are not null, send partkey.number
     self.replace('@', partkey and partkey.number)
-    self.replace(u'¶', partkey and partkey.tocentry)
+    self.replace('¶', partkey and partkey.tocentry)
     if not '$' in self.formatted or not partkey or not partkey.titlecontents:
       # there is a $ left, but it should go away on preprocessing
       self.contents = [Constant(self.formatted)]
@@ -4200,7 +4200,7 @@ class SpacedCommand(CommandBit):
 
   def parsebit(self, pos):
     "Place as contents the command translated and spaced."
-    self.contents = [FormulaConstant(u' ' + self.translated + u' ')]
+    self.contents = [FormulaConstant(' ' + self.translated + ' ')]
 
 class AlphaCommand(EmptyCommand):
   "A command without paramters whose result is alphabetical"
@@ -4344,7 +4344,7 @@ class BigBracket(BigSymbol):
 
   def getpiece(self, index):
     "Return the nth piece for the bracket."
-    function = getattr(self, 'getpiece' + unicode(len(self.pieces)))
+    function = getattr(self, 'getpiece' + str(len(self.pieces)))
     return function(index)
 
   def getpiece1(self, index):
@@ -4482,7 +4482,7 @@ class MultiRowFormula(CommandBit):
     row = self.factory.create(FormulaRow).setalignments(self.alignments)
     for index, originalcell in enumerate(self.rows[-1].contents):
       cell = row.createcell(index)
-      cell.add(FormulaConstant(u' '))
+      cell.add(FormulaConstant(' '))
       row.add(cell)
     self.addrow(row)
 
@@ -4540,7 +4540,7 @@ class FormulaCases(MultiRowFormula):
     for row in self.contents:
       for cell in row.contents:
         cell.output.settag('span class="case align-l"', True)
-        cell.contents.append(FormulaConstant(u' '))
+        cell.contents.append(FormulaConstant(' '))
     array = TaggedBit().complete(self.contents, 'span class="bracketcases"', True)
     brace = BigBracket(len(self.contents), '{', 'l')
     self.contents = brace.getcontents() + [array]
@@ -4698,7 +4698,7 @@ class LimitsProcessor(MathsProcessor):
     if self.checkscript(contents, index + 1):
       superscript = self.getlimit(contents, index  + 1)
     else:
-      superscript = TaggedBit().constant(u' ', 'sup class="limit"')
+      superscript = TaggedBit().constant(' ', 'sup class="limit"')
     limited.contents.insert(0, superscript)
 
   def getlimit(self, contents, index):
@@ -4881,7 +4881,7 @@ class ParameterDefinition(object):
     "Return a printable representation."
     result = 'param ' + self.name
     if self.value:
-      result += ': ' + unicode(self.value)
+      result += ': ' + str(self.value)
     else:
       result += ' (empty)'
     return result
@@ -5012,7 +5012,7 @@ class HybridFunction(ParameterFunction):
       return None
     index = int(pos.skipcurrent())
     if 2 + index > len(self.translated):
-      Trace.error('Function f' + unicode(index) + ' is not defined')
+      Trace.error('Function f' + str(index) + ' is not defined')
       return None
     tag = self.translated[2 + index]
     if not '$' in tag:
@@ -5055,7 +5055,7 @@ class HybridSize(object):
     for name in function.params:
       if name in sizestring:
         size = function.params[name].value.computesize()
-        sizestring = sizestring.replace(name, unicode(size))
+        sizestring = sizestring.replace(name, str(size))
     if '$' in sizestring:
       Trace.error('Unconverted variable in hybrid size: ' + sizestring)
       return 1
@@ -5190,7 +5190,7 @@ class MacroDefinition(CommandBit):
     self.parseparameters(pos)
     self.factory.defining = False
     Trace.debug('New command ' + self.newcommand + ' (' + \
-        unicode(self.parameternumber) + ' parameters)')
+        str(self.parameternumber) + ' parameters)')
     self.macros[self.newcommand] = self
 
   def parseparameters(self, pos):
@@ -5236,8 +5236,8 @@ class MacroParameter(FormulaBit):
       Trace.error('Missing parameter start #.')
       return
     self.number = int(pos.skipcurrent())
-    self.original = '#' + unicode(self.number)
-    self.contents = [TaggedBit().constant('#' + unicode(self.number), 'span class="unknown"')]
+    self.original = '#' + str(self.number)
+    self.contents = [TaggedBit().constant('#' + str(self.number), 'span class="unknown"')]
 
 class MacroFunction(CommandBit):
   "A function that was defined using a macro."
@@ -5257,7 +5257,7 @@ class MacroFunction(CommandBit):
     self.parseoptional(pos, list(macro.defaults))
     self.parsemandatory(pos, macro.parameternumber - len(macro.defaults))
     if len(self.values) < macro.parameternumber:
-      Trace.error('Missing parameters in macro ' + unicode(self))
+      Trace.error('Missing parameters in macro ' + str(self))
 
   def parseoptional(self, pos, defaults):
     "Parse optional parameters."
@@ -5313,7 +5313,7 @@ class MacroFunction(CommandBit):
     for parameter in self.searchall(MacroParameter):
       index = parameter.number - 1
       if index >= len(self.values):
-        Trace.error('Macro parameter index out of bounds: ' + unicode(index))
+        Trace.error('Macro parameter index out of bounds: ' + str(index))
         return
       replaced[index] = True
       parameter.contents = [self.values[index].clone()]
@@ -5323,7 +5323,7 @@ class MacroFunction(CommandBit):
 
   def addfilter(self, index, value):
     "Add a filter for the given parameter number and parameter value."
-    original = '#' + unicode(index + 1)
+    original = '#' + str(index + 1)
     value = ''.join(self.values[0].gethtml())
     self.output.addfilter(original, value)
 

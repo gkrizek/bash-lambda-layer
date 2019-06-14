@@ -25,7 +25,7 @@ if "_xmlplus" in xml.__path__[0]: # PyXML sub-module
     xml.__path__.reverse() # If both are available, prefer stdlib over PyXML
 
 import xml.sax.saxutils
-from StringIO import StringIO
+from io import StringIO
 
 import docutils
 from docutils import frontend, writers, nodes
@@ -182,11 +182,11 @@ class XMLTranslator(nodes.GenericNodeVisitor):
         self.output.append(xml_string)
         self.default_departure(node)  # or not?
         # Check validity of raw XML:
-        if isinstance(xml_string, unicode) and sys.version_info < (3,):
+        if isinstance(xml_string, str) and sys.version_info < (3,):
             xml_string = xml_string.encode('utf8')
         try:
             self.xmlparser.parse(StringIO(xml_string))
-        except xml.sax._exceptions.SAXParseException, error:
+        except xml.sax._exceptions.SAXParseException as error:
             col_num = self.the_handle.locator.getColumnNumber()
             line_num =  self.the_handle.locator.getLineNumber()
             srcline = node.line

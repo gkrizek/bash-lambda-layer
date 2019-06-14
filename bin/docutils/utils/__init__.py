@@ -71,7 +71,7 @@ class Reporter:
      INFO_LEVEL,
      WARNING_LEVEL,
      ERROR_LEVEL,
-     SEVERE_LEVEL) = range(5)
+     SEVERE_LEVEL) = list(range(5))
 
     def __init__(self, source, report_level, halt_level, stream=None,
                  debug=False, encoding=None, error_handler='backslashreplace'):
@@ -326,7 +326,7 @@ def assemble_option_dict(option_list, options_spec):
             raise DuplicateOptionError('duplicate option "%s"' % name)
         try:
             options[name] = convertor(value)
-        except (ValueError, TypeError), detail:
+        except (ValueError, TypeError) as detail:
             raise detail.__class__('(option: "%s"; value: %r)\n%s'
                                    % (name, value, ' '.join(detail.args)))
     return options
@@ -342,7 +342,7 @@ def decode_path(path):
     Decode file/path string in a failsave manner if not already done.
     """
     # see also http://article.gmane.org/gmane.text.docutils.user/2905
-    if isinstance(path, unicode):
+    if isinstance(path, str):
         return path
     try:
         path = path.decode(sys.getfilesystemencoding(), 'strict')
@@ -601,7 +601,7 @@ def split_escaped_whitespace(text):
 def strip_combining_chars(text):
     if isinstance(text, str) and sys.version_info < (3,0):
         return text
-    return u''.join([c for c in text if not unicodedata.combining(c)])
+    return ''.join([c for c in text if not unicodedata.combining(c)])
 
 def find_combining_chars(text):
     """Return indices of all combining chars in  Unicode string `text`.
@@ -625,7 +625,7 @@ def column_indices(text):
     """
     # TODO: account for asian wide chars here instead of using dummy
     # replacements in the tableparser?
-    string_indices = range(len(text))
+    string_indices = list(range(len(text)))
     for index in find_combining_chars(text):
         string_indices[index] = None
     return [i for i in string_indices if i is not None]
@@ -669,7 +669,7 @@ def unique_combinations(items, n):
     """Return n-length tuples, in sorted order, no repeated elements"""
     if n==0: yield []
     else:
-        for i in xrange(len(items)-n+1):
+        for i in range(len(items)-n+1):
             for cc in unique_combinations(items[i+1:],n-1):
                 yield [items[i]]+cc
 

@@ -255,7 +255,7 @@ class Translator(nodes.NodeVisitor):
             # ensure we get a ".TH" as viewers require it.
             self.append_header()
         # filter body
-        for i in xrange(len(self.body)-1, 0, -1):
+        for i in range(len(self.body)-1, 0, -1):
             # remove superfluous vertical gaps.
             if self.body[i] == '.sp\n':
                 if self.body[i - 1][:4] in ('.BI ','.IP '):
@@ -272,18 +272,18 @@ class Translator(nodes.NodeVisitor):
         return ''.join(self.head + self.body + self.foot)
 
     def deunicode(self, text):
-        text = text.replace(u'\xa0', '\\ ')
-        text = text.replace(u'\u2020', '\\(dg')
+        text = text.replace('\xa0', '\\ ')
+        text = text.replace('\u2020', '\\(dg')
         return text
 
     def visit_Text(self, node):
         text = node.astext()
         text = text.replace('\\','\\e')
         replace_pairs = [
-            (u'-', ur'\-'),
-            (u'\'', ur'\(aq'),
-            (u'´', ur'\''),
-            (u'`', ur'\(ga'),
+            ('-', r'\-'),
+            ('\'', r'\(aq'),
+            ('´', r'\''),
+            ('`', r'\(ga'),
             ]
         for (in_char, out_markup) in replace_pairs:
             text = text.replace(in_char, out_markup)
@@ -308,7 +308,7 @@ class Translator(nodes.NodeVisitor):
 
             def __init__(self, style):
                 self._style = style
-                if node.has_key('start'):
+                if 'start' in node:
                     self._cnt = node['start'] - 1
                 else:
                     self._cnt = 0
@@ -327,7 +327,7 @@ class Translator(nodes.NodeVisitor):
                 elif style.endswith('roman'):
                     self._indent = 5
 
-            def next(self):
+            def __next__(self):
                 if self._style == 'bullet':
                     return self.enum_style[self._style]
                 elif self._style == 'emdash':
@@ -350,7 +350,7 @@ class Translator(nodes.NodeVisitor):
             def __repr__(self):
                 return 'enum_style-%s' % list(self._style)
 
-        if node.has_key('enumtype'):
+        if 'enumtype' in node:
             self._list_char.append(enum_char(node['enumtype']))
         else:
             self._list_char.append(enum_char('bullet'))
@@ -711,7 +711,7 @@ class Translator(nodes.NodeVisitor):
         pass
 
     def visit_header(self, node):
-        raise NotImplementedError, node.astext()
+        raise NotImplementedError(node.astext())
 
     def depart_header(self, node):
         pass
@@ -808,7 +808,7 @@ class Translator(nodes.NodeVisitor):
     def visit_list_item(self, node):
         # man 7 man argues to use ".IP" instead of ".TP"
         self.body.append('.IP %s %d\n' % (
-                self._list_char[-1].next(),
+                next(self._list_char[-1]),
                 self._list_char[-1].get_width(),))
 
     def depart_list_item(self, node):
@@ -851,7 +851,7 @@ class Translator(nodes.NodeVisitor):
         self.depart_literal_block(node)
 
     def visit_meta(self, node):
-        raise NotImplementedError, node.astext()
+        raise NotImplementedError(node.astext())
 
     def depart_meta(self, node):
         pass

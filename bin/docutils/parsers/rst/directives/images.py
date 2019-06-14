@@ -10,7 +10,7 @@ __docformat__ = 'reStructuredText'
 
 
 import sys
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from docutils import nodes, utils
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives, states
@@ -125,7 +125,7 @@ class Figure(Image):
         figure_node = nodes.figure('', image_node)
         if figwidth == 'image':
             if PIL and self.state.document.settings.file_insertion_enabled:
-                imagepath = urllib.url2pathname(image_node['uri'])
+                imagepath = urllib.request.url2pathname(image_node['uri'])
                 try:
                     img = PIL.Image.open(
                             imagepath.encode(sys.getfilesystemencoding()))

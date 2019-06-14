@@ -51,7 +51,7 @@ class TitlePromoter(Transform):
         """
         # Type check
         if not isinstance(node, nodes.Element):
-            raise TypeError, 'node must be of Element-derived type.'
+            raise TypeError('node must be of Element-derived type.')
 
         # `node` must not have a title yet.
         assert not (len(node) and isinstance(node[0], nodes.title))
@@ -94,7 +94,7 @@ class TitlePromoter(Transform):
         """
         # Type check
         if not isinstance(node, nodes.Element):
-            raise TypeError, 'node must be of Element-derived type.'
+            raise TypeError('node must be of Element-derived type.')
 
         subsection, index = self.candidate_index(node)
         if index is None:

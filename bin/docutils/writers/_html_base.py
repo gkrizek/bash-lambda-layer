@@ -20,7 +20,7 @@
 import sys
 import os.path
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 try: # check for the Python Imaging Library
     import PIL.Image
@@ -75,7 +75,7 @@ class Writer(writers.Writer):
 
     def apply_template(self):
         template_file = open(self.document.settings.template, 'rb')
-        template = unicode(template_file.read(), 'utf-8')
+        template = str(template_file.read(), 'utf-8')
         template_file.close()
         subs = self.interpolation_dict()
         return template % subs
@@ -188,11 +188,11 @@ class HTMLTranslator(nodes.NodeVisitor):
     in_word_wrap_point = re.compile(r'.+\W\W.+|[-?].+', re.U)
     lang_attribute = 'lang' # name changes to 'xml:lang' in XHTML 1.1
 
-    special_characters = {ord('&'): u'&amp;',
-                          ord('<'): u'&lt;',
-                          ord('"'): u'&quot;',
-                          ord('>'): u'&gt;',
-                          ord('@'): u'&#64;', # may thwart address harvesters
+    special_characters = {ord('&'): '&amp;',
+                          ord('<'): '&lt;',
+                          ord('"'): '&quot;',
+                          ord('>'): '&gt;',
+                          ord('@'): '&#64;', # may thwart address harvesters
                          }
     """Character references for characters with a special meaning in HTML."""
 
@@ -267,7 +267,7 @@ class HTMLTranslator(nodes.NodeVisitor):
         # Use only named entities known in both XML and HTML
         # other characters are automatically encoded "by number" if required.
         # @@@ A codec to do these and all other HTML entities would be nice.
-        text = unicode(text)
+        text = str(text)
         return text.translate(self.special_characters)
 
     def cloak_mailto(self, uri):
@@ -302,8 +302,8 @@ class HTMLTranslator(nodes.NodeVisitor):
                 content = io.FileInput(source_path=path,
                                        encoding='utf-8').read()
                 self.settings.record_dependencies.add(path)
-            except IOError, err:
-                msg = u"Cannot embed stylesheet '%s': %s." % (
+            except IOError as err:
+                msg = "Cannot embed stylesheet '%s': %s." % (
                                 path, SafeString(err.strerror))
                 self.document.reporter.error(msg)
                 return '<--- %s --->\n' % msg
@@ -323,7 +323,7 @@ class HTMLTranslator(nodes.NodeVisitor):
         prefix = []
         atts = {}
         ids = []
-        for (name, value) in attributes.items():
+        for (name, value) in list(attributes.items()):
             atts[name.lower()] = value
         classes = []
         languages = []
@@ -362,7 +362,7 @@ class HTMLTranslator(nodes.NodeVisitor):
                     # Non-empty tag.  Place the auxiliary <span> tag
                     # *inside* the element, as the first child.
                     suffix += '<span id="%s"></span>' % id
-        attlist = atts.items()
+        attlist = list(atts.items())
         attlist.sort()
         parts = [tagname]
         for name, value in attlist:
@@ -370,12 +370,12 @@ class HTMLTranslator(nodes.NodeVisitor):
             # value, but this isn't supported by XHTML.
             assert value is not None
             if isinstance(value, list):
-                values = [unicode(v) for v in value]
+                values = [str(v) for v in value]
                 parts.append('%s="%s"' % (name.lower(),
                                           self.attval(' '.join(values))))
             else:
                 parts.append('%s="%s"' % (name.lower(),
-                                          self.attval(unicode(value))))
+                                          self.attval(str(value))))
         if empty:
             infix = ' /'
         else:
@@ -438,7 +438,7 @@ class HTMLTranslator(nodes.NodeVisitor):
     def depart_admonition(self, node=None):
         self.body.append('</div>\n')
 
-    attribution_formats = {'dash': (u'\u2014', ''),
+    attribution_formats = {'dash': ('\u2014', ''),
                            'parentheses': ('(', ')'),
                            'parens': ('(', ')'),
                            'none': ('', '')}
@@ -874,7 +874,7 @@ class HTMLTranslator(nodes.NodeVisitor):
     def visit_generated(self, node):
         if 'sectnum' in node['classes']:
             # get section number (strip trailing no-break-spaces)
-            sectnum = node.astext().rstrip(u' ')
+            sectnum = node.astext().rstrip(' ')
             # print sectnum.encode('utf-8')
             self.body.append('<span class="sectnum">%s</span> '
                                     % self.encode(sectnum))
@@ -917,7 +917,7 @@ class HTMLTranslator(nodes.NodeVisitor):
         if 'scale' in node:
             if (PIL and not ('width' in node and 'height' in node)
                 and self.settings.file_insertion_enabled):
-                imagepath = urllib.url2pathname(uri)
+                imagepath = urllib.request.url2pathname(uri)
                 try:
                     img = PIL.Image.open(
                             imagepath.encode(sys.getfilesystemencoding()))
@@ -1095,9 +1095,9 @@ class HTMLTranslator(nodes.NodeVisitor):
         clsarg = self.math_tags[self.math_output][2]
         # LaTeX container
         wrappers = {# math_mode: (inline, block)
-                    'mathml':  ('$%s$',   u'\\begin{%s}\n%s\n\\end{%s}'),
-                    'html':    ('$%s$',   u'\\begin{%s}\n%s\n\\end{%s}'),
-                    'mathjax': (r'\(%s\)', u'\\begin{%s}\n%s\n\\end{%s}'),
+                    'mathml':  ('$%s$',   '\\begin{%s}\n%s\n\\end{%s}'),
+                    'html':    ('$%s$',   '\\begin{%s}\n%s\n\\end{%s}'),
+                    'mathjax': (r'\(%s\)', '\\begin{%s}\n%s\n\\end{%s}'),
                     'latex':   (None,     None),
                    }
         wrapper = wrappers[self.math_output][math_env != '']
@@ -1157,11 +1157,11 @@ class HTMLTranslator(nodes.NodeVisitor):
                     'with math-output "MathML"')
             except OSError:
                     raise OSError('is "latexmlmath" in your PATH?')
-            except SyntaxError, err:
+            except SyntaxError as err:
                 err_node = self.document.reporter.error(err, base_node=node)
                 self.visit_system_message(err_node)
                 self.body.append(self.starttag(node, 'p'))
-                self.body.append(u','.join(err.args))
+                self.body.append(','.join(err.args))
                 self.body.append('</p>\n')
                 self.body.append(self.starttag(node, 'pre',
                                                CLASS='literal-block'))
@@ -1455,7 +1455,7 @@ class HTMLTranslator(nodes.NodeVisitor):
     # no hard-coded border setting in the table head::
 
     def visit_table(self, node):
-        classes = [cls.strip(u' \t\n')
+        classes = [cls.strip(' \t\n')
                    for cls in self.settings.table_style.split(',')]
         if 'align' in node:
             classes.append('align-%s' % node['align'])

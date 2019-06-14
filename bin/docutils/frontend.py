@@ -33,7 +33,7 @@ import os
 import os.path
 import sys
 import warnings
-import ConfigParser as CP
+import configparser as CP
 import codecs
 import optparse
 from optparse import SUPPRESS_HELP
@@ -53,7 +53,7 @@ def store_multiple(option, opt, value, parser, *args, **kwargs):
     """
     for attribute in args:
         setattr(parser.values, attribute, None)
-    for key, value in kwargs.items():
+    for key, value in list(kwargs.items()):
         setattr(parser.values, key, value)
 
 def read_config_file(option, opt, value, parser):
@@ -62,7 +62,7 @@ def read_config_file(option, opt, value, parser):
     """
     try:
         new_settings = parser.get_config_file_settings(value)
-    except ValueError, error:
+    except ValueError as error:
         parser.error(error)
     parser.values.update(new_settings, parser)
 
@@ -71,9 +71,8 @@ def validate_encoding(setting, value, option_parser,
     try:
         codecs.lookup(value)
     except LookupError:
-        raise (LookupError('setting "%s": unknown encoding: "%s"'
-                           % (setting, value)),
-               None, sys.exc_info()[2])
+        raise LookupError('setting "%s": unknown encoding: "%s"'
+                           % (setting, value))
     return value
 
 def validate_encoding_error_handler(setting, value, option_parser,
@@ -81,12 +80,11 @@ def validate_encoding_error_handler(setting, value, option_parser,
     try:
         codecs.lookup_error(value)
     except LookupError:
-        raise (LookupError(
+        raise LookupError(
             'unknown encoding error handler: "%s" (choices: '
             '"strict", "ignore", "replace", "backslashreplace", '
             '"xmlcharrefreplace", and possibly others; see documentation for '
-            'the Python ``codecs`` module)' % value),
-               None, sys.exc_info()[2])
+            'the Python ``codecs`` module)' % value)
     return value
 
 def validate_encoding_and_error_handler(
@@ -122,8 +120,7 @@ def validate_boolean(setting, value, option_parser,
     try:
         return option_parser.booleans[value.strip().lower()]
     except KeyError:
-        raise (LookupError('unknown boolean value: "%s"' % value),
-               None, sys.exc_info()[2])
+        raise LookupError('unknown boolean value: "%s"' % value)
 
 def validate_ternary(setting, value, option_parser,
                      config_parser=None, config_section=None):
@@ -154,8 +151,7 @@ def validate_threshold(setting, value, option_parser,
         try:
             return option_parser.thresholds[value.lower()]
         except (KeyError, AttributeError):
-            raise (LookupError('unknown threshold: %r.' % value),
-                   None, sys.exc_info[2])
+            raise LookupError('unknown threshold: %r.' % value)
 
 def validate_colon_separated_string_list(
     setting, value, option_parser, config_parser=None, config_section=None):
@@ -177,7 +173,7 @@ def validate_comma_separated_list(setting, value, option_parser,
     # this function is called for every option added to `value`
     # -> split the last item and append the result:
     last = value.pop()
-    items = [i.strip(u' \t\n') for i in last.split(u',') if i.strip(u' \t\n')]
+    items = [i.strip(' \t\n') for i in last.split(',') if i.strip(' \t\n')]
     value.extend(items)
     return value
 
@@ -230,7 +226,7 @@ def validate_smartquotes_locales(setting, value, option_parser,
             lc_quotes.append(item)
             continue
         except ValueError:
-            raise ValueError(u'Invalid value "%s".'
+            raise ValueError('Invalid value "%s".'
                              ' Format is "<language>:<quotes>".'
                              % item.encode('ascii', 'backslashreplace'))
         # parse colon separated string list:
@@ -253,7 +249,7 @@ def make_paths_absolute(pathdict, keys, base_path=None):
     `OptionParser.relative_path_settings`.
     """
     if base_path is None:
-        base_path = os.getcwdu() # type(base_path) == unicode
+        base_path = os.getcwd() # type(base_path) == unicode
         # to allow combining non-ASCII cwd with unicode values in `pathdict`
     for key in keys:
         if key in pathdict:
@@ -290,7 +286,7 @@ def filter_settings_spec(settings_spec, *exclude, **replace):
                        ][0]
             if opt_name in exclude:
                 continue
-            if opt_name in replace.keys():
+            if opt_name in list(replace.keys()):
                 newopts.append(replace[opt_name])
             else:
                 newopts.append(opt_spec)
@@ -316,7 +312,7 @@ class Values(optparse.Values):
         if isinstance(other_dict, Values):
             other_dict = other_dict.__dict__
         other_dict = other_dict.copy()
-        for setting in option_parser.lists.keys():
+        for setting in list(option_parser.lists.keys()):
             if (hasattr(self, setting) and setting in other_dict):
                 value = getattr(self, setting)
                 if value:
@@ -346,11 +342,10 @@ class Option(optparse.Option):
                 value = getattr(values, setting)
                 try:
                     new_value = self.validator(setting, value, parser)
-                except Exception, error:
-                    raise (optparse.OptionValueError(
+                except Exception as error:
+                    raise optparse.OptionValueError(
                         'Error in option "%s":\n    %s'
-                        % (opt, ErrorString(error))),
-                           None, sys.exc_info()[2])
+                        % (opt, ErrorString(error)))
                 setattr(values, setting, new_value)
             if self.overrides:
                 setattr(values, self.overrides, None)
@@ -605,7 +600,7 @@ class OptionParser(optparse.OptionParser, docutils.SettingsSpec):
         if read_config_files and not self.defaults['_disable_config']:
             try:
                 config_settings = self.get_standard_config_settings()
-            except ValueError, error:
+            except ValueError as error:
                 self.error(SafeString(error))
             self.set_defaults_from_dict(config_settings.__dict__)
 
@@ -768,7 +763,7 @@ Skipping "%s" configuration file.
         """Wrapper around sys.stderr catching en-/decoding errors"""
 
     def read(self, filenames, option_parser):
-        if type(filenames) in (str, unicode):
+        if type(filenames) in (str, str):
             filenames = [filenames]
         for filename in filenames:
             try:
@@ -797,7 +792,7 @@ Skipping "%s" configuration file.
         options = self.get_section('options')
         if not self.has_section('general'):
             self.add_section('general')
-        for key, value in options.items():
+        for key, value in list(options.items()):
             if key in self.old_settings:
                 section, setting = self.old_settings[key]
                 if not self.has_section(section):
@@ -826,13 +821,13 @@ Skipping "%s" configuration file.
                         new_value = option.validator(
                             setting, value, option_parser,
                             config_parser=self, config_section=section)
-                    except Exception, error:
-                        raise (ValueError(
+                    except Exception as error:
+                        raise ValueError(
                             'Error in config file "%s", section "[%s]":\n'
                             '    %s\n'
                             '        %s = %s'
                             % (filename, section, ErrorString(error),
-                               setting, value)), None, sys.exc_info()[2])
+                               setting, value))
                     self.set(section, setting, new_value)
                 if option.overrides:
                     self.set(section, option.overrides, None)
