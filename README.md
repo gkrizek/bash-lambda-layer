@@ -166,10 +166,12 @@ _Disclaimer: I usually don't add in executables from pull requests for security 
 - `$ scp`
 - `$ sftp`
 - `$ ssh`
+- `$ sshpass`
 - `$ time`
 - `$ traceroute`
 - `$ tree`
 - `$ wget`
+- `$ vim`
 - `$ zip`
 
 **Already included in the Lambda environment:**
