@@ -30,8 +30,8 @@ sendRuntimeError () {
 # Send successful response to Lambda API
 sendResponse () {
   REQUEST_ID=$1
-  REQUEST_RESPONSE=$2
-  curl -sS -X POST -d "$REQUEST_RESPONSE" "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
+  REQUEST_RESPONSE_FILE=$2
+  cat $REQUEST_RESPONSE_FILE | curl -sS -X POST -d @- "http://${AWS_LAMBDA_RUNTIME_API}/${RUNTIME_PATH}/invocation/${REQUEST_ID}/response" > /dev/null
 }
 
 # Make sure handler file exists
@@ -76,7 +76,7 @@ do
   EXIT_CODE=$?
   # Respond to Lambda API
   if [[ $EXIT_CODE -eq "0" ]]; then
-    sendResponse "$REQUEST_ID" "$(cat $RESPONSE)"
+    sendResponse "$REQUEST_ID" "$RESPONSE"
   else
     # Log error to stdout as well
     cat $RESPONSE
