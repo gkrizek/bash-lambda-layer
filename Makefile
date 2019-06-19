@@ -10,6 +10,10 @@ build:
 publish:
 	@$(PWD)/publish.sh
 
+publish-staging:
+	@$(PWD)/publish-staging.sh
+
 .PHONY: \
 	build
 	publish
+	publish-staging
