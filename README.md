@@ -173,6 +173,7 @@ _Disclaimer: I usually don't add in executables from pull requests for security 
 - `$ wget`
 - `$ vim`
 - `$ zip`
+- `$ unzip`
 
 **Already included in the Lambda environment:**
 
