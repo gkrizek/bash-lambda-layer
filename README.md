@@ -1,5 +1,11 @@
 # Bash in AWS Lambda
 
+## NO LONGER SUPPORTED
+
+This repository and layer is no longer receiving updates or support. I've been too busy to keep up with changes in the Lambda environment and this has fallen behind. Use at your own risk. 
+
+---
+
 Run Bash in [AWS Lambda](https://aws.amazon.com/lambda/) via [Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). This Layer is 100% Bash and handles all communication with the Lambda Runtime API. This allows you to run full Bash scripts and commands inside of AWS Lambda. This Layer also includes common CLI tools used in Bash scripts.
 
 See the [How To](#how-to) section to understand how to use these layers. Also see the [example-basic.sh](examples/example-basic.sh) file for an example of how to write a Bash script compatible with this Layer.
